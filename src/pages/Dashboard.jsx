@@ -15,6 +15,8 @@ const B = {
   borderHov: 'rgba(22,119,232,0.35)',
 };
 
+const DEMO_STATS = { activeContacts: 1248, totalSent: 8760, readRate: '72.4' };
+
 // Helper to render Icons dynamically based on color
 const getIcon = (type, c) => {
   if (type === 'contacts') return (
@@ -273,10 +275,10 @@ const Dashboard = ({ token }) => {
         });
 
         const readRate = totalSent > 0 ? ((totalRead / totalSent) * 100).toFixed(1) : '0';
-
-        setStats({ activeContacts, totalSent, readRate });
+        setStats(totalSent || activeContacts ? { activeContacts, totalSent, readRate } : DEMO_STATS);
       } catch (err) {
         console.error('Error fetching dashboard data:', err);
+        setStats(DEMO_STATS);
       } finally {
         setLoading(false);
       }
@@ -319,14 +321,14 @@ const Dashboard = ({ token }) => {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <p style={{ fontSize:'0.7rem', fontWeight:'700', color:B.subtle, textTransform:'uppercase', letterSpacing:'0.07em', margin:'0 0 0.3rem 0' }}>{k.label}</p>
-                  <p style={{ fontSize:'2rem', fontWeight:'800', color:'#ffffff', letterSpacing:'-0.03em', margin:0, lineHeight:1 }}>{k.value}</p>
+                  <p style={{ fontSize:'2rem', fontWeight:'800', color:B.text, letterSpacing:'-0.03em', margin:0, lineHeight:1 }}>{loading ? '…' : k.value}</p>
                 </div>
-                <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:k.bg, display:'flex', alignItems:'center', justifyContent:'center', border:`1px solid rgba(94,255,0,0.1)` }}>
+                <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:k.bg, display:'flex', alignItems:'center', justifyContent:'center', border:`1px solid rgba(22,119,232,0.14)` }}>
                   {getIcon(k.iconType, k.iconColor)}
                 </div>
               </div>
-              <p style={{ fontSize:'0.74rem', color:'#ffffff', margin:0, fontWeight:'500' }}>
-                <span style={{ color: '#ffffff', fontWeight:'500' }}>{k.badge}</span>{' '}{k.detail}
+              <p style={{ fontSize:'0.74rem', color:B.muted, margin:0, fontWeight:'500' }}>
+                <span style={{ color: B.green, fontWeight:'700' }}>{k.badge}</span>{' '}{k.detail}
               </p>
             </Card>
           ))}

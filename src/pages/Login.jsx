@@ -109,7 +109,11 @@ const Login = ({ onLogin }) => {
         {/* Brand Header */}
         <div style={styles.brandHeader}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ color: '#0b3d91', fontSize: '2.35rem', fontWeight: '900', letterSpacing: '-0.06em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
+              <span style={{ width: '42px', height: '42px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', borderRadius: '13px', background: 'linear-gradient(135deg, #1677e8, #0b3d91)', color: '#fff', fontSize: '1.05rem', fontWeight: '900', boxShadow: '0 9px 20px rgba(22,119,232,0.25)' }}>M</span>
+              <span style={{ color: '#102a43', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+            </div>
+            <p style={{ margin: '1rem 0 0', color: '#486581', fontSize: '0.9rem', fontWeight: '500' }}>Acesse sua central de disparos</p>
           </div>
         </div>
 
@@ -361,7 +365,7 @@ const styles = {
     minHeight: '100vh',
     padding: '1.5rem',
     boxSizing: 'border-box',
-    background: '#000000',
+    background: 'radial-gradient(circle at top right, #dcecff 0%, #f7faff 45%, #eef5ff 100%)',
     position: 'relative',
     overflowY: 'auto',
     overflowX: 'hidden'
@@ -373,14 +377,14 @@ const styles = {
     display: 'none'
   },
   authContainer: {
-    background: 'rgba(4, 5, 3, 0.97)',
+    background: 'rgba(255, 255, 255, 0.96)',
     backdropFilter: 'blur(16px)',
     WebkitBackdropFilter: 'blur(16px)',
-    border: '1px solid rgba(255, 255, 255, 0.03)',
-    boxShadow: '0 30px 70px rgba(0,0,0,0.98)',
-    borderRadius: 'var(--radius-lg)',
-    padding: '3.5rem 3rem',
-    maxWidth: '420px',
+    border: '1px solid rgba(11, 61, 145, 0.13)',
+    boxShadow: '0 24px 60px rgba(11,61,145,0.15)',
+    borderRadius: '24px',
+    padding: '3rem',
+    maxWidth: '430px',
     width: '100%',
     margin: '0 auto',
     textAlign: 'center',
@@ -412,7 +416,7 @@ const styles = {
     fontSize: '1.75rem',
     fontWeight: '800',
     margin: '0 0 0.35rem 0',
-    color: '#E5E5E5',
+    color: '#102a43',
     letterSpacing: '-0.03em'
   },
   subtitle: {
@@ -426,7 +430,7 @@ const styles = {
     textAlign: 'left'
   },
   label: {
-    color: '#ffffff',
+    color: '#486581',
     fontSize: '0.8rem',
     fontWeight: '700',
     letterSpacing: '0.05em'
@@ -434,8 +438,8 @@ const styles = {
   input: {
     width: '100%',
     boxSizing: 'border-box',
-    backgroundColor: 'rgba(8, 14, 5, 0.8)',
-    borderColor: 'rgba(94, 255, 0, 0.1)'
+    backgroundColor: '#f8fbff',
+    borderColor: 'rgba(11, 61, 145, 0.16)'
   },
   error: {
     margin: '0 0 1.5rem 0'
@@ -449,8 +453,8 @@ const styles = {
     padding: '1rem 2rem',
     fontSize: '0.95rem',
     fontWeight: '700',
-    background: '#59e308',
-    color: '#000',
+    background: '#1677e8',
+    color: '#fff',
     border: 'none',
     boxShadow: 'none',
     cursor: 'pointer',
@@ -511,7 +515,7 @@ const styles = {
     margin: 0
   },
   forgotLink: {
-    color: '#5EFF00',
+    color: '#1677e8',
     textDecoration: 'none',
     fontWeight: '600',
     transition: 'opacity 0.2s',

@@ -103,7 +103,10 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <span style={{ color: '#0b3d91', fontSize: '1.35rem', fontWeight: '900', letterSpacing: '-0.05em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '9px', color: '#102a43', fontSize: '1.25rem', fontWeight: '800', letterSpacing: '-0.05em' }}>
+              <span style={{ width: '27px', height: '27px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', borderRadius: '9px', background: 'linear-gradient(135deg, #1677e8, #0b3d91)', color: '#fff', fontSize: '0.88rem', fontWeight: '900', boxShadow: '0 5px 12px rgba(22,119,232,0.24)' }}>M</span>
+              Meta<span style={{ color: '#1677e8' }}>Flow</span>
+            </span>
           </div>
         </div>
       </div>

@@ -128,7 +128,10 @@ const Register = ({ onLogin }) => {
         {/* Brand Header */}
         <div style={styles.brandHeader}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ color: '#0b3d91', fontSize: '2.35rem', fontWeight: '900', letterSpacing: '-0.06em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
+              <span style={{ width: '42px', height: '42px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', borderRadius: '13px', background: 'linear-gradient(135deg, #1677e8, #0b3d91)', color: '#fff', fontSize: '1.05rem', fontWeight: '900', boxShadow: '0 9px 20px rgba(22,119,232,0.25)' }}>M</span>
+              <span style={{ color: '#102a43', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+            </div>
           </div>
         </div>
 
