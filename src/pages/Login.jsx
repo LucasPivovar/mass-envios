@@ -107,7 +107,7 @@ const Login = ({ onLogin }) => {
 
       <div className="authShell" style={styles.authShell}>
       <section className="authShowcase" style={styles.authShowcase}>
-        <div style={styles.showcaseBrand}><span style={{ color: '#ffffff' }}>Meta</span><span style={{ color: '#47c8ff' }}>Flow</span></div>
+        <div className="login-brand" style={styles.showcaseBrand}><img src="/metaflow-mark.svg" width="36" height="36" alt="" /><span>MetaFlow</span></div>
         <div style={styles.showcaseMark}>
           <svg width="118" height="118" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="48" stroke="rgba(71,200,255,.34)" strokeWidth="1.5"/><circle cx="60" cy="60" r="32" fill="rgba(71,200,255,.09)" stroke="rgba(71,200,255,.45)" strokeWidth="1.5"/><path d="M35 62h17l9-16 10 27 8-14h8" stroke="#75dcff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/><circle cx="35" cy="62" r="4" fill="#75dcff"/><circle cx="87" cy="59" r="4" fill="#75dcff"/></svg>
         </div>
@@ -121,10 +121,11 @@ const Login = ({ onLogin }) => {
         <div style={styles.brandHeader}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
-              <svg width="44" height="44" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="#eaf3ff" stroke="#1677e8" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#0b3d91" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#1677e8"/><circle cx="22" cy="17" r="2" fill="#1677e8"/></svg>
+              <img src="/metaflow-mark.svg" width="44" height="44" alt="" />
               <span style={{ color: '#ffffff', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#47c8ff' }}>Flow</span></span>
             </div>
-            <p style={{ margin: '1rem 0 0', color: '#a7c5d8', fontSize: '0.9rem', fontWeight: '500' }}>Acesse sua central de disparos</p>
+            <h2 className="login-welcome">{view === 'login' ? 'Bem-vindo de volta' : view === 'login_2fa' ? 'Confirme seu acesso' : 'Recupere seu acesso'}</h2>
+            <p style={{ margin: 0, color: '#a7c5d8', fontSize: '0.9rem', fontWeight: '500' }}>{view === 'login' ? 'Entre para acompanhar suas campanhas e automações.' : 'Siga as instruções abaixo para continuar.'}</p>
           </div>
         </div>
 

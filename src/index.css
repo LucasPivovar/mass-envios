@@ -1384,6 +1384,8 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 }
 .login-screen, .login-screen *, .login-screen *::before, .login-screen *::after { box-sizing: border-box; }
 .login-screen .authShell { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+.login-brand { display: flex; align-items: center; gap: 12px; color: #fff; }
+.login-welcome { margin: 28px 0 8px; font-size: 1.4rem; letter-spacing: -.03em; }
 .login-screen .auth-container {
   width: 100% !important;
   max-width: none !important;
