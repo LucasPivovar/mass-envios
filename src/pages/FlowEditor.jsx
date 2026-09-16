@@ -108,6 +108,11 @@ const MessageNode = ({ data, draggable, selected }) => {
       }}>
         {data.content || 'Sem texto definido...'}
       </div>
+      {data.mediaName && (
+        <div style={{ marginTop: '10px', padding: '8px 10px', borderRadius: '8px', background: '#eaf3ff', border: '1px solid #bfdbfe', color: '#0b3d91', fontSize: '11px', fontWeight: '700' }}>
+          🖼 Mídia: {data.mediaName}
+        </div>
+      )}
       {buttons.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '10px' }}>
           {buttons.map((btn, idx) => (
@@ -291,11 +296,17 @@ const SplitNode = ({ data, draggable, selected }) => {
       draggable={draggable}
       selected={selected}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', fontSize: '11px', fontWeight: '800' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', fontSize: '11px', fontWeight: '800', flexWrap: 'wrap' }}>
         <div style={{ flex: 1, textAlign: 'center', background: 'rgba(168, 85, 247, 0.07)', border: '1px solid rgba(168,85,247,0.2)', borderRadius: '6px', padding: '6px 4px' }}>
           <div style={{ color: '#a855f7', marginBottom: '2px' }}>{labelA}</div>
           <div style={{ color: '#6b21a8', fontSize: '13px', fontWeight: '900' }}>{pct}%</div>
         </div>
+        {(data.groups || []).map((group, index) => (
+          <div key={group + index} style={{ flex: '1 0 42%', textAlign: 'center', background: '#eaf3ff', border: '1px solid #bfdbfe', borderRadius: '6px', padding: '6px 4px', color: '#0b3d91' }}>
+            <div>{group}</div>
+            <div style={{ fontSize: '10px', color: '#486581' }}>novo fluxo</div>
+          </div>
+        ))}
         <div style={{ flex: 1, textAlign: 'center', background: 'rgba(236, 72, 153, 0.07)', border: '1px solid rgba(236,72,153,0.2)', borderRadius: '6px', padding: '6px 4px' }}>
           <div style={{ color: '#ec4899', marginBottom: '2px' }}>{labelB}</div>
           <div style={{ color: '#be185d', fontSize: '13px', fontWeight: '900' }}>{100 - pct}%</div>
@@ -1362,6 +1373,21 @@ Layout guidelines:
             border-radius: 8px !important;
           }
         }
+
+        /* Canvas claro: inspirado nos builders com paleta, canvas e propriedades separados. */
+        .flow-editor-container { background: #f7faff !important; color: #102a43 !important; }
+        .flow-editor-container button { background: #fff !important; border-color: rgba(11,61,145,.16) !important; color: #486581 !important; box-shadow: 0 4px 12px rgba(11,61,145,.08) !important; }
+        .flow-editor-container button:hover { background: #eef5ff !important; border-color: #1677e8 !important; color: #0b3d91 !important; }
+        .flow-editor-container button.publish-btn { background: #1677e8 !important; border-color: #1677e8 !important; color: #fff !important; box-shadow: 0 8px 18px rgba(22,119,232,.22) !important; }
+        .flow-editor-container button.publish-btn:hover { background: #0f63c9 !important; border-color: #0f63c9 !important; color: #fff !important; }
+        .flow-editor-container .floating-tools-bar, .flow-editor-container .add-step-overlay, .flow-editor-container .react-flow__minimap { background: rgba(255,255,255,.97) !important; border-color: rgba(11,61,145,.14) !important; box-shadow: 0 12px 28px rgba(11,61,145,.14) !important; }
+        .flow-editor-container .node-edit-sidebar { background: rgba(255,255,255,.98) !important; border-left-color: rgba(11,61,145,.14) !important; box-shadow: -15px 0 40px rgba(11,61,145,.16) !important; }
+        .flow-editor-container .add-step-item { background: #fff !important; border-color: rgba(11,61,145,.15) !important; color: #102a43 !important; }
+        .flow-editor-container .add-step-item:hover { border-color: #1677e8 !important; background: #f1f6fe !important; color: #0b3d91 !important; }
+        .flow-editor-container .premium-dark-input { background: #f8fbff !important; border-color: rgba(11,61,145,.16) !important; color: #102a43 !important; box-shadow: none !important; }
+        .flow-editor-container .premium-dark-input:focus { background: #fff !important; border-color: #1677e8 !important; box-shadow: 0 0 0 3px rgba(22,119,232,.13) !important; }
+        .flow-editor-container .react-flow__minimap-mask { fill: rgba(22,119,232,.10) !important; }
+        .flow-editor-container .react-flow__connection-connecting .react-flow__handle.react-flow__handle-target { background: rgba(22,119,232,.06) !important; border-color: rgba(22,119,232,.3) !important; }
       `}} />
 
       {/* ── Compact tool header — visible on all screens ── */}
@@ -1910,6 +1936,18 @@ Layout guidelines:
                         />
                       </div>
 
+                      <div>
+                        <label style={{ fontSize: '12px', fontWeight: '800', color: '#9CA3AF', display: 'block', marginBottom: '8px' }}>Mídia opcional:</label>
+                        <input
+                          type="text"
+                          className="premium-dark-input"
+                          value={selectedNode.data.mediaName || ''}
+                          onChange={(e) => updateSelectedNode('mediaName', e.target.value)}
+                          placeholder="Ex.: catálogo-setembro.jpg ou vídeo de apresentação"
+                        />
+                        <span style={{ display: 'block', marginTop: '6px', color: '#829ab1', fontSize: '10px' }}>Protótipo visual — o arquivo não é enviado nesta etapa.</span>
+                      </div>
+
                       {/* Interactive Buttons List */}
                       <div>
                         <label style={{ fontSize: '12px', fontWeight: '800', color: '#9CA3AF', display: 'block', marginBottom: '8px' }}>Botões de Ação:</label>
@@ -2250,6 +2288,15 @@ Layout guidelines:
                           <div style={{ fontSize: '16px', fontWeight: '900', color: '#ec4899' }}>{100 - (selectedNode.data.splitPercent ?? 50)}%</div>
                         </div>
                       </div>
+
+                      <button
+                        type="button"
+                        onClick={() => updateSelectedNode('groups', [...(selectedNode.data.groups || []), `Grupo ${String.fromCharCode(67 + (selectedNode.data.groups || []).length)}`])}
+                        className="secondary"
+                        style={{ width: '100%', fontSize: '12px' }}
+                      >
+                        + Adicionar grupo / saída
+                      </button>
                     </div>
                   )}
 

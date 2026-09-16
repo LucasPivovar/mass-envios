@@ -8,15 +8,15 @@ const Logo = ({ size = 36 }) => (
     width: size,
     height: size,
     borderRadius: Math.round(size * 0.28) + 'px',
-    background: 'linear-gradient(135deg, #5EFF00 0%, #3FA800 100%)',
+    background: 'linear-gradient(135deg, #1677e8 0%, #0b3d91 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    boxShadow: '0 0 18px rgba(94,255,0,0.35)',
+    boxShadow: '0 0 18px rgba(22,119,232,0.28)',
     flexShrink: 0,
   }}>
     <span style={{
-      color: '#000',
+      color: '#fff',
       fontSize: Math.round(size * 0.5) + 'px',
       fontWeight: '900',
       fontFamily: 'Outfit, sans-serif',
@@ -140,17 +140,17 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
                     <div style={{
                       ...styles.activeBar,
                       opacity: isActive ? 1 : 0,
-                      background: 'linear-gradient(180deg, #5EFF00, #3FA800)',
+                      background: 'linear-gradient(180deg, #1677e8, #0b3d91)',
                     }} />
                     <span style={{
                       ...styles.icon,
-                      color: isActive ? '#5EFF00' : 'rgba(229,229,229,0.4)',
+                      color: isActive ? '#1677e8' : '#829ab1',
                     }}>
                       {item.icon}
                     </span>
                     <span style={{
                       ...styles.label,
-                      color: isActive ? '#E5E5E5' : 'rgba(229,229,229,0.45)',
+                      color: isActive ? '#0b3d91' : '#486581',
                       fontWeight: isActive ? '600' : '400',
                     }}>
                       {item.label}
@@ -172,11 +172,11 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
             >
               {({ isActive }) => (
                 <>
-                  <div style={{ ...styles.activeBar, opacity: isActive ? 1 : 0, background: 'linear-gradient(180deg, #5EFF00, #3FA800)' }} />
-                  <span style={{ ...styles.icon, color: isActive ? '#5EFF00' : 'rgba(229,229,229,0.4)' }}>
+                  <div style={{ ...styles.activeBar, opacity: isActive ? 1 : 0, background: 'linear-gradient(180deg, #1677e8, #0b3d91)' }} />
+                  <span style={{ ...styles.icon, color: isActive ? '#1677e8' : '#829ab1' }}>
                     <Icons.Settings />
                   </span>
-                  <span style={{ ...styles.label, color: isActive ? '#E5E5E5' : 'rgba(229,229,229,0.45)', fontWeight: isActive ? '600' : '400' }}>
+                  <span style={{ ...styles.label, color: isActive ? '#0b3d91' : '#486581', fontWeight: isActive ? '600' : '400' }}>
                     Configurações
                   </span>
                 </>
@@ -194,7 +194,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
             <span style={{ fontSize: '0.75rem', color: 'var(--accent-primary)', fontWeight: '700' }}>7.230 / 10.000</span>
           </div>
           <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.05)', borderRadius: '3px', overflow: 'hidden' }}>
-            <div style={{ width: '72.3%', height: '100%', background: 'linear-gradient(90deg, #5EFF00, #3FA800)', borderRadius: '3px', transition: 'width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />
+            <div style={{ width: '72.3%', height: '100%', background: 'linear-gradient(90deg, #1677e8, #0b3d91)', borderRadius: '3px', transition: 'width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />
           </div>
         </div>
       </div>
@@ -214,12 +214,12 @@ const styles = {
   sidebar: {
     width: '260px',
     height: '100vh',
-    backgroundColor: '#000000',
+    backgroundColor: '#ffffff',
     backdropFilter: 'blur(10px)',
     WebkitBackdropFilter: 'blur(10px)',
-    borderRight: '1px solid rgba(94,255,0,0.1)',
+    borderRight: '1px solid rgba(11,61,145,0.14)',
     borderRadius: 0,
-    boxShadow: '2px 0 24px rgba(0,0,0,0.6)',
+    boxShadow: '2px 0 24px rgba(11,61,145,0.10)',
     display: 'flex',
     flexDirection: 'column',
     position: 'sticky',
@@ -232,7 +232,7 @@ const styles = {
     alignItems: 'center',
   },
   logoText: {
-    color: '#E5E5E5',
+    color: '#102a43',
     fontSize: '1.25rem',
     fontWeight: '800',
     letterSpacing: '-0.03em',
@@ -240,7 +240,7 @@ const styles = {
   },
   divider: {
     height: '1px',
-    background: 'rgba(94,255,0,0.07)',
+    background: 'rgba(11,61,145,0.10)',
     margin: '0 1.5rem',
   },
   scrollArea: {
