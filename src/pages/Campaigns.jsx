@@ -188,7 +188,7 @@ const Campaigns = ({ token }) => {
   };
 
   return (
-    <div className="page-container pulse-glow">
+    <div className="page-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h1>Campanhas</h1>
@@ -203,35 +203,35 @@ const Campaigns = ({ token }) => {
       </div>
 
       {/* KPI Cards Grid */}
-      <div style={styles.statsGrid}>
+      <div className="campaigns-kpi-grid" style={styles.statsGrid}>
         <div style={styles.statCard}>
-          <div style={styles.statIconContainer}>
+          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff', borderColor: '#cfe3ff' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
             </svg>
           </div>
           <div>
             <span style={styles.statLabel}>Total de Campanhas</span>
-            <h2 style={styles.statVal}>{campaigns.length}</h2>
+            <h2 style={{ ...styles.statVal, color: '#1677e8' }}>{campaigns.length}</h2>
           </div>
         </div>
 
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: 'var(--accent-secondary)' }}>
+          <div style={{ ...styles.statIconContainer, color: '#7c3aed', background: '#f3e8ff', borderColor: '#ddd6fe' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           </div>
           <div>
             <span style={styles.statLabel}>Em Execução (Ativas)</span>
-            <h2 style={{ ...styles.statVal, color: 'var(--accent-secondary)' }}>
+            <h2 style={{ ...styles.statVal, color: '#7c3aed' }}>
               {campaigns.filter(c => c.status === 'sending').length}
             </h2>
           </div>
         </div>
 
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#fbbf24' }}>
+          <div style={{ ...styles.statIconContainer, color: '#d97706', background: '#fff7e6', borderColor: '#fde4b5' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -241,9 +241,20 @@ const Campaigns = ({ token }) => {
           </div>
           <div>
             <span style={styles.statLabel}>Agendadas</span>
-            <h2 style={{ ...styles.statVal, color: '#fbbf24' }}>
+            <h2 style={{ ...styles.statVal, color: '#d97706' }}>
               {campaigns.filter(c => c.status === 'scheduled').length}
             </h2>
+          </div>
+        </div>
+        <div style={styles.statCard}>
+          <div style={{ ...styles.statIconContainer, color: '#0891b2', background: '#e6f7fb', borderColor: '#bae6fd' }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+          </div>
+          <div>
+            <span style={styles.statLabel}>Concluídas</span>
+            <h2 style={{ ...styles.statVal, color: '#0891b2' }}>{campaigns.filter(c => c.status === 'completed').length}</h2>
           </div>
         </div>
       </div>
@@ -307,9 +318,9 @@ const Campaigns = ({ token }) => {
                     {c.contact_flag && (
                       <div style={{ marginTop: '5px' }}>
                         <span className="badge" style={{
-                          background: 'rgba(16, 185, 129, 0.08)',
-                          color: '#34d399',
-                          border: '1px solid rgba(16, 185, 129, 0.2)',
+                          background: '#eaf3ff',
+                          color: '#1677e8',
+                          border: '1px solid #cfe3ff',
                           fontSize: '0.72rem',
                           padding: '2px 8px',
                           borderRadius: '6px',
@@ -331,9 +342,9 @@ const Campaigns = ({ token }) => {
                           fontSize: '0.75rem',
                           padding: '0.3rem 0.8rem',
                           borderRadius: '99px',
-                          background: c.template_sid ? 'var(--accent-indigo-light)' : 'rgba(255, 255, 255, 0.05)',
-                          color: c.template_sid ? '#a7f3d0' : 'var(--text-secondary)',
-                          border: c.template_sid ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid rgba(255, 255, 255, 0.08)',
+                          background: c.template_sid ? '#eaf3ff' : '#f1f5f9',
+                          color: c.template_sid ? '#1677e8' : 'var(--text-secondary)',
+                          border: c.template_sid ? '1px solid #cfe3ff' : '1px solid #e2e8f0',
                           fontWeight: '700',
                           display: 'inline-block',
                           width: 'fit-content'
@@ -354,7 +365,7 @@ const Campaigns = ({ token }) => {
                   <td style={{ fontFamily: 'monospace', fontWeight: '600' }}>{c.total_sent}</td>
                   <td>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ color: '#ffffff', fontWeight: '800' }}>
+                      <span style={{ color: 'var(--text-primary)', fontWeight: '800' }}>
                         {c.total_delivered}
                       </span>
                       <small style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
@@ -364,7 +375,7 @@ const Campaigns = ({ token }) => {
                   </td>
                   <td>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ color: '#ffffff', fontWeight: '800' }}>
+                      <span style={{ color: 'var(--text-primary)', fontWeight: '800' }}>
                         {c.total_read}
                       </span>
                       <small style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
@@ -374,8 +385,8 @@ const Campaigns = ({ token }) => {
                   </td>
                   <td>
                     <div style={{ display: 'inline-flex', gap: '2px', alignItems: 'center', fontSize: '0.98rem', fontWeight: '800', fontFamily: 'monospace' }}>
-                      <span style={{ color: '#59e308' }}>{c.total_read}</span>
-                      <span style={{ color: '#ffffff' }}>/{c.total_sent}</span>
+                      <span style={{ color: '#1677e8' }}>{c.total_read}</span>
+                      <span style={{ color: 'var(--text-primary)' }}>/{c.total_sent}</span>
                     </div>
                   </td>
                   <td>
@@ -745,13 +756,13 @@ const styles = {
   },
   statsGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
     gap: '1.5rem',
     marginBottom: '2.5rem'
   },
   statCard: {
-    background: 'radial-gradient(circle at center, rgba(94, 255, 0, 0) 0%, rgba(10, 16, 6, 0.82) 100%)',
-    border: '1px solid var(--border-glass)',
+    background: '#ffffff',
+    border: '1px solid rgba(11, 61, 145, 0.14)',
     borderRadius: '14px',
     padding: '1.5rem 1.75rem',
     display: 'flex',
@@ -763,13 +774,13 @@ const styles = {
     width: '46px',
     height: '46px',
     borderRadius: '12px',
-    background: 'rgba(255, 255, 255, 0.03)',
-    border: '1px solid var(--border-glass)',
+    background: '#eaf3ff',
+    border: '1px solid #cfe3ff',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: '1.35rem',
-    color: 'var(--accent-primary)'
+    color: '#1677e8'
   },
   statLabel: {
     display: 'block',
@@ -784,7 +795,7 @@ const styles = {
     margin: 0,
     fontSize: '1.6rem',
     fontWeight: '800',
-    color: 'white',
+    color: '#102a43',
     letterSpacing: '-0.02em'
   },
   filterSection: {
@@ -798,7 +809,8 @@ const styles = {
   filterInputGroup: {
     display: 'flex',
     alignItems: 'center',
-    background: 'rgba(10, 16, 6, 0.6)',
+    background: '#ffffff',
+    border: '1px solid rgba(11, 61, 145, 0.16)',
     padding: '0.6rem 1rem',
     borderRadius: '12px',
     flex: 1,

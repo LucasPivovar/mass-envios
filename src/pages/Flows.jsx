@@ -116,7 +116,7 @@ export default function Flows({ token }) {
           <div
             key={platform.id}
             onClick={() => navigate(`/flows/${platform.id}`)}
-            className="card-gradient"
+            className="flow-channel-card"
             style={{
               padding: '2rem 1.75rem',
               cursor: 'pointer',
@@ -124,8 +124,9 @@ export default function Flows({ token }) {
               flexDirection: 'column',
               justifyContent: 'space-between',
               minHeight: '260px',
-              border: `1px solid rgba(255, 255, 255, 0.05)`,
-              boxShadow: `0 10px 30px rgba(0, 0, 0, 0.5)`,
+              background: '#ffffff',
+              border: '1px solid rgba(11, 61, 145, 0.14)',
+              boxShadow: 'var(--shadow-sm)',
               position: 'relative',
               overflow: 'hidden',
               borderRadius: '16px',
@@ -133,12 +134,12 @@ export default function Flows({ token }) {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = platform.color;
-              e.currentTarget.style.boxShadow = `0 0 25px ${platform.borderGlow}`;
+              e.currentTarget.style.boxShadow = '0 10px 24px rgba(11, 61, 145, 0.14)';
               e.currentTarget.style.transform = 'translateY(-5px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+              e.currentTarget.style.borderColor = 'rgba(11, 61, 145, 0.14)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
@@ -160,9 +161,9 @@ export default function Flows({ token }) {
                 fontWeight: '700',
                 padding: '4px 10px',
                 borderRadius: '99px',
-                background: platform.status === 'Ativo' ? 'rgba(94, 255, 0, 0.1)' : 'rgba(255, 255, 255, 0.05)',
-                color: platform.status === 'Ativo' ? '#5EFF00' : 'var(--text-secondary)',
-                border: `1px solid ${platform.status === 'Ativo' ? 'rgba(94, 255, 0, 0.2)' : 'rgba(255, 255, 255, 0.08)'}`
+                background: platform.status === 'Ativo' ? '#eaf3ff' : '#f1f5f9',
+                color: platform.status === 'Ativo' ? '#1677e8' : 'var(--text-secondary)',
+                border: `1px solid ${platform.status === 'Ativo' ? '#cfe3ff' : '#e2e8f0'}`
               }}>
                 {platform.status}
               </span>
@@ -170,7 +171,7 @@ export default function Flows({ token }) {
 
             {/* Content section */}
             <div style={{ marginBottom: '1.5rem' }}>
-              <h2 style={{ fontSize: '1.2rem', fontWeight: '700', margin: '0 0 0.5rem 0', color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.2rem', fontWeight: '700', margin: '0 0 0.5rem 0', color: 'var(--text-primary)' }}>
                 {platform.name}
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: 0, lineHeight: '1.4' }}>
@@ -183,7 +184,7 @@ export default function Flows({ token }) {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+              borderTop: '1px solid rgba(11, 61, 145, 0.10)',
               paddingTop: '1rem',
               fontSize: '0.8rem',
               color: 'var(--text-tertiary)'

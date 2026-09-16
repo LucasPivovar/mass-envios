@@ -1251,8 +1251,8 @@ tr:hover td {
   transition: .3s;
 }
 input:checked + .slider {
-  background: linear-gradient(90deg, #3FA800, #5EFF00);
-  border-color: #5EFF00;
+  background: #1677e8;
+  border-color: #1677e8;
 }
 input:checked + .slider:before {
   transform: translateX(20px);
@@ -1278,7 +1278,7 @@ input:checked + .slider:before {
   background-color: transparent !important;
   appearance: none !important;
   -webkit-appearance: none !important;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2359e308' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231677e8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
   background-repeat: no-repeat !important;
   background-position: right 0.4rem center !important;
   background-size: 0.95rem !important;
@@ -1351,5 +1351,22 @@ button.danger:hover, button.cancel:hover, .btn-cancel:hover, .btn-delete-modern:
 /* Safety actions always communicate danger — including the sidebar logout. */
 button.btn-logout, .sidebar-logout-btn { background: transparent !important; border: 1px solid #f87171 !important; color: #f87171 !important; }
 button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !important; border-color: #dc2626 !important; color: #ffffff !important; box-shadow: none !important; }
+
+/* Last pass: solid blue surfaces, blue active states, and responsive KPI alignment. */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(22, 119, 232, 0.08); }
+  50% { box-shadow: 0 0 20px rgba(22, 119, 232, 0.16); }
+}
+.badge.delivered, .badge.read, .badge.queued {
+  background: #eaf3ff !important;
+  color: #1677e8 !important;
+  border-color: #cfe3ff !important;
+}
+@media (max-width: 1180px) {
+  .campaigns-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 620px) {
+  .campaigns-kpi-grid { grid-template-columns: 1fr !important; }
+}
 
 

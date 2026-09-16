@@ -2,30 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import metaFlowLogo from '../assets/metaflow-sidebar-logo.png';
 
-/* ── Brand Logo ─────────────────────────────────────────────────────────── */
-const Logo = ({ size = 36 }) => (
-  <div style={{
-    width: size,
-    height: size,
-    borderRadius: Math.round(size * 0.28) + 'px',
-    background: 'linear-gradient(135deg, #1677e8 0%, #0b3d91 100%)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: '0 0 18px rgba(22,119,232,0.28)',
-    flexShrink: 0,
-  }}>
-    <span style={{
-      color: '#fff',
-      fontSize: Math.round(size * 0.5) + 'px',
-      fontWeight: '900',
-      fontFamily: 'Outfit, sans-serif',
-      lineHeight: 1,
-      letterSpacing: '-0.05em',
-    }}>M</span>
-  </div>
-);
-
 /*  Nav Icons  */
 const Icons = {
   Dashboard: () => (
@@ -104,7 +80,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <img src={metaFlowLogo} alt="metaFlow" style={{ width: '168px', height: 'auto', display: 'block', objectFit: 'contain' }} />
+            <img src={metaFlowLogo} alt="metaFlow" style={{ width: '168px', height: 'auto', display: 'block', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
           </div>
         </div>
       </div>
@@ -182,10 +158,10 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
 
       {/* Goal Progress */}
       <div style={{ padding: '0 1.5rem 1rem', marginTop: 'auto' }}>
-        <div className="card-gradient" style={{ padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-glass)' }}>
+        <div style={{ padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.16)', background: 'rgba(255,255,255,0.08)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: '600' }}>Meta Mensal</span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--accent-primary)', fontWeight: '700' }}>7.230 / 10.000</span>
+            <span style={{ fontSize: '0.8rem', color: '#dbeafe', fontWeight: '600' }}>Meta Mensal</span>
+            <span style={{ fontSize: '0.75rem', color: '#ffffff', fontWeight: '700' }}>7.230 / 10.000</span>
           </div>
           <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.05)', borderRadius: '3px', overflow: 'hidden' }}>
             <div style={{ width: '72.3%', height: '100%', background: '#60a5fa', borderRadius: '3px', transition: 'width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />
@@ -208,10 +184,10 @@ const styles = {
   sidebar: {
     width: '260px',
     height: '100vh',
-    backgroundColor: '#0b3d91',
-    borderRight: '1px solid #082f72',
+    backgroundColor: '#041b40',
+    borderRight: '1px solid #031634',
     borderRadius: 0,
-    boxShadow: '2px 0 18px rgba(8,47,114,0.20)',
+    boxShadow: '2px 0 18px rgba(3,22,52,0.28)',
     display: 'flex',
     flexDirection: 'column',
     position: 'sticky',
