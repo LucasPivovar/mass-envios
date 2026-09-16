@@ -54,7 +54,7 @@ const Financeiro = () => {
       <div style={styles.statsGrid}>
         {/* Balance Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#5EFF00', background: 'rgba(94,255,0,0.08)' }}>
+          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="1" x2="12" y2="23"></line>
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -68,7 +68,7 @@ const Financeiro = () => {
 
         {/* Spent Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#5EFF00', background: 'rgba(94,255,0,0.08)' }}>
+          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
               <polyline points="17 6 23 6 23 12"></polyline>
@@ -82,7 +82,7 @@ const Financeiro = () => {
 
         {/* Subscription Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#5EFF00', background: 'rgba(94,255,0,0.08)' }}>
+          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
@@ -97,7 +97,7 @@ const Financeiro = () => {
 
         {/* Avg Cost Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#5EFF00', background: 'rgba(94,255,0,0.08)' }}>
+          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2v20"></path>
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -120,8 +120,8 @@ const Financeiro = () => {
           </div>
           <span style={{ fontWeight: '700', color: '#5EFF00' }}>14%</span>
         </div>
-        <div style={{ height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '99px', overflow: 'hidden' }}>
-          <div style={{ width: '14%', height: '100%', background: 'linear-gradient(90deg, #3FA800, #5EFF00)', borderRadius: '99px' }} />
+        <div style={{ height: '8px', background: '#eaf3ff', borderRadius: '99px', overflow: 'hidden' }}>
+          <div style={{ width: '14%', height: '100%', background: '#1677e8', borderRadius: '99px' }} />
         </div>
       </div>
 
@@ -255,8 +255,8 @@ const styles = {
     marginBottom: '2.5rem'
   },
   statCard: {
-    background: 'radial-gradient(circle at center, rgba(94, 255, 0, 0) 0%, rgba(10, 16, 6, 0.82) 100%)',
-    border: '1px solid var(--border-glass)',
+    background: '#ffffff',
+    border: '1px solid rgba(11,61,145,0.14)',
     borderRadius: '14px',
     padding: '1.5rem 1.75rem',
     display: 'flex',
@@ -269,8 +269,8 @@ const styles = {
     width: '56px',
     height: '56px',
     borderRadius: '16px',
-    background: 'rgba(255, 255, 255, 0.03)',
-    border: '1px solid var(--border-glass)',
+    background: '#eaf3ff',
+    border: '1px solid rgba(22,119,232,0.16)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -288,7 +288,7 @@ const styles = {
     margin: 0,
     fontSize: '1.8rem',
     fontWeight: '800',
-    color: 'white',
+    color: '#102a43',
     letterSpacing: '-0.02em'
   },
   filterSection: {
@@ -299,7 +299,7 @@ const styles = {
   filterInputGroup: {
     display: 'flex',
     alignItems: 'center',
-    background: 'rgba(15, 23, 42, 0.45)',
+    background: '#ffffff',
     border: '1px solid var(--border-glass)',
     borderRadius: '8px',
     padding: '0.4rem 0.75rem',
@@ -331,7 +331,7 @@ const styles = {
     gap: '1.25rem',
     padding: '1rem',
     borderTop: '1px solid var(--border-glass)',
-    background: 'rgba(10, 15, 30, 0.2)'
+    background: '#f7faff'
   },
   paginationBtn: {
     padding: '0.45rem 1.15rem',

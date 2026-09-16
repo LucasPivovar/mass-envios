@@ -545,7 +545,8 @@ const styles = {
   filterInputGroup: {
     display: 'flex',
     alignItems: 'center',
-    background: 'rgba(10, 16, 6, 0.6)',
+    background: '#ffffff',
+    border: '1px solid rgba(11,61,145,0.16)',
     padding: '0.6rem 1rem',
     borderRadius: '12px',
     flex: 1,
@@ -577,7 +578,7 @@ const styles = {
     transform: 'translateX(-50%)',
     width: 'calc(100% - 320px)',
     maxWidth: '750px',
-    background: 'rgba(5, 7, 16, 0.95)',
+    background: '#ffffff',
     backdropFilter: 'blur(20px)',
     border: '1px solid rgba(239, 68, 68, 0.25)',
     padding: '1rem 2rem',

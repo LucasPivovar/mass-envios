@@ -273,11 +273,11 @@ const Reports = ({ token }) => {
                     </div>
                     {/* Delivered bar */}
                     <div style={styles.barTrackOuter} title={`Entregues: ${c.total_delivered}`}>
-                      <div style={{ ...styles.barTrackFill, width: animated ? `${pctDelivered}%` : '0%', background: 'linear-gradient(90deg, #3FA800, #5EFF00)', boxShadow: '0 0 10px rgba(94, 255, 0, 0.15)', transitionDelay: '0.1s' }} />
+                      <div style={{ ...styles.barTrackFill, width: animated ? `${pctDelivered}%` : '0%', background: '#1677e8', boxShadow: 'none', transitionDelay: '0.1s' }} />
                     </div>
                     {/* Read bar */}
                     <div style={styles.barTrackOuter} title={`Lidos: ${c.total_read}`}>
-                      <div style={{ ...styles.barTrackFill, width: animated ? `${pctRead}%` : '0%', background: 'linear-gradient(90deg, #10b981, #34d399)', boxShadow: '0 0 10px rgba(52, 211, 153, 0.15)', transitionDelay: '0.2s' }} />
+                      <div style={{ ...styles.barTrackFill, width: animated ? `${pctRead}%` : '0%', background: '#0b3d91', boxShadow: 'none', transitionDelay: '0.2s' }} />
                     </div>
                   </div>
                 </div>
@@ -510,8 +510,8 @@ const styles = {
     marginBottom: '3rem'
   },
   chartCard: {
-    background: '#090909',
-    border: '1px solid rgba(255, 255, 255, 0.08)',
+    background: '#ffffff',
+    border: '1px solid rgba(11,61,145,0.14)',
     borderRadius: '14px',
     padding: '1.5rem',
     boxShadow: 'var(--shadow-sm)',
@@ -522,7 +522,7 @@ const styles = {
   chartTitle: {
     fontSize: '1.15rem',
     fontWeight: '700',
-    color: 'white',
+    color: '#102a43',
     margin: '0 0 0.25rem 0',
     letterSpacing: '-0.01em'
   },
@@ -550,7 +550,7 @@ const styles = {
   donutPercent: {
     fontSize: '2rem',
     fontWeight: '800',
-    color: 'white',
+    color: '#102a43',
     letterSpacing: '-0.02em',
     lineHeight: '1'
   },
@@ -581,7 +581,7 @@ const styles = {
   },
   campaignBarName: {
     fontWeight: '600',
-    color: 'white',
+    color: '#102a43',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -599,7 +599,7 @@ const styles = {
   barTrackOuter: {
     width: '100%',
     height: '6px',
-    backgroundColor: 'rgba(255,255,255,0.01)',
+    backgroundColor: '#eaf3ff',
     borderRadius: '99px',
     overflow: 'hidden'
   },
@@ -615,8 +615,8 @@ const styles = {
     marginBottom: '3rem'
   },
   statCard: {
-    background: '#090909',
-    border: '1px solid rgba(255, 255, 255, 0.08)',
+    background: '#ffffff',
+    border: '1px solid rgba(11,61,145,0.14)',
     borderRadius: '14px',
     padding: '1.5rem',
     display: 'flex',
@@ -630,7 +630,7 @@ const styles = {
     width: '46px',
     height: '46px',
     borderRadius: '12px',
-    background: 'rgba(255, 255, 255, 0.03)',
+    background: '#eaf3ff',
     border: '1px solid var(--border-glass)',
     display: 'flex',
     alignItems: 'center',
@@ -651,7 +651,7 @@ const styles = {
     margin: 0,
     fontSize: '1.6rem',
     fontWeight: '800',
-    color: 'white',
+    color: '#102a43',
     letterSpacing: '-0.02em'
   },
   filterSection: {
@@ -665,7 +665,7 @@ const styles = {
   filterInputGroup: {
     display: 'flex',
     alignItems: 'center',
-    background: 'rgba(15, 23, 42, 0.45)',
+    background: '#ffffff',
     border: '1px solid var(--border-glass)',
     borderRadius: '8px',
     padding: '0.5rem 0.75rem',
@@ -706,7 +706,7 @@ const styles = {
     gap: '1.25rem',
     padding: '1.25rem',
     borderTop: '1px solid var(--border-glass)',
-    background: 'rgba(10, 15, 30, 0.2)'
+    background: '#f7faff'
   },
   paginationBtn: {
     padding: '0.5rem 1.25rem',

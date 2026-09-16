@@ -103,9 +103,9 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#102a43', fontSize: '1.28rem', fontWeight: '800', letterSpacing: '-0.055em' }}>
-              <svg width="31" height="31" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="#eaf3ff" stroke="#1677e8" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#0b3d91" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#1677e8"/><circle cx="22" cy="17" r="2" fill="#1677e8"/></svg>
-              Meta<span style={{ color: '#1677e8' }}>Flow</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#ffffff', fontSize: '1.28rem', fontWeight: '800', letterSpacing: '-0.055em' }}>
+              <svg width="31" height="31" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="rgba(255,255,255,.10)" stroke="#ffffff" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#ffffff" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#93c5fd"/><circle cx="22" cy="17" r="2" fill="#93c5fd"/></svg>
+              Meta<span style={{ color: '#93c5fd' }}>Flow</span>
             </span>
           </div>
         </div>
@@ -140,13 +140,13 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
                     }} />
                     <span style={{
                       ...styles.icon,
-                      color: isActive ? '#1677e8' : '#829ab1',
+                      color: isActive ? '#ffffff' : '#bfdbfe',
                     }}>
                       {item.icon}
                     </span>
                     <span style={{
                       ...styles.label,
-                      color: isActive ? '#0b3d91' : '#486581',
+                      color: isActive ? '#ffffff' : '#dbeafe',
                       fontWeight: isActive ? '600' : '400',
                     }}>
                       {item.label}
@@ -169,10 +169,10 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
               {({ isActive }) => (
                 <>
                   <div style={{ ...styles.activeBar, opacity: isActive ? 1 : 0, background: 'linear-gradient(180deg, #1677e8, #0b3d91)' }} />
-                  <span style={{ ...styles.icon, color: isActive ? '#1677e8' : '#829ab1' }}>
+                  <span style={{ ...styles.icon, color: isActive ? '#ffffff' : '#bfdbfe' }}>
                     <Icons.Settings />
                   </span>
-                  <span style={{ ...styles.label, color: isActive ? '#0b3d91' : '#486581', fontWeight: isActive ? '600' : '400' }}>
+                  <span style={{ ...styles.label, color: isActive ? '#ffffff' : '#dbeafe', fontWeight: isActive ? '600' : '400' }}>
                     Configurações
                   </span>
                 </>
@@ -210,12 +210,10 @@ const styles = {
   sidebar: {
     width: '260px',
     height: '100vh',
-    backgroundColor: '#ffffff',
-    backdropFilter: 'blur(10px)',
-    WebkitBackdropFilter: 'blur(10px)',
-    borderRight: '1px solid rgba(11,61,145,0.14)',
+    backgroundColor: '#0b3d91',
+    borderRight: '1px solid #082f72',
     borderRadius: 0,
-    boxShadow: '2px 0 24px rgba(11,61,145,0.10)',
+    boxShadow: '2px 0 18px rgba(8,47,114,0.20)',
     display: 'flex',
     flexDirection: 'column',
     position: 'sticky',
@@ -228,7 +226,7 @@ const styles = {
     alignItems: 'center',
   },
   logoText: {
-    color: '#102a43',
+    color: '#ffffff',
     fontSize: '1.25rem',
     fontWeight: '800',
     letterSpacing: '-0.03em',
@@ -236,7 +234,7 @@ const styles = {
   },
   divider: {
     height: '1px',
-    background: 'rgba(11,61,145,0.10)',
+    background: 'rgba(255,255,255,0.16)',
     margin: '0 1.5rem',
   },
   scrollArea: {
@@ -251,7 +249,7 @@ const styles = {
     padding: '0 1.75rem',
     fontSize: '0.65rem',
     fontWeight: '700',
-    color: 'rgba(107,114,128,0.7)',
+    color: 'rgba(255,255,255,0.58)',
     letterSpacing: '0.1em',
     marginBottom: '0.5rem',
   },
@@ -269,7 +267,7 @@ const styles = {
     gap: '0',
   },
   activeLink: {
-    backgroundColor: 'rgba(94,255,0,0.06)',
+    backgroundColor: 'rgba(255,255,255,0.14)',
   },
   activeBar: {
     position: 'absolute',
@@ -280,7 +278,7 @@ const styles = {
     borderTopRightRadius: '3px',
     borderBottomRightRadius: '3px',
     transition: 'opacity 0.18s ease',
-    boxShadow: '0 0 8px rgba(94,255,0,0.6)',
+    boxShadow: 'none',
   },
   icon: {
     marginRight: '12px',
@@ -295,9 +293,9 @@ const styles = {
     transition: 'color 0.18s ease, font-weight 0.18s ease',
   },
   closeBtn: {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(94,255,0,0.1)',
-    color: 'rgba(229,229,229,0.5)',
+    background: 'rgba(255,255,255,0.10)',
+    border: '1px solid rgba(255,255,255,0.16)',
+    color: '#ffffff',
     padding: '5px 8px',
     boxShadow: 'none',
     borderRadius: '7px',
