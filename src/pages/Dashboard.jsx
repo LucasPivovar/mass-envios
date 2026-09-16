@@ -4,15 +4,15 @@ import axios from 'axios';
 
 /* ─── Brand tokens ─────────────────────────────────────────────────── */
 const B = {
-  lime:      '#5EFF00',
-  limeAlpha: 'rgba(94,255,0,',   // append opacity + ')'
-  green:     '#3FA800',
-  text:      '#E5E5E5',
-  muted:     '#9CA3AF',
-  subtle:    '#6B7280',
-  card:      'rgba(10,16,6,0.7)',
-  border:    'rgba(94,255,0,0.09)',
-  borderHov: 'rgba(94,255,0,0.24)',
+  lime:      '#1677e8',
+  limeAlpha: 'rgba(22,119,232,',
+  green:     '#0b3d91',
+  text:      '#102a43',
+  muted:     '#486581',
+  subtle:    '#829ab1',
+  card:      '#ffffff',
+  border:    'rgba(11,61,145,0.14)',
+  borderHov: 'rgba(22,119,232,0.35)',
 };
 
 // Helper to render Icons dynamically based on color

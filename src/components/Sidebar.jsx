@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logoImage from '../assets/image.png';
 
 /* ── Brand Logo ─────────────────────────────────────────────────────────── */
 const Logo = ({ size = 36 }) => (
@@ -93,7 +92,6 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
     { path: '/', label: 'Visão Geral', icon: <Icons.Dashboard /> },
     { path: '/contacts', label: 'Contatos', icon: <Icons.Contacts /> },
     { path: '/campaigns', label: 'Campanhas', icon: <Icons.Campaigns /> },
-    { path: '/client-dashboard', label: 'Dash. Cliente', icon: <Icons.ClientDashboard /> },
     { path: '/flows', label: 'Canais', icon: <Icons.Flows /> },
     { path: '/reports', label: 'Relatórios', icon: <Icons.Reports /> },
     { path: '/financial', label: 'Financeiro', icon: <Icons.Financial /> },
@@ -105,7 +103,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <img src={logoImage} alt="Logo" style={{ height: '20px', width: 'auto', objectFit: 'contain' }} />
+            <span style={{ color: '#0b3d91', fontSize: '1.35rem', fontWeight: '900', letterSpacing: '-0.05em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
           </div>
         </div>
       </div>
@@ -123,11 +121,6 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
                 key={item.path}
                 to={item.path}
                 end={item.path === '/'}
-                onClick={() => {
-                  if (item.path === '/client-dashboard') {
-                    window.dispatchEvent(new CustomEvent('reload-client-chart'));
-                  }
-                }}
                 className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
                 style={({ isActive }) => ({
                   ...styles.link,

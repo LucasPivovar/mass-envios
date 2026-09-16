@@ -594,7 +594,7 @@ Layout guidelines:
         updateSelectedNode('questionText', copy);
       } else if (selectedNode.type === 'email') {
         updateSelectedNode('subject', `✨ [IA] Desbloqueie sua máquina de vendas automáticas hoje!`);
-        updateSelectedNode('body', `Olá {{lead_name}},\n\nNossa inteligência identificou que você está pronto para o próximo nível.\n\nAqui está o material de suporte exclusivo da MassFlow para te ajudar a estruturar sua automação.\n\nForte abraço!`);
+        updateSelectedNode('body', `Olá {{lead_name}},\n\nNossa inteligência identificou que você está pronto para o próximo nível.\n\nAqui está o material de suporte exclusivo da MetaFlow para te ajudar a estruturar sua automação.\n\nForte abraço!`);
       } else {
         alert("Configuração otimizada com IA com sucesso! 🎉");
       }
@@ -2365,7 +2365,7 @@ Layout guidelines:
                   <div style={{ background: 'rgba(94, 255, 0, 0.04)', border: '1px solid rgba(94, 255, 0, 0.2)', borderRadius: '12px', padding: '14px', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                     <span style={{ fontSize: '20px' }}>✨</span>
                     <div>
-                      <h4 style={{ fontSize: '14px', fontWeight: '850', color: '#5EFF00', margin: '0 0 4px 0' }}>Assistente de IA MassFlow</h4>
+                      <h4 style={{ fontSize: '14px', fontWeight: '850', color: '#1677e8', margin: '0 0 4px 0' }}>Assistente de IA MetaFlow</h4>
                       <p style={{ margin: 0, fontSize: '11.5px', color: '#9CA3AF' }}>Otimize ou gere copies de alta conversão para essa etapa automaticamente utilizando nossa IA.</p>
                     </div>
                   </div>
@@ -2436,7 +2436,7 @@ Layout guidelines:
                     <li style={{ marginBottom: '6px' }}>Escreva <strong>notas internas</strong> para organizar a lógica da sua equipe de funil.</li>
                     <li style={{ marginBottom: '6px' }}>Conecte as saídas aos gatilhos subsequentes de atraso e ação.</li>
                   </ul>
-                  <p style={{ marginTop: '10px' }}>Qualquer dúvida, fale com nosso suporte MassFlow!</p>
+                  <p style={{ marginTop: '10px' }}>Qualquer dúvida, fale com nosso suporte MetaFlow!</p>
                 </div>
               )}
             </div>
@@ -2608,14 +2608,14 @@ const initialNodesByPlatform = {
     { id: '4', type: 'action', position: { x: 1150, y: 50 }, data: { label: 'Marcar como Enterprise #4', actions: [{ type: 'tag_add', value: 'Insta_VIP_Enterprise' }, { type: 'tag_add', value: 'CRM_Sync_Urgente' }] }, draggable: true },
     { id: '5', type: 'action', position: { x: 1150, y: 280 }, data: { label: 'Marcar como Padrão #5', actions: [{ type: 'tag_add', value: 'Insta_Lead_Regular' }] }, draggable: true },
     { id: '6', type: 'delay', position: { x: 1500, y: 150 }, data: { label: 'Atraso Estratégico #6', time: '1 hora' }, draggable: true },
-    { id: '7', type: 'message', position: { x: 1850, y: 150 }, data: { label: 'Oferta Especial Direct #7', content: 'Temos uma oferta exclusiva e personalizada para o tamanho da sua operação com a MassFlow! 🤖\n\nQue tal dar uma olhada e começar a disparar hoje mesmo?', buttons: [{ text: 'Ver Planos Promocionais' }] }, draggable: true },
+    { id: '7', type: 'message', position: { x: 1850, y: 150 }, data: { label: 'Oferta Especial Direct #7', content: 'Temos uma oferta exclusiva e personalizada para o tamanho da sua operação com a MetaFlow! 🤖\n\nQue tal dar uma olhada e começar a disparar hoje mesmo?', buttons: [{ text: 'Ver Planos Promocionais' }] }, draggable: true },
     { id: '8', type: 'split', position: { x: 2200, y: 150 }, data: { label: 'Divisor Split Checkout #8', splitPercent: 50, labelA: 'Checkout Direto', labelB: 'Mentoria Inclusa' }, draggable: true },
     { id: '9', type: 'message', position: { x: 2550, y: 50 }, data: { label: 'Link Desconto Direto #9', content: 'Feche agora o plano básico com 50% de desconto imediato usando o link abaixo:', buttons: [{ text: 'Garantir Licença' }] }, draggable: true },
     { id: '10', type: 'message', position: { x: 2550, y: 280 }, data: { label: 'Link Bônus Mentoria #10', content: 'Feche o plano premium hoje e ganhe uma mentoria individual de configuração da API!', buttons: [{ text: 'Garantir Plano Premium' }] }, draggable: true },
     { id: '11', type: 'goto', position: { x: 2900, y: 150 }, data: { label: 'Voltar Início Funil #11', targetNodeId: '1' }, draggable: true }
   ],
   whatsapp: [
-    { id: '1', type: 'message', position: { x: 100, y: 150 }, data: { label: 'Boas-vindas WhatsApp #1', content: 'Olá! Sou o consultor virtual da MassFlow. 🤖\nPronto para escalar sua operação e multiplicar seus disparos de mensagens em minutos?\n\nEscolha uma das opções abaixo para iniciarmos:', buttons: [{ text: 'Planos Corporativos B2B' }, { text: 'Falar com Atendente' }] }, draggable: true },
+    { id: '1', type: 'message', position: { x: 100, y: 150 }, data: { label: 'Boas-vindas WhatsApp #1', content: 'Olá! Sou o consultor virtual da MetaFlow. 🤖\nPronto para escalar sua operação e multiplicar seus disparos de mensagens em minutos?\n\nEscolha uma das opções abaixo para iniciarmos:', buttons: [{ text: 'Planos Corporativos B2B' }, { text: 'Falar com Atendente' }] }, draggable: true },
     { id: '2', type: 'question', position: { x: 450, y: 150 }, data: { label: 'Capturar Dados Lead #2', questionText: 'Perfeito! Digite seu e-mail profissional para podermos validar sua conta:', fields: [{ type: 'email', label: 'E-mail Corporativo' }] }, draggable: true },
     { id: '3', type: 'condition', position: { x: 800, y: 150 }, data: { label: 'Filtro Domínio E-mail #3', conditions: [{ value: 'Email contém "@"' }] }, draggable: true },
     { id: '4', type: 'action', position: { x: 1150, y: 50 }, data: { label: 'Definir Lead Quente #4', actions: [{ type: 'tag_add', value: 'WhatsApp_Lead_Hot' }, { type: 'tag_add', value: 'Valido' }] }, draggable: true },

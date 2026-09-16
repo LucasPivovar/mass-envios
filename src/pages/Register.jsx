@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import logoImage from '../assets/logo_massflow.png';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -129,11 +128,7 @@ const Register = ({ onLogin }) => {
         {/* Brand Header */}
         <div style={styles.brandHeader}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img 
-              src={logoImage} 
-              alt="MassFlow Logo" 
-              style={{ height: '60px', width: 'auto', objectFit: 'contain' }} 
-            />
+            <span style={{ color: '#0b3d91', fontSize: '2.35rem', fontWeight: '900', letterSpacing: '-0.06em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
           </div>
         </div>
 
