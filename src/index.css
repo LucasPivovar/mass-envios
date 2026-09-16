@@ -1374,6 +1374,43 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 .deliveryMetrics em { color: var(--text-secondary); font-size: .72rem; font-style: normal; }
 
 /* Auth screen is intentionally dark and isolated from the light application shell. */
+.login-screen {
+  --text-primary: #f0f7ff;
+  --text-secondary: #b3c9dd;
+  --text-tertiary: #96b3ca;
+  --bg-card: #071d35;
+  --bg-input: #0a2945;
+  --border-glass: #23415c;
+}
+.login-screen, .login-screen *, .login-screen *::before, .login-screen *::after { box-sizing: border-box; }
+.login-screen .authShell { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+.login-screen .auth-container {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0;
+  padding: clamp(24px, 4vw, 48px) !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.login-screen .authShowcase { min-width: 0; padding: clamp(24px, 4vw, 48px) !important; gap: 20px; }
+.login-screen .authShowcase > div:first-child { margin-bottom: 30px !important; }
+.login-screen .authShowcase h1 { font-size: clamp(28px, 3vw, 38px) !important; }
+.login-screen form { width: 100%; min-width: 0; }
+.login-screen input:not([type="checkbox"]) { width: 100%; min-width: 0; height: 48px; }
+.login-screen form > div { max-width: 100%; }
+.login-screen form > div:has(> label input[type="checkbox"]) { flex-wrap: wrap; gap: 12px; }
+.login-screen a { color: #70ccff !important; }
+.login-screen .eye-btn { color: #b3c9dd !important; }
+.login-screen button[type="submit"] { background: #1768dc !important; border-color: #1768dc !important; }
+.login-screen button[type="submit"]:hover { background: #1255ba !important; }
+.login-screen input:focus { background: #102f4b !important; border-color: #70ccff !important; }
+.login-screen input[type="checkbox"] { flex-shrink: 0; }
+.login-screen button:focus-visible, .login-screen a:focus-visible { outline: 2px solid #70ccff; outline-offset: 4px; }
 .auth-outer .auth-container::before { display: none !important; }
 .auth-outer .input-group label { color: #b9d1e2 !important; }
 .auth-outer input { background: #0a2945 !important; border-color: rgba(117,220,255,.16) !important; color: #ffffff !important; }

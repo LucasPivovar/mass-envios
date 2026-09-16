@@ -98,15 +98,15 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div className="auth-outer" style={styles.outerContainer}>
+    <div className="auth-outer login-screen" style={styles.outerContainer}>
       {/* Particle system */}
       <AuthParticles />
       {/* Decorative dark glowing blobs */}
       <div style={styles.glowBlob1} />
       <div style={styles.glowBlob2} />
 
-      <div style={styles.authShell}>
-      <section style={styles.authShowcase} aria-hidden="true">
+      <div className="authShell" style={styles.authShell}>
+      <section className="authShowcase" style={styles.authShowcase}>
         <div style={styles.showcaseBrand}><span style={{ color: '#ffffff' }}>Meta</span><span style={{ color: '#47c8ff' }}>Flow</span></div>
         <div style={styles.showcaseMark}>
           <svg width="118" height="118" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="48" stroke="rgba(71,200,255,.34)" strokeWidth="1.5"/><circle cx="60" cy="60" r="32" fill="rgba(71,200,255,.09)" stroke="rgba(71,200,255,.45)" strokeWidth="1.5"/><path d="M35 62h17l9-16 10 27 8-14h8" stroke="#75dcff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/><circle cx="35" cy="62" r="4" fill="#75dcff"/><circle cx="87" cy="59" r="4" fill="#75dcff"/></svg>
@@ -144,7 +144,8 @@ const Login = ({ onLogin }) => {
                   type="text" 
                   value={username} 
                   onChange={(e) => setUsername(e.target.value)} 
-                  placeholder="Qualquer usuário"
+                  placeholder="Digite seu usuário"
+                  autoComplete="username"
                   style={{ ...styles.input, paddingLeft: '2.8rem' }}
                   required 
                 />
@@ -163,7 +164,8 @@ const Login = ({ onLogin }) => {
                   type={showPassword ? 'text' : 'password'} 
                   value={password} 
                   onChange={(e) => setPassword(e.target.value)} 
-                  placeholder="Qualquer senha"
+                  placeholder="Digite sua senha"
+                  autoComplete="current-password"
                   style={{ ...styles.input, paddingLeft: '2.8rem', paddingRight: '2.8rem' }}
                   required 
                 />
