@@ -1373,4 +1373,18 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 .deliveryMetrics strong { color: var(--text-primary); font-size: .9rem; }
 .deliveryMetrics em { color: var(--text-secondary); font-size: .72rem; font-style: normal; }
 
+/* Auth screen is intentionally dark and isolated from the light application shell. */
+.auth-outer .auth-container::before { display: none !important; }
+.auth-outer .input-group label { color: #b9d1e2 !important; }
+.auth-outer input { background: #0a2945 !important; border-color: rgba(117,220,255,.16) !important; color: #ffffff !important; }
+.auth-outer input::placeholder { color: #7695ac; }
+.auth-outer .input-group { margin-bottom: 1.15rem; }
+.auth-outer .error-message { background: rgba(239,68,68,.12); border-color: rgba(248,113,113,.24); }
+@media (max-width: 760px) {
+  .auth-outer { padding: 1rem !important; }
+  .authShowcase { display: none !important; }
+  .authShell { display: block !important; min-height: auto !important; width: min(100%, 430px) !important; }
+  .auth-container { max-width: none !important; border: 0 !important; }
+}
+
 

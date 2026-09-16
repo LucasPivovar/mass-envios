@@ -105,15 +105,26 @@ const Login = ({ onLogin }) => {
       <div style={styles.glowBlob1} />
       <div style={styles.glowBlob2} />
 
+      <div style={styles.authShell}>
+      <section style={styles.authShowcase} aria-hidden="true">
+        <div style={styles.showcaseBrand}><span style={{ color: '#ffffff' }}>Meta</span><span style={{ color: '#47c8ff' }}>Flow</span></div>
+        <div style={styles.showcaseMark}>
+          <svg width="118" height="118" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="48" stroke="rgba(71,200,255,.34)" strokeWidth="1.5"/><circle cx="60" cy="60" r="32" fill="rgba(71,200,255,.09)" stroke="rgba(71,200,255,.45)" strokeWidth="1.5"/><path d="M35 62h17l9-16 10 27 8-14h8" stroke="#75dcff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/><circle cx="35" cy="62" r="4" fill="#75dcff"/><circle cx="87" cy="59" r="4" fill="#75dcff"/></svg>
+        </div>
+        <h1 style={styles.showcaseTitle}>Disparos que seguem<br />o seu fluxo.</h1>
+        <p style={styles.showcaseText}>Organize campanhas, automações e resultados em uma central feita para a sua operação.</p>
+        <div style={styles.showcaseDots}><span style={styles.showcaseDotActive} /><span style={styles.showcaseDot} /><span style={styles.showcaseDot} /></div>
+      </section>
+
       <div className="auth-container" style={styles.authContainer}>
         {/* Brand Header */}
         <div style={styles.brandHeader}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
               <svg width="44" height="44" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="#eaf3ff" stroke="#1677e8" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#0b3d91" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#1677e8"/><circle cx="22" cy="17" r="2" fill="#1677e8"/></svg>
-              <span style={{ color: '#102a43', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+              <span style={{ color: '#ffffff', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#47c8ff' }}>Flow</span></span>
             </div>
-            <p style={{ margin: '1rem 0 0', color: '#486581', fontSize: '0.9rem', fontWeight: '500' }}>Acesse sua central de disparos</p>
+            <p style={{ margin: '1rem 0 0', color: '#a7c5d8', fontSize: '0.9rem', fontWeight: '500' }}>Acesse sua central de disparos</p>
           </div>
         </div>
 
@@ -352,6 +363,7 @@ const Login = ({ onLogin }) => {
         )}
 
       </div>
+      </div>
     </div>
   );
 };
@@ -365,10 +377,11 @@ const styles = {
     minHeight: '100vh',
     padding: '1.5rem',
     boxSizing: 'border-box',
-    background: '#f6f9fd',
+    background: '#03172f',
     position: 'relative',
     overflowY: 'auto',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    isolation: 'isolate'
   },
   glowBlob1: {
     display: 'none'
@@ -377,17 +390,18 @@ const styles = {
     display: 'none'
   },
   authContainer: {
-    background: '#ffffff',
-    border: '1px solid rgba(11, 61, 145, 0.13)',
-    boxShadow: '0 18px 44px rgba(11,61,145,0.12)',
-    borderRadius: '18px',
+    background: '#071d35',
+    border: '1px solid rgba(117,220,255,0.14)',
+    boxShadow: '0 22px 55px rgba(0,0,0,0.30)',
+    borderRadius: '14px',
     padding: '2.5rem',
-    maxWidth: '420px',
+    maxWidth: '410px',
     width: '100%',
     margin: '0 auto',
     textAlign: 'center',
     position: 'relative',
-    zIndex: 10
+    zIndex: 10,
+    margin: 0
   },
   brandHeader: {
     marginBottom: '2rem',
@@ -395,6 +409,35 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center'
   },
+  authShell: {
+    width: 'min(100%, 980px)',
+    minHeight: '610px',
+    display: 'grid',
+    gridTemplateColumns: '1.15fr .85fr',
+    border: '1px solid rgba(117,220,255,0.16)',
+    borderRadius: '16px',
+    overflow: 'hidden',
+    background: '#041a30',
+    boxShadow: '0 28px 72px rgba(0,0,0,0.34)',
+    position: 'relative',
+    zIndex: 1
+  },
+  authShowcase: {
+    padding: '2.25rem 3rem',
+    background: '#062842',
+    borderRight: '1px solid rgba(117,220,255,0.14)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+  showcaseBrand: { fontWeight: '850', fontSize: '1.35rem', letterSpacing: '-0.055em', marginBottom: 'auto' },
+  showcaseMark: { width: '142px', height: '142px', borderRadius: '50%', display: 'grid', placeItems: 'center', background: '#073552', border: '1px solid rgba(117,220,255,.15)', marginBottom: '2rem' },
+  showcaseTitle: { color: '#ffffff', fontSize: '2.15rem', lineHeight: 1.08, margin: '0 0 1rem', letterSpacing: '-0.055em' },
+  showcaseText: { color: '#a7c5d8', fontSize: '.94rem', lineHeight: 1.65, margin: 0, maxWidth: '360px' },
+  showcaseDots: { display: 'flex', gap: '6px', marginTop: '2rem' },
+  showcaseDot: { width: '6px', height: '6px', borderRadius: '50%', background: 'rgba(167,197,216,.45)' },
+  showcaseDotActive: { width: '22px', height: '6px', borderRadius: '99px', background: '#47c8ff' },
   logo: {
     width: '50px',
     height: '50px',
