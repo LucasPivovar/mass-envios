@@ -103,8 +103,8 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '9px', color: '#102a43', fontSize: '1.25rem', fontWeight: '800', letterSpacing: '-0.05em' }}>
-              <span style={{ width: '27px', height: '27px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', borderRadius: '9px', background: 'linear-gradient(135deg, #1677e8, #0b3d91)', color: '#fff', fontSize: '0.88rem', fontWeight: '900', boxShadow: '0 5px 12px rgba(22,119,232,0.24)' }}>M</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#102a43', fontSize: '1.28rem', fontWeight: '800', letterSpacing: '-0.055em' }}>
+              <svg width="31" height="31" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="#eaf3ff" stroke="#1677e8" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#0b3d91" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#1677e8"/><circle cx="22" cy="17" r="2" fill="#1677e8"/></svg>
               Meta<span style={{ color: '#1677e8' }}>Flow</span>
             </span>
           </div>

@@ -74,7 +74,7 @@ const Card = ({ children, style, hoverable, className }) => {
         borderRadius: '14px',
         transition: 'border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease',
         transform: hoverable && hov ? 'translateY(-2px)' : 'translateY(0)',
-        boxShadow: hov ? '0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(94,255,0,0.06)' : 'var(--shadow-sm)',
+        boxShadow: hov ? '0 8px 32px rgba(11,61,145,0.14)' : 'var(--shadow-sm)',
         borderColor: hov ? B.borderHov : B.border,
         willChange: 'transform',
         ...style,
@@ -128,9 +128,9 @@ const LineChart = () => {
         {/* Background grids */}
         {[20,50,80,110].map(y => (
           <line key={y} x1="0" y1={y} x2="500" y2={y}
-            stroke="rgba(94,255,0,0.05)" strokeWidth="1" strokeDasharray="4 6" />
+            stroke="rgba(22,119,232,0.10)" strokeWidth="1" strokeDasharray="4 6" />
         ))}
-        <line x1="0" y1="120" x2="500" y2="120" stroke="rgba(94,255,0,0.08)" strokeWidth="1" />
+        <line x1="0" y1="120" x2="500" y2="120" stroke="rgba(22,119,232,0.14)" strokeWidth="1" />
         
         {/* Animated chart content */}
         <g clipPath="url(#chart-reveal)">
@@ -144,11 +144,11 @@ const LineChart = () => {
           <g key={i}>
             {hov === i && (
               <line x1={p.x} y1="5" x2={p.x} y2="120"
-                stroke="rgba(94,255,0,0.15)" strokeWidth="1.5" strokeDasharray="3 4" />
+                stroke="rgba(22,119,232,0.25)" strokeWidth="1.5" strokeDasharray="3 4" />
             )}
             {hov === i && (
               <circle cx={p.x} cy={p.y} r="12"
-                fill="rgba(94,255,0,0.07)" stroke="rgba(94,255,0,0.18)" strokeWidth="1" />
+                fill="rgba(22,119,232,0.08)" stroke="rgba(22,119,232,0.25)" strokeWidth="1" />
             )}
             <circle cx={p.x} cy={p.y}
               r={hov === i ? 5.5 : 4}
@@ -183,11 +183,11 @@ const LineChart = () => {
           left: p.x > 380 ? 'auto' : `${(p.x / 500) * 100}%`,
           right: p.x > 380 ? 0 : 'auto',
           background: 'rgba(5,9,3,0.97)',
-          border: `1px solid rgba(94,255,0,0.22)`,
+          border: `1px solid rgba(22,119,232,0.22)`,
           borderRadius: '10px',
           padding: '9px 13px',
           backdropFilter: 'blur(6px)',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.6), 0 0 12px rgba(94,255,0,0.1)',
+          boxShadow: '0 10px 30px rgba(11,61,145,0.18)',
           zIndex: 40,
           minWidth: '110px',
         }}>
@@ -230,7 +230,7 @@ const CampaignBars = () => {
               <span style={{ fontSize:'0.78rem', fontWeight:'800', color:B.green }}>{d.lido}%</span>
             </div>
             <div style={{ height:'4px', borderRadius:'99px', background:'rgba(255,255,255,0.04)', overflow:'hidden' }}>
-              <div style={{ height:'100%', width: mounted ? `${d.lido}%` : '0%', borderRadius:'99px', background:`linear-gradient(90deg,${B.green},rgba(63,168,0,0.6))`, transition:`width ${1.8+i*0.3}s cubic-bezier(0.34,1.56,0.64,1)` }} />
+              <div style={{ height:'100%', width: mounted ? `${d.lido}%` : '0%', borderRadius:'99px', background:'linear-gradient(90deg,#0b3d91,#60a5fa)', transition:`width ${1.8+i*0.3}s cubic-bezier(0.34,1.56,0.64,1)` }} />
             </div>
           </div>
         </div>
@@ -289,15 +289,15 @@ const Dashboard = ({ token }) => {
   const kpis = [
     {
       label: 'Contatos Ativos', value: (stats.activeContacts || 0).toLocaleString(), badge: 'Total', detail: 'cadastrados',
-      badgeOk: true, bg: 'rgba(94,255,0,0.08)', iconColor: B.lime, iconType: 'contacts'
+      badgeOk: true, bg: 'rgba(22,119,232,0.09)', iconColor: B.lime, iconType: 'contacts'
     },
     {
       label: 'Disparos Realizados', value: (stats.totalSent || 0).toLocaleString(), badge: 'Envios', detail: 'totais',
-      badgeOk: true, bg: 'rgba(63,168,0,0.08)', iconColor: B.green, iconType: 'sent'
+      badgeOk: true, bg: 'rgba(11,61,145,0.09)', iconColor: B.green, iconType: 'sent'
     },
     {
       label: 'Taxa de Leitura', value: `${stats.readRate || 0}%`, badge: 'Média', detail: 'engajamento',
-      badgeOk: true, bg: 'rgba(94,255,0,0.05)', iconColor: B.lime, iconType: 'read'
+      badgeOk: true, bg: 'rgba(96,165,250,0.15)', iconColor: B.lime, iconType: 'read'
     }
   ];
 
@@ -360,7 +360,7 @@ const Dashboard = ({ token }) => {
           {/* Contacts */}
           <Card hoverable style={{ padding:'1.5rem', display:'flex', flexDirection:'column', gap:'0.9rem' }}>
             <div style={{ display:'flex', alignItems:'center', gap:'0.85rem' }}>
-              <div style={{ width:'42px', height:'42px', borderRadius:'11px', background:'rgba(94,255,0,0.08)', border:'1px solid rgba(94,255,0,0.12)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+              <div style={{ width:'42px', height:'42px', borderRadius:'11px', background:'rgba(22,119,232,0.09)', border:'1px solid rgba(22,119,232,0.16)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke={B.lime} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
@@ -381,10 +381,10 @@ const Dashboard = ({ token }) => {
           </Card>
 
           {/* New Campaign */}
-          <Card hoverable style={{ padding:'1.5rem', display:'flex', flexDirection:'column', gap:'0.9rem', borderColor:'rgba(94,255,0,0.14)', background:'rgba(8,16,4,0.8)' }}>
+          <Card hoverable style={{ padding:'1.5rem', display:'flex', flexDirection:'column', gap:'0.9rem', borderColor:'rgba(22,119,232,0.18)', background:'#ffffff' }}>
             <div style={{ display:'flex', alignItems:'center', gap:'0.85rem' }}>
-              <div style={{ width:'42px', height:'42px', borderRadius:'11px', background:'linear-gradient(135deg,#5EFF00,#3FA800)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, boxShadow:'0 4px 16px rgba(94,255,0,0.3)' }}>
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <div style={{ width:'42px', height:'42px', borderRadius:'11px', background:'linear-gradient(135deg,#1677e8,#0b3d91)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, boxShadow:'0 4px 16px rgba(22,119,232,0.25)' }}>
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
                 </svg>
               </div>

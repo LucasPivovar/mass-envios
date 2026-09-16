@@ -129,7 +129,7 @@ const Register = ({ onLogin }) => {
         <div style={styles.brandHeader}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
-              <span style={{ width: '42px', height: '42px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', borderRadius: '13px', background: 'linear-gradient(135deg, #1677e8, #0b3d91)', color: '#fff', fontSize: '1.05rem', fontWeight: '900', boxShadow: '0 9px 20px rgba(22,119,232,0.25)' }}>M</span>
+              <svg width="44" height="44" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="#eaf3ff" stroke="#1677e8" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#0b3d91" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#1677e8"/><circle cx="22" cy="17" r="2" fill="#1677e8"/></svg>
               <span style={{ color: '#102a43', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
             </div>
           </div>
