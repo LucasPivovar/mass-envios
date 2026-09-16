@@ -744,6 +744,12 @@ Layout guidelines:
     setQuestionMode(null); // Reset sub-views
   };
 
+  // Clique direito em um card abre diretamente seu painel visual de configuração.
+  const onNodeContextMenu = useCallback((event, node) => {
+    event.preventDefault();
+    onNodeClick(event, node);
+  }, [onNodeClick]);
+
   // Keyboard deletion, Undo (Ctrl+Z) and Copy-Paste (Ctrl+C, Ctrl+V) support
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -1520,6 +1526,7 @@ Layout guidelines:
           onReconnect={onReconnect}
           nodeTypes={nodeTypes}
           onNodeClick={onNodeClick}
+          onNodeContextMenu={onNodeContextMenu}
           onNodeDoubleClick={onNodeDoubleClick}
           onPaneContextMenu={onPaneContextMenu}
           onPaneClick={() => setIsAddStepOpen(false)}
