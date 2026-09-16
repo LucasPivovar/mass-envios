@@ -220,7 +220,7 @@ const CampaignBars = () => {
               <span style={{ fontSize:'0.78rem', fontWeight:'800', color:B.lime }}>{d.entregue}%</span>
             </div>
             <div style={{ height:'4px', borderRadius:'99px', background:'rgba(255,255,255,0.04)', overflow:'hidden' }}>
-              <div style={{ height:'100%', width: mounted ? `${d.entregue}%` : '0%', borderRadius:'99px', background:`linear-gradient(90deg,${B.lime},${B.green})`, transition:`width ${1.5+i*0.3}s cubic-bezier(0.34,1.56,0.64,1)` }} />
+              <div style={{ height:'100%', width: mounted ? `${d.entregue}%` : '0%', borderRadius:'99px', background:B.lime, transition:`width ${1.5+i*0.3}s cubic-bezier(0.34,1.56,0.64,1)` }} />
             </div>
           </div>
           {/* Lido */}
@@ -230,7 +230,7 @@ const CampaignBars = () => {
               <span style={{ fontSize:'0.78rem', fontWeight:'800', color:B.green }}>{d.lido}%</span>
             </div>
             <div style={{ height:'4px', borderRadius:'99px', background:'rgba(255,255,255,0.04)', overflow:'hidden' }}>
-              <div style={{ height:'100%', width: mounted ? `${d.lido}%` : '0%', borderRadius:'99px', background:'linear-gradient(90deg,#0b3d91,#60a5fa)', transition:`width ${1.8+i*0.3}s cubic-bezier(0.34,1.56,0.64,1)` }} />
+              <div style={{ height:'100%', width: mounted ? `${d.lido}%` : '0%', borderRadius:'99px', background:'#60a5fa', transition:`width ${1.8+i*0.3}s cubic-bezier(0.34,1.56,0.64,1)` }} />
             </div>
           </div>
         </div>
@@ -383,7 +383,7 @@ const Dashboard = ({ token }) => {
           {/* New Campaign */}
           <Card hoverable style={{ padding:'1.5rem', display:'flex', flexDirection:'column', gap:'0.9rem', borderColor:'rgba(22,119,232,0.18)', background:'#ffffff' }}>
             <div style={{ display:'flex', alignItems:'center', gap:'0.85rem' }}>
-              <div style={{ width:'42px', height:'42px', borderRadius:'11px', background:'linear-gradient(135deg,#1677e8,#0b3d91)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, boxShadow:'0 4px 16px rgba(22,119,232,0.25)' }}>
+              <div style={{ width:'42px', height:'42px', borderRadius:'11px', background:'#0b3d91', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, boxShadow:'0 4px 16px rgba(11,61,145,0.20)' }}>
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
                 </svg>

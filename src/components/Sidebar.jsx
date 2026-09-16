@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import metaFlowLogo from '../assets/metaflow-sidebar-logo.png';
 
 /* ── Brand Logo ─────────────────────────────────────────────────────────── */
 const Logo = ({ size = 36 }) => (
@@ -103,10 +104,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#ffffff', fontSize: '1.28rem', fontWeight: '800', letterSpacing: '-0.055em' }}>
-              <svg width="31" height="31" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="rgba(255,255,255,.10)" stroke="#ffffff" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#ffffff" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#93c5fd"/><circle cx="22" cy="17" r="2" fill="#93c5fd"/></svg>
-              Meta<span style={{ color: '#93c5fd' }}>Flow</span>
-            </span>
+            <img src={metaFlowLogo} alt="metaFlow" style={{ width: '168px', height: 'auto', display: 'block', objectFit: 'contain' }} />
           </div>
         </div>
       </div>
@@ -136,7 +134,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
                     <div style={{
                       ...styles.activeBar,
                       opacity: isActive ? 1 : 0,
-                      background: 'linear-gradient(180deg, #1677e8, #0b3d91)',
+                      background: '#60a5fa',
                     }} />
                     <span style={{
                       ...styles.icon,
@@ -168,7 +166,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
             >
               {({ isActive }) => (
                 <>
-                  <div style={{ ...styles.activeBar, opacity: isActive ? 1 : 0, background: 'linear-gradient(180deg, #1677e8, #0b3d91)' }} />
+                  <div style={{ ...styles.activeBar, opacity: isActive ? 1 : 0, background: '#60a5fa' }} />
                   <span style={{ ...styles.icon, color: isActive ? '#ffffff' : '#bfdbfe' }}>
                     <Icons.Settings />
                   </span>
@@ -190,7 +188,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
             <span style={{ fontSize: '0.75rem', color: 'var(--accent-primary)', fontWeight: '700' }}>7.230 / 10.000</span>
           </div>
           <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.05)', borderRadius: '3px', overflow: 'hidden' }}>
-            <div style={{ width: '72.3%', height: '100%', background: 'linear-gradient(90deg, #1677e8, #0b3d91)', borderRadius: '3px', transition: 'width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />
+            <div style={{ width: '72.3%', height: '100%', background: '#60a5fa', borderRadius: '3px', transition: 'width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />
           </div>
         </div>
       </div>

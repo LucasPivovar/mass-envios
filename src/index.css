@@ -13,15 +13,15 @@
   --text-tertiary:  #829ab1;
 
   /* Blue light theme */
-  --accent-flow:           linear-gradient(135deg, #1677e8 0%, #0b3d91 100%);
-  --accent-primary:        #1677e8;
-  --accent-primary-hover:  #0f63c9;
-  --accent-secondary:      #0b3d91;
+  --accent-flow:           #082f72;
+  --accent-primary:        #0b3d91;
+  --accent-primary-hover:  #082f72;
+  --accent-secondary:      #082f72;
   --accent-cyan-light:     rgba(22, 119, 232, 0.12);
   --accent-indigo-light:   rgba(11, 61, 145, 0.1);
 
-  --accent-green:       #1677e8;
-  --accent-green-hover: #0f63c9;
+  --accent-green:       #0b3d91;
+  --accent-green-hover: #082f72;
   --accent-green-light: rgba(22, 119, 232, 0.1);
 
   --border-glass: rgba(11, 61, 145, 0.14);
