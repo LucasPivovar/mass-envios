@@ -1332,8 +1332,8 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-primary) 
 select option { background: #fff; color: var(--text-primary); }
 th { background: #f1f6fe !important; color: var(--text-secondary); }
 tr:hover td { background: #f7faff !important; }
-button:not(.eye-btn):not(.actions-dropdown-trigger):not(.actions-dropdown-item):not(.btn-logout) { background: var(--accent-primary) !important; border-color: var(--accent-primary) !important; color: #fff !important; }
-button:not(.eye-btn):hover { background: var(--accent-primary-hover) !important; border-color: var(--accent-primary-hover) !important; color: #fff !important; }
+button:not(.eye-btn):not(.actions-dropdown-trigger):not(.actions-dropdown-item):not(.btn-logout):not(.btn-delete-modern) { background: var(--accent-primary) !important; border-color: var(--accent-primary) !important; color: #fff !important; }
+button:not(.eye-btn):not(.btn-delete-modern):hover { background: var(--accent-primary-hover) !important; border-color: var(--accent-primary-hover) !important; color: #fff !important; }
 button.secondary { background: #fff !important; border-color: var(--accent-primary) !important; color: var(--accent-primary) !important; }
 button.secondary:hover { background: var(--accent-primary) !important; color: #fff !important; }
 .file-upload-area { border-color: rgba(22, 119, 232, 0.35); background: #f7faff; }
@@ -1363,10 +1363,14 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   border-color: #cfe3ff !important;
 }
 @media (max-width: 1180px) {
-  .campaigns-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .campaigns-kpi-grid, .finance-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
 @media (max-width: 620px) {
-  .campaigns-kpi-grid { grid-template-columns: 1fr !important; }
+  .campaigns-kpi-grid, .finance-kpi-grid { grid-template-columns: 1fr !important; }
 }
+.deliveryMetrics > span { display: grid; gap: 2px; }
+.deliveryMetrics small { color: var(--text-secondary); font-size: .67rem; font-weight: 700; text-transform: uppercase; }
+.deliveryMetrics strong { color: var(--text-primary); font-size: .9rem; }
+.deliveryMetrics em { color: var(--text-secondary); font-size: .72rem; font-style: normal; }
 
 

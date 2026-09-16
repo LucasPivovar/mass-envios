@@ -80,7 +80,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <img src={metaFlowLogo} alt="metaFlow" style={{ width: '168px', height: 'auto', display: 'block', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+            <img src={metaFlowLogo} alt="MetaFlow" style={{ width: '168px', height: 'auto', display: 'block', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
           </div>
         </div>
       </div>

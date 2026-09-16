@@ -302,9 +302,7 @@ const Campaigns = ({ token }) => {
                 <th>Nome da Campanha</th>
                 <th>Provedor</th>
                 <th>Data</th>
-                <th>Envios</th>
-                <th>Entregues</th>
-                <th>Lidos</th>
+                <th>Envios, Entregues e Lidos</th>
                 <th>Desempenho</th>
                 <th>Status</th>
                 <th style={{ textAlign: 'center', width: '80px' }}>Ações</th>
@@ -362,25 +360,11 @@ const Campaigns = ({ token }) => {
                   <td style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', whiteSpace: 'nowrap' }}>
                     {new Date(c.created_at).toLocaleDateString()}
                   </td>
-                  <td style={{ fontFamily: 'monospace', fontWeight: '600' }}>{c.total_sent}</td>
                   <td>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ color: 'var(--text-primary)', fontWeight: '800' }}>
-                        {c.total_delivered}
-                      </span>
-                      <small style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
-                        ({Math.round((c.total_delivered / c.total_sent) * 100) || 0}%)
-                      </small>
-                    </div>
-                  </td>
-                  <td>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ color: 'var(--text-primary)', fontWeight: '800' }}>
-                        {c.total_read}
-                      </span>
-                      <small style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
-                        ({Math.round((c.total_read / c.total_sent) * 100) || 0}%)
-                      </small>
+                    <div style={styles.deliveryMetrics}>
+                      <span><small>Envios</small><strong>{c.total_sent}</strong></span>
+                      <span><small>Entregues</small><strong>{c.total_delivered}</strong><em>{Math.round((c.total_delivered / c.total_sent) * 100) || 0}%</em></span>
+                      <span><small>Lidos</small><strong>{c.total_read}</strong><em>{Math.round((c.total_read / c.total_sent) * 100) || 0}%</em></span>
                     </div>
                   </td>
                   <td>
@@ -815,6 +799,12 @@ const styles = {
     borderRadius: '12px',
     flex: 1,
     minWidth: '200px'
+  },
+  deliveryMetrics: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, minmax(54px, 1fr))',
+    gap: '0.75rem',
+    minWidth: '220px'
   },
   searchInput: {
     border: 'none',

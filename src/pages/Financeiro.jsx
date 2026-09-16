@@ -43,7 +43,7 @@ const Financeiro = () => {
   );
 
   return (
-    <div className="page-container pulse-glow">
+    <div className="page-container">
       <div style={{ marginBottom: '2.5rem' }}>
         <h1>Financeiro</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', margin: 0 }}>
@@ -51,10 +51,10 @@ const Financeiro = () => {
         </p>
       </div>
 
-      <div style={styles.statsGrid}>
+      <div className="finance-kpi-grid" style={styles.statsGrid}>
         {/* Balance Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
+          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff', borderColor: '#cfe3ff' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="1" x2="12" y2="23"></line>
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -68,7 +68,7 @@ const Financeiro = () => {
 
         {/* Spent Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
+          <div style={{ ...styles.statIconContainer, color: '#dc2626', background: '#fff1f2', borderColor: '#fecdd3' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
               <polyline points="17 6 23 6 23 12"></polyline>
@@ -82,7 +82,7 @@ const Financeiro = () => {
 
         {/* Subscription Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
+          <div style={{ ...styles.statIconContainer, color: '#7c3aed', background: '#f3e8ff', borderColor: '#ddd6fe' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
@@ -97,7 +97,7 @@ const Financeiro = () => {
 
         {/* Avg Cost Card */}
         <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff' }}>
+          <div style={{ ...styles.statIconContainer, color: '#0891b2', background: '#e6f7fb', borderColor: '#bae6fd' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2v20"></path>
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -250,15 +250,15 @@ const Financeiro = () => {
 const styles = {
   statsGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
+    gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+    gap: '1rem',
     marginBottom: '2.5rem'
   },
   statCard: {
     background: '#ffffff',
     border: '1px solid rgba(11,61,145,0.14)',
     borderRadius: '14px',
-    padding: '1.5rem 1.75rem',
+    padding: '1.25rem',
     display: 'flex',
     alignItems: 'center',
     gap: '1.25rem',
@@ -266,9 +266,9 @@ const styles = {
     transition: 'border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease'
   },
   statIconContainer: {
-    width: '56px',
-    height: '56px',
-    borderRadius: '16px',
+    width: '46px',
+    height: '46px',
+    borderRadius: '12px',
     background: '#eaf3ff',
     border: '1px solid rgba(22,119,232,0.16)',
     display: 'flex',
@@ -277,7 +277,7 @@ const styles = {
   },
   statLabel: {
     display: 'block',
-    fontSize: '0.8rem',
+    fontSize: '0.7rem',
     color: 'var(--text-secondary)',
     fontWeight: '700',
     letterSpacing: '0.04em',
@@ -286,7 +286,7 @@ const styles = {
   },
   statVal: {
     margin: 0,
-    fontSize: '1.8rem',
+    fontSize: '1.4rem',
     fontWeight: '800',
     color: '#102a43',
     letterSpacing: '-0.02em'

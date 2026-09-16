@@ -108,10 +108,10 @@ const Login = ({ onLogin }) => {
       <div className="auth-container" style={styles.authContainer}>
         {/* Brand Header */}
         <div style={styles.brandHeader}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
               <svg width="44" height="44" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="#eaf3ff" stroke="#1677e8" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#0b3d91" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="10" cy="17" r="2" fill="#1677e8"/><circle cx="22" cy="17" r="2" fill="#1677e8"/></svg>
-              <span style={{ color: '#102a43', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+              <span style={{ color: '#102a43', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
             </div>
             <p style={{ margin: '1rem 0 0', color: '#486581', fontSize: '0.9rem', fontWeight: '500' }}>Acesse sua central de disparos</p>
           </div>
@@ -365,7 +365,7 @@ const styles = {
     minHeight: '100vh',
     padding: '1.5rem',
     boxSizing: 'border-box',
-    background: '#f3f7fc',
+    background: '#f6f9fd',
     position: 'relative',
     overflowY: 'auto',
     overflowX: 'hidden'
@@ -377,14 +377,12 @@ const styles = {
     display: 'none'
   },
   authContainer: {
-    background: 'rgba(255, 255, 255, 0.96)',
-    backdropFilter: 'blur(16px)',
-    WebkitBackdropFilter: 'blur(16px)',
+    background: '#ffffff',
     border: '1px solid rgba(11, 61, 145, 0.13)',
-    boxShadow: '0 24px 60px rgba(11,61,145,0.15)',
-    borderRadius: '24px',
-    padding: '3rem',
-    maxWidth: '430px',
+    boxShadow: '0 18px 44px rgba(11,61,145,0.12)',
+    borderRadius: '18px',
+    padding: '2.5rem',
+    maxWidth: '420px',
     width: '100%',
     margin: '0 auto',
     textAlign: 'center',
@@ -392,7 +390,7 @@ const styles = {
     zIndex: 10
   },
   brandHeader: {
-    marginBottom: '2.5rem',
+    marginBottom: '2rem',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'

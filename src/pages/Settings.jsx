@@ -276,8 +276,9 @@ const Settings = ({ token }) => {
 
           {/* Twilio Add/Edit Card Form */}
           {showTwilioForm && (
-            <form onSubmit={handleSaveTwilioAccount} style={{ ...styles.formContainer, border: '1px solid rgba(94, 255, 0, 0.4)', boxShadow: '0 0 20px rgba(94,255,0,0.1)' }}>
-              <h2 style={{ ...styles.sectionHeader, background: 'var(--accent-flow)', padding: '0.2rem 0' }}>
+            <div style={styles.modalBackdrop} onMouseDown={handleCancelTwilioForm}>
+              <form onSubmit={handleSaveTwilioAccount} onMouseDown={(event) => event.stopPropagation()} style={styles.modalCard}>
+              <h2 style={{ ...styles.sectionHeader, color: '#102a43', WebkitTextFillColor: '#102a43', background: 'none', padding: 0 }}>
                 {editingAccount ? `Editar Perfil: ${editingAccount.friendly_name}` : 'Cadastrar Novo Perfil Twilio'}
               </h2>
 
@@ -343,7 +344,8 @@ const Settings = ({ token }) => {
                   Cancelar
                 </button>
               </div>
-            </form>
+              </form>
+            </div>
           )}
 
           {/* Twilio Profiles List */}
@@ -443,6 +445,26 @@ const styles = {
     display: 'inline-flex',
     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
     borderRadius: '8px'
+  },
+  modalBackdrop: {
+    position: 'fixed',
+    inset: 0,
+    zIndex: 1200,
+    background: 'rgba(4, 27, 64, 0.45)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '1.5rem'
+  },
+  modalCard: {
+    width: 'min(720px, 100%)',
+    maxHeight: 'calc(100vh - 3rem)',
+    overflowY: 'auto',
+    background: '#ffffff',
+    border: '1px solid rgba(11, 61, 145, 0.16)',
+    borderRadius: '16px',
+    padding: '2rem',
+    boxShadow: '0 22px 56px rgba(3, 22, 52, 0.26)'
   }
 };
 
