@@ -118,11 +118,6 @@ const LineChart = () => {
             <stop offset="0%" stopColor={B.lime} stopOpacity="0.18" />
             <stop offset="100%" stopColor={B.lime} stopOpacity="0" />
           </linearGradient>
-          <clipPath id="chart-reveal">
-            <rect x="0" y="0" width="500" height="150">
-              <animate attributeName="width" from="0" to="500" dur="3.0s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" keyTimes="0;1" />
-            </rect>
-          </clipPath>
         </defs>
         
         {/* Background grids */}
@@ -132,13 +127,10 @@ const LineChart = () => {
         ))}
         <line x1="0" y1="120" x2="500" y2="120" stroke="rgba(22,119,232,0.14)" strokeWidth="1" />
         
-        {/* Animated chart content */}
-        <g clipPath="url(#chart-reveal)">
-          <path d={area} fill="url(#lc-area)" />
-          <path d={line} fill="none" stroke="url(#lc-stroke)" strokeWidth="2.2"
-            strokeLinecap="round" strokeLinejoin="round" 
-          />
-        </g>
+        <path className="dashboard-chart-area" d={area} fill="url(#lc-area)" />
+        <path className="dashboard-chart-line" d={line} fill="none" stroke="url(#lc-stroke)" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round" pathLength="1"
+        />
 
         {pts.map((p, i) => (
           <g key={i}>
@@ -154,7 +146,8 @@ const LineChart = () => {
               r={hov === i ? 5.5 : 4}
               fill={hov === i ? B.green : B.lime}
               stroke="#000" strokeWidth="2"
-              style={{ transition:'r 0.18s ease, fill 0.18s ease' }}
+              className="dashboard-chart-point"
+              style={{ transition:'r 0.18s ease, fill 0.18s ease', animationDelay: `${0.18 + i * 0.055}s` }}
             />
             <text x={p.x} y="144"
               fill={hov === i ? 'rgba(229,229,229,0.9)' : 'rgba(107,114,128,0.65)'}

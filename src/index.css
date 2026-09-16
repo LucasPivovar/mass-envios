@@ -1413,6 +1413,58 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 .login-screen input:focus { background: #102f4b !important; border-color: #70ccff !important; }
 .login-screen input[type="checkbox"] { flex-shrink: 0; }
 .login-screen button:focus-visible, .login-screen a:focus-visible { outline: 2px solid #70ccff; outline-offset: 4px; }
+
+.dashboard-chart-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-dashboard-line 0.85s cubic-bezier(0.22, 0.75, 0.22, 1) forwards;
+}
+
+.dashboard-chart-area {
+  opacity: 0;
+  transform: translateY(8px);
+  transform-origin: center bottom;
+  animation: reveal-dashboard-area 0.7s ease-out 0.18s forwards;
+}
+
+.dashboard-chart-point {
+  opacity: 0;
+  transform: scale(0.65);
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pop-dashboard-point 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.25) forwards;
+}
+
+@keyframes draw-dashboard-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal-dashboard-area {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-dashboard-point {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-chart-line,
+  .dashboard-chart-area,
+  .dashboard-chart-point {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
 .auth-outer .auth-container::before { display: none !important; }
 .auth-outer .input-group label { color: #b9d1e2 !important; }
 .auth-outer input { background: #0a2945 !important; border-color: rgba(117,220,255,.16) !important; color: #ffffff !important; }
