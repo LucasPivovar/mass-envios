@@ -62,7 +62,7 @@ const Financeiro = () => {
           </div>
           <div>
             <span style={styles.statLabel}>Saldo Atual (Créditos)</span>
-            <h2 style={{ ...styles.statVal, color: '#5EFF00' }}>R$ {balance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</h2>
+            <h2 style={{ ...styles.statVal, color: '#1677e8' }}>R$ {balance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</h2>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ const Financeiro = () => {
             <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Consumo do Plano</h3>
             <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.85rem' }}>14.280 de 100.000 disparos inclusos usados</p>
           </div>
-          <span style={{ fontWeight: '700', color: '#5EFF00' }}>14%</span>
+          <span style={{ fontWeight: '700', color: '#1677e8' }}>14%</span>
         </div>
         <div style={{ height: '8px', background: '#eaf3ff', borderRadius: '99px', overflow: 'hidden' }}>
           <div style={{ width: '14%', height: '100%', background: '#1677e8', borderRadius: '99px' }} />

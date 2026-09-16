@@ -219,7 +219,7 @@ const Contacts = ({ token }) => {
                 }} 
                 style={{ display: 'none' }} 
               />
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5EFF00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '1rem', filter: 'drop-shadow(0 0 8px rgba(94,255,0,0.4))' }}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1677e8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '1rem' }}>
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="17 8 12 3 7 8"></polyline>
                 <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -432,8 +432,8 @@ const Contacts = ({ token }) => {
       {selectedIds.length > 0 && (
         <div className="card-gradient" style={styles.floatingBar}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-            <span style={{ fontWeight: '700', fontSize: '0.95rem', color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <span style={{ fontWeight: '700', fontSize: '0.95rem', color: '#102a43', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1677e8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg>
               {selectedIds.length} {selectedIds.length === 1 ? 'contato selecionado' : 'contatos selecionados'}
@@ -441,7 +441,7 @@ const Contacts = ({ token }) => {
             <div style={{ display: 'flex', gap: '0.75rem' }}>
               <button 
                 onClick={() => setSelectedIds([])} 
-                className="secondary" 
+                className="danger"
                 style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem', borderRadius: '8px', margin: 0, boxShadow: 'none' }}
               >
                 Cancelar

@@ -193,7 +193,7 @@ const Reports = ({ token }) => {
             <span style={styles.statLabel}>Taxa Média de Leitura</span>
             <h2 style={{ ...styles.statVal, color: '#ffffff' }}>{avgReadRate}%</h2>
           </div>
-          <div style={{ ...styles.statIconContainer, color: '#5EFF00' }}>
+          <div style={{ ...styles.statIconContainer, color: '#1677e8' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
               <circle cx="12" cy="12" r="3"></circle>
@@ -235,8 +235,8 @@ const Reports = ({ token }) => {
               />
               <defs>
                 <linearGradient id="donutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#3FA800" />
-                  <stop offset="100%" stopColor="#5EFF00" />
+                  <stop offset="0%" stopColor="#0b3d91" />
+                  <stop offset="100%" stopColor="#1677e8" />
                 </linearGradient>
               </defs>
             </svg>

@@ -56,11 +56,11 @@ html, body, #root {
   background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #5EFF00, #3FA800);
+  background: #1677e8;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #6cff1a, #4abf00);
+  background: #0b3d91;
 }
 
 
@@ -1347,5 +1347,9 @@ button.secondary:hover { background: var(--accent-primary) !important; color: #f
 .table-container, .card-gradient { background-image: none !important; }
 button.danger, button.cancel, .btn-cancel, .btn-delete-modern, .actions-dropdown-item.danger { background: #fff1f2 !important; border-color: #ef4444 !important; color: #dc2626 !important; }
 button.danger:hover, button.cancel:hover, .btn-cancel:hover, .btn-delete-modern:hover, .actions-dropdown-item.danger:hover { background: #dc2626 !important; border-color: #dc2626 !important; color: #ffffff !important; }
+
+/* Safety actions always communicate danger — including the sidebar logout. */
+button.btn-logout, .sidebar-logout-btn { background: transparent !important; border: 1px solid #f87171 !important; color: #f87171 !important; }
+button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !important; border-color: #dc2626 !important; color: #ffffff !important; box-shadow: none !important; }
 
 

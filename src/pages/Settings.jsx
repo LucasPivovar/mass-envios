@@ -339,7 +339,7 @@ const Settings = ({ token }) => {
                 <button type="submit" style={{ flex: 1, borderRadius: 'var(--radius-sm)' }}>
                   Salvar Perfil
                 </button>
-                <button type="button" onClick={handleCancelTwilioForm} className="secondary" style={{ flex: 1, borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-glass)' }}>
+                <button type="button" onClick={handleCancelTwilioForm} className="danger" style={{ flex: 1, borderRadius: 'var(--radius-sm)' }}>
                   Cancelar
                 </button>
               </div>
