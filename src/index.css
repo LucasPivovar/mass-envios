@@ -1905,11 +1905,12 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 .plans-page {
   min-height: 100dvh;
   height: 100dvh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: clamp(16px, 3vh, 36px) 32px;
+  padding: clamp(16px, 3vh, 36px) clamp(20px, 3.5vw, 48px);
   box-sizing: border-box;
   background: #f4f8ff;
   color: #102a43;
@@ -1917,7 +1918,8 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   text-align: center;
 }
 .plans-header {
-  max-width: 860px;
+  max-width: 900px;
+  width: 100%;
   margin: 0 auto clamp(20px, 3.5vh, 36px);
   text-align: center;
   display: flex;
@@ -1949,13 +1951,14 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   color: #102a43 !important;
 }
 .plans-grid {
-  max-width: 1220px;
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: clamp(16px, 2vw, 28px);
   margin: 0 auto;
   align-items: stretch;
+  box-sizing: border-box;
 }
 .plan-card {
   position: relative;
