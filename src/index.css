@@ -1532,7 +1532,22 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   font-size: 1.35rem;
 }
 
-.auth-showcase-copy { max-width: 720px; }
+.auth-showcase-copy { max-width: 720px; position: relative; z-index: 1; }
+.auth-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.auth-particles span {
+  position: absolute;
+  border-radius: 50%;
+  background: #1677e8;
+  opacity: .16;
+  animation: auth-particle-drift 16s ease-in-out infinite;
+}
+@keyframes auth-particle-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: .12; }
+  50% { transform: translate3d(10px, -18px, 0); opacity: .28; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-particles span { animation: none; opacity: .18; }
+}
 .auth-eyebrow {
   display: block;
   margin-bottom: 18px;
