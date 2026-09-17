@@ -1,3 +1,4 @@
+import KpiCard from '../components/KpiCard';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -127,8 +128,8 @@ const LineChart = () => {
         ))}
         <line x1="0" y1="120" x2="500" y2="120" stroke="rgba(22,119,232,0.14)" strokeWidth="1" />
         
-        <path className="dashboard-chart-area" d={area} fill="url(#lc-area)" />
-        <path className="dashboard-chart-line" d={line} fill="none" stroke="url(#lc-stroke)" strokeWidth="2.2"
+        <path className="dashboard-chart-area" d={area} fill="#dbeafe" fillOpacity="0.65" />
+        <path className="dashboard-chart-line" d={line} fill="none" stroke="#2563eb" strokeWidth="2.2"
           strokeLinecap="round" strokeLinejoin="round" pathLength="1"
         />
 
@@ -308,24 +309,7 @@ const Dashboard = ({ token }) => {
       {/* KPI */}
       <div>
         <SLabel>Visão Geral</SLabel>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(175px, 1fr))', gap:'0.875rem' }}>
-          {kpis.map((k, i) => (
-            <Card key={i} hoverable style={{ padding:'1.6rem 1.25rem 1.3rem', display:'flex', flexDirection:'column', gap:'0.8rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <p style={{ fontSize:'0.7rem', fontWeight:'700', color:B.subtle, textTransform:'uppercase', letterSpacing:'0.07em', margin:'0 0 0.3rem 0' }}>{k.label}</p>
-                  <p style={{ fontSize:'2rem', fontWeight:'800', color:B.text, letterSpacing:'-0.03em', margin:0, lineHeight:1 }}>{loading ? '…' : k.value}</p>
-                </div>
-                <div style={{ width:'48px', height:'48px', borderRadius:'13px', background:k.bg, display:'flex', alignItems:'center', justifyContent:'center', border:`1px solid rgba(22,119,232,0.14)` }}>
-                  {getIcon(k.iconType, k.iconColor)}
-                </div>
-              </div>
-              <p style={{ fontSize:'0.74rem', color:B.muted, margin:0, fontWeight:'500' }}>
-                <span style={{ color: B.green, fontWeight:'700' }}>{k.badge}</span>{' '}{k.detail}
-              </p>
-            </Card>
-          ))}
-        </div>
+        <div className="kpi-grid kpi-grid--three">{kpis.map((k, i) => <KpiCard key={k.label} label={k.label} value={loading ? '…' : k.value} detail={`${k.badge} ${k.detail}`} icon={['contacts', 'send', 'chart'][i]} tone={['blue', 'purple', 'cyan'][i]} />)}</div>
       </div>
 
       {/* Charts */}

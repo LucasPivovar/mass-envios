@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -33,7 +33,7 @@ export default function Register({ onLogin }) {
         <div className="input-group"><label htmlFor="signup-email">E-mail</label><input id="signup-email" type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="voce@empresa.com" /></div>
         <div className="input-group"><label htmlFor="signup-password">Senha</label><div className="auth-password"><input id="signup-password" type={visible ? 'text' : 'password'} autoComplete="new-password" minLength={8} required value={password} onChange={e => setPassword(e.target.value)} placeholder="Pelo menos 8 caracteres" /><button className="eye-btn" type="button" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar' : 'Mostrar'}</button></div></div>
       </> : <fieldset className="signup-plans"><legend>Plano disponível</legend><label className="signup-plan"><input type="radio" name="plan" value="pro" checked={plan === 'pro'} onChange={e => setPlan(e.target.value)} required /><span><strong>Plano Pro</strong><small>Contatos, campanhas e relatórios em uma central.</small><small>Valores e condições a definir. Nenhuma cobrança nesta demonstração.</small></span></label></fieldset>}
-        {error && <p role="alert" className="error-message">{error}</p>}<button className="auth-primary" type="submit" disabled={loading}>{loading ? 'Criando sua conta…' : step === 1 ? 'Escolher plano →' : 'Concluir cadastro'}</button>{step === 2 && <button className="auth-back" type="button" disabled={loading} onClick={() => { setStep(1); setError(''); }}>Voltar aos meus dados</button>}
+        {error && <p role="alert" className="error-message">{error}</p>}<button className="auth-primary" type="submit" disabled={loading}>{loading ? 'Criando sua conta…' : step === 1 ? 'Registrar' : 'Concluir cadastro'}</button>{step === 2 && <button className="auth-back secondary" type="button" disabled={loading} onClick={() => { setStep(1); setError(''); }}>Voltar aos meus dados</button>}
       </form><p className="auth-footer">Já tem uma conta? <Link to="/login">Faça login</Link></p>
     </section></div></div>;
 }

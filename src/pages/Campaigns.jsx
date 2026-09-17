@@ -1,6 +1,9 @@
+import KpiCard from '../components/KpiCard';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import FlowAssignmentModal from '../components/FlowAssignmentModal';
+import { readFlowStore } from '../flowStore';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -10,6 +13,8 @@ const Campaigns = ({ token }) => {
   const [loading, setLoading] = useState(true);
 
   const [selectedCampaign, setSelectedCampaign] = useState(null);
+  const [flowCampaign, setFlowCampaign] = useState(null);
+  const [flowLibrary, setFlowLibrary] = useState(() => { try { return readFlowStore(); } catch { return { flows: [], assignments: {} }; } });
 
   // Actions Ellipsis Dropdown state
   const [activeDropdownId, setActiveDropdownId] = useState(null);
@@ -202,63 +207,13 @@ const Campaigns = ({ token }) => {
         </button>
       </div>
 
-      {/* KPI Cards Grid */}
-      <div className="campaigns-kpi-grid" style={styles.statsGrid}>
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff', borderColor: '#cfe3ff' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Total de Campanhas</span>
-            <h2 style={{ ...styles.statVal, color: '#1677e8' }}>{campaigns.length}</h2>
-          </div>
-        </div>
-
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#7c3aed', background: '#f3e8ff', borderColor: '#ddd6fe' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Em Execução (Ativas)</span>
-            <h2 style={{ ...styles.statVal, color: '#7c3aed' }}>
-              {campaigns.filter(c => c.status === 'sending').length}
-            </h2>
-          </div>
-        </div>
-
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#d97706', background: '#fff7e6', borderColor: '#fde4b5' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Agendadas</span>
-            <h2 style={{ ...styles.statVal, color: '#d97706' }}>
-              {campaigns.filter(c => c.status === 'scheduled').length}
-            </h2>
-          </div>
-        </div>
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#0891b2', background: '#e6f7fb', borderColor: '#bae6fd' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 6L9 17l-5-5" />
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Concluídas</span>
-            <h2 style={{ ...styles.statVal, color: '#0891b2' }}>{campaigns.filter(c => c.status === 'completed').length}</h2>
-          </div>
-        </div>
-      </div>
-
+<div className="kpi-grid">
+<KpiCard label="Total de campanhas" value={campaigns.length} icon="send" />
+<KpiCard label="Em execução" value={campaigns.filter(c => c.status === 'sending').length} icon="chart" tone="purple" />
+<KpiCard label="Agendadas" value={campaigns.filter(c => c.status === 'scheduled').length} icon="clock" tone="amber" />
+<KpiCard label="Concluídas" value={campaigns.filter(c => c.status === 'completed').length} icon="check" tone="cyan" />
+</div>
+{flowCampaign && <FlowAssignmentModal campaign={flowCampaign} onClose={() => setFlowCampaign(null)} onSaved={() => setFlowLibrary(readFlowStore())} onOpenBuilder={id => navigate(`/flows/${id}`)} />}
       {/* Filters Section */}
       <div style={styles.filterSection}>
         <div style={styles.filterInputGroup}>
@@ -310,7 +265,7 @@ const Campaigns = ({ token }) => {
               {paginatedCampaigns.map(c => (
                 <tr key={c.id}>
                   <td style={{ fontWeight: '700', fontSize: '1.02rem' }}>
-                    {c.name}
+                    {c.name}<div className="campaign-flow-label">Flow: {flowLibrary.flows.find(flow => flow.id === flowLibrary.assignments[c.id])?.name || 'Não definido'}</div>
                     {c.contact_flag && (
                       <div style={{ marginTop: '5px' }}>
                         <span className="badge" style={{
@@ -335,7 +290,7 @@ const Campaigns = ({ token }) => {
                     {new Date(c.created_at).toLocaleDateString()}
                   </td>
                   <td>
-                    <div style={styles.deliveryMetrics}>
+                    <div className="deliveryMetrics" style={styles.deliveryMetrics}>
                       <span><small>Envios</small><strong>{c.total_sent}</strong></span>
                       <span><small>Entregues</small><strong>{c.total_delivered}</strong><em>{Math.round((c.total_delivered / c.total_sent) * 100) || 0}%</em></span>
                       <span><small>Lidos</small><strong>{c.total_read}</strong><em>{Math.round((c.total_read / c.total_sent) * 100) || 0}%</em></span>
@@ -366,6 +321,7 @@ const Campaigns = ({ token }) => {
 
                       {activeDropdownId === c.id && (
                         <div className="actions-dropdown-menu" onClick={(e) => e.stopPropagation()}>
+<button className="actions-dropdown-item" onClick={() => { setFlowCampaign(c); setActiveDropdownId(null); }}>Definir flow</button>
                           <button
                             onClick={() => { setSelectedCampaign(c); setActiveDropdownId(null); }}
                             className="actions-dropdown-item"
@@ -688,7 +644,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '8px',
-    background: 'radial-gradient(circle at 100% 100%, #15192b 0%, #0b0e14 100%)',
+    background: '#ffffff',
     overflowY: 'auto'
   },
   paginationContainer: {

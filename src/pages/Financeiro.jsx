@@ -1,3 +1,4 @@
+import KpiCard from '../components/KpiCard';
 import React, { useState, useEffect } from 'react';
 
 const Financeiro = () => {
@@ -51,66 +52,12 @@ const Financeiro = () => {
         </p>
       </div>
 
-      <div className="finance-kpi-grid" style={styles.statsGrid}>
-        {/* Balance Card */}
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#1677e8', background: '#eaf3ff', borderColor: '#cfe3ff' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"></line>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Saldo Atual (Créditos)</span>
-            <h2 style={{ ...styles.statVal, color: '#1677e8' }}>R$ {balance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</h2>
-          </div>
-        </div>
-
-        {/* Spent Card */}
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#dc2626', background: '#fff1f2', borderColor: '#fecdd3' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-              <polyline points="17 6 23 6 23 12"></polyline>
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Gasto no Mês</span>
-            <h2 style={{ ...styles.statVal, color: '#ef4444' }}>R$ {spent.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</h2>
-          </div>
-        </div>
-
-        {/* Subscription Card */}
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#7c3aed', background: '#f3e8ff', borderColor: '#ddd6fe' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Plano Atual</span>
-            <h2 style={{ ...styles.statVal, fontSize: '1.25rem', marginBottom: '4px' }}>{plan}</h2>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Renova em {renewalDate}</span>
-          </div>
-        </div>
-
-        {/* Avg Cost Card */}
-        <div style={styles.statCard}>
-          <div style={{ ...styles.statIconContainer, color: '#0891b2', background: '#e6f7fb', borderColor: '#bae6fd' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2v20"></path>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-          </div>
-          <div>
-            <span style={styles.statLabel}>Custo por Disparo (Média)</span>
-            <h2 style={{ ...styles.statVal, color: '#a855f7' }}>R$ 0,08</h2>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>Baseado no último ciclo</span>
-          </div>
-        </div>
-      </div>
-
+<div className="kpi-grid">
+<KpiCard label="Saldo atual (créditos)" value={balance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} icon="money" />
+<KpiCard label="Gasto no mês" value={spent.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} icon="chart" tone="purple" />
+<KpiCard label="Plano atual" value={plan} detail={`Renova em ${renewalDate}`} icon="plan" tone="amber" />
+<KpiCard label="Custo por disparo" value="R$ 0,08" detail="Baseado no último ciclo" icon="money" tone="cyan" />
+</div>
       {/* Progress & limits */}
       <div style={{ ...styles.statCard, marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>

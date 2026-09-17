@@ -1,3 +1,4 @@
+import KpiCard from '../components/KpiCard';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -146,62 +147,12 @@ const Reports = ({ token }) => {
         </p>
       </div>
 
-      {/* KPI Stats Grid */}
-      <div className="reports-stats-grid" style={styles.statsGrid}>
-        <div style={styles.statCard}>
-          <div>
-            <span style={styles.statLabel}>Total de Campanhas</span>
-            <h2 style={styles.statVal}>{totalCampaigns}</h2>
-          </div>
-          <div style={styles.statIconContainer}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"></line>
-              <line x1="12" y1="20" x2="12" y2="4"></line>
-              <line x1="6" y1="20" x2="6" y2="14"></line>
-            </svg>
-          </div>
-        </div>
-
-        <div style={styles.statCard}>
-          <div>
-            <span style={styles.statLabel}>Mensagens Disparadas</span>
-            <h2 style={styles.statVal}>{totalSent}</h2>
-          </div>
-          <div style={{ ...styles.statIconContainer, color: 'var(--accent-secondary)' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 2L11 13"></path>
-              <path d="M22 2l-7 20-4-9-9-4 20-7z"></path>
-            </svg>
-          </div>
-        </div>
-
-        <div style={styles.statCard}>
-          <div>
-            <span style={styles.statLabel}>Taxa Média de Entrega</span>
-            <h2 style={{ ...styles.statVal, color: '#ffffff' }}>{avgDeliveryRate}%</h2>
-          </div>
-          <div style={{ ...styles.statIconContainer, color: '#34d399' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-          </div>
-        </div>
-
-        <div style={styles.statCard}>
-          <div>
-            <span style={styles.statLabel}>Taxa Média de Leitura</span>
-            <h2 style={{ ...styles.statVal, color: '#ffffff' }}>{avgReadRate}%</h2>
-          </div>
-          <div style={{ ...styles.statIconContainer, color: '#1677e8' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </div>
-        </div>
-      </div>
-
+<div className="kpi-grid">
+<KpiCard label="Total de campanhas" value={totalCampaigns} icon="send" />
+<KpiCard label="Mensagens disparadas" value={totalSent.toLocaleString('pt-BR')} icon="chart" tone="purple" />
+<KpiCard label="Taxa de entrega" value={`${avgDeliveryRate}%`} icon="check" tone="cyan" />
+<KpiCard label="Taxa de leitura" value={`${avgReadRate}%`} icon="chart" tone="amber" />
+</div>
       {/* Charts Grid */}
       <div className="reports-charts-grid" style={styles.chartsGrid}>
         
@@ -226,7 +177,7 @@ const Reports = ({ token }) => {
                 cy="90"
                 r="70"
                 fill="transparent"
-                stroke="url(#donutGradient)"
+                stroke="#2563eb"
                 strokeWidth="14"
                 strokeDasharray="439.8"
                 strokeDashoffset={animated ? 439.8 - (439.8 * avgReadRate) / 100 : 439.8}

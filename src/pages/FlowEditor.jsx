@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { readFlowStore, saveFlow } from '../flowStore';
 import {
   ReactFlow,
   MiniMap,
@@ -18,11 +19,11 @@ import '@xyflow/react/dist/style.css';
 
 // Custom Handle style - glowing green dots
 const handleStyle = {
-  background: '#5EFF00',
+  background: '#2563eb',
   width: '8px',
   height: '8px',
   border: '1.5px solid #000',
-  boxShadow: '0 0 6px rgba(94, 255, 0, 0.8)'
+  boxShadow: '0 0 6px rgba(37, 99, 235, 0.8)'
 };
 
 // ── CUSTOM NODE COMPONENTS WITH MULTIPLE HANDLES (TOP, BOTTOM, LEFT, RIGHT FOR HORIZONTAL & VERTICAL FLOWS) ──
@@ -42,12 +43,12 @@ const UnifiedNode = ({ category, icon, color, note, draggable, selected, customH
   return (
     <div style={{
       background: '#ffffff',
-      border: selected ? '2.5px solid #5EFF00' : '1.5px solid #cbd5e1',
-      boxShadow: selected ? '0 0 18px rgba(94, 255, 0, 0.4)' : '0 10px 25px rgba(0,0,0,0.06)',
+      border: selected ? '2.5px solid #2563eb' : '1.5px solid #cbd5e1',
+      boxShadow: selected ? '0 0 18px rgba(37, 99, 235, 0.4)' : '0 10px 25px rgba(0,0,0,0.06)',
       borderRadius: '14px',
       padding: '16px',
       color: '#0f172a',
-      fontFamily: 'Outfit, sans-serif',
+      fontFamily: 'inherit',
       width: '260px',
       height: 'fit-content',
       boxSizing: 'border-box',
@@ -384,6 +385,8 @@ const DelayNode = ({ data, draggable, selected }) => {
 function FlowEditorContent({ token, setIsSidebarOpen }) {
   const { platform } = useParams();
   const navigate = useNavigate();
+  const [flowName, setFlowName] = useState('');
+  const [storageError, setStorageError] = useState(false);
   const { zoomIn, zoomOut, fitView, setCenter, screenToFlowPosition } = useReactFlow();
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -391,8 +394,12 @@ function FlowEditorContent({ token, setIsSidebarOpen }) {
 
   useEffect(() => {
     if (platform) {
-      setNodes(initialNodesByPlatform[platform] || []);
-      setEdges(initialEdgesByPlatform[platform] || []);
+      try {
+        const saved = readFlowStore().flows.find(flow => flow.id === platform);
+        setNodes(saved?.nodes || initialNodesByPlatform[platform] || []);
+        setEdges(saved?.edges || initialEdgesByPlatform[platform] || []);
+        setFlowName(saved?.name || `Flow ${platform}`);
+      } catch { setStorageError(true); toast.error('Não foi possível ler o flow salvo.'); }
     }
   }, [platform, setNodes, setEdges]);
 
@@ -527,7 +534,7 @@ JSON Schema:
       "sourceHandle": "right-source" | "cond-source-0" | "cond-source-else", // use 'right-source' for standard nodes, 'cond-source-0', 'cond-source-else' for condition nodes
       "targetHandle": "left-target",
       "animated": true,
-      "style": { "stroke": "#5EFF00", "strokeWidth": 2 }
+      "style": { "stroke": "#2563eb", "strokeWidth": 2 }
     }
   ]
 }
@@ -695,7 +702,7 @@ Layout guidelines:
       sourceHandle: sourceHandle,
       targetHandle: 'left-target',
       animated: true,
-      style: { stroke: '#5EFF00', strokeWidth: 2 }
+      style: { stroke: '#2563eb', strokeWidth: 2 }
     };
 
     setNodes((nds) => nds.concat(newNode));
@@ -706,7 +713,7 @@ Layout guidelines:
   const onConnect = useCallback(
     (params) => {
       saveToHistory(nodes, edges);
-      setEdges((eds) => addEdge({ ...params, animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } }, eds));
+      setEdges((eds) => addEdge({ ...params, animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } }, eds));
     },
     [setEdges, nodes, edges, saveToHistory]
   );
@@ -1011,19 +1018,9 @@ Layout guidelines:
   };
 
   const handleSave = () => {
-    toast.success('Automação publicada com sucesso! 🎉', {
-      duration: 3000,
-      style: {
-        background: 'rgba(10, 16, 6, 0.97)',
-        color: '#E5E5E5',
-        border: '1px solid rgba(94, 255, 0, 0.3)',
-        backdropFilter: 'blur(12px)',
-        fontFamily: 'Outfit, sans-serif',
-        fontWeight: '600',
-        fontSize: '14px'
-      },
-      iconTheme: { primary: '#5EFF00', secondary: '#000' }
-    });
+    if (storageError) return;
+    try { saveFlow({ id: platform, name: flowName, nodes, edges }); toast.success('Flow salvo neste navegador.'); }
+    catch { toast.error('Não foi possível salvar o flow.'); }
   };
 
   return (
@@ -1051,23 +1048,23 @@ Layout guidelines:
 
         .flow-editor-container button:hover {
           background: rgba(26, 26, 26, 0.95) !important;
-          border-color: rgba(94, 255, 0, 0.4) !important;
-          color: #5EFF00 !important;
+          border-color: rgba(37, 99, 235, 0.4) !important;
+          color: #2563eb !important;
           transform: translateY(-1px) !important;
         }
 
         .flow-editor-container button.publish-btn {
-          background: #5EFF00 !important;
+          background: #2563eb !important;
           color: #000000 !important;
-          border: 1px solid #5EFF00 !important;
+          border: 1px solid #2563eb !important;
           font-weight: 800 !important;
-          box-shadow: 0 0 15px rgba(94, 255, 0, 0.3) !important;
+          box-shadow: 0 0 15px rgba(37, 99, 235, 0.3) !important;
         }
 
         .flow-editor-container button.publish-btn:hover {
           background: #4ec707 !important;
           border-color: #4ec707 !important;
-          box-shadow: 0 0 20px rgba(94, 255, 0, 0.5) !important;
+          box-shadow: 0 0 20px rgba(37, 99, 235, 0.5) !important;
           color: #000000 !important;
         }
 
@@ -1099,7 +1096,7 @@ Layout guidelines:
         }
 
         .flow-editor-container .tool-icon-btn:hover {
-          color: #5EFF00 !important;
+          color: #2563eb !important;
         }
 
         /* 🛠️ PREMIUM 400px DARK SIDEBAR DRAWER */
@@ -1134,7 +1131,7 @@ Layout guidelines:
           backdrop-filter: blur(16px) !important;
           border: 1px solid rgba(255, 255, 255, 0.08) !important;
           border-radius: 16px !important;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 25px rgba(94, 255, 0, 0.05) !important;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 25px rgba(37, 99, 235, 0.05) !important;
           z-index: 200 !important;
           padding: 20px !important;
           font-family: 'Plus Jakarta Sans', sans-serif !important;
@@ -1161,8 +1158,8 @@ Layout guidelines:
         }
 
         .flow-editor-container .add-step-item:hover {
-          border-color: #5EFF00 !important;
-          background: rgba(94, 255, 0, 0.05) !important;
+          border-color: #2563eb !important;
+          background: rgba(37, 99, 235, 0.05) !important;
           color: #ffffff !important;
           transform: translateY(-1px) !important;
         }
@@ -1190,7 +1187,7 @@ Layout guidelines:
         }
 
         .flow-editor-container .premium-dark-input:focus {
-          border-color: rgba(94, 255, 0, 0.4) !important;
+          border-color: rgba(37, 99, 235, 0.4) !important;
           background: rgba(10, 16, 6, 0.8) !important;
           box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 0 8px rgba(94,255,0,0.15) !important;
           outline: none !important;
@@ -1244,18 +1241,18 @@ Layout guidelines:
           left: 0 !important;
           transform: none !important;
           border-radius: 14px !important;
-          background: rgba(94, 255, 0, 0.04) !important;
-          border: 2px dashed rgba(94, 255, 0, 0.25) !important;
-          box-shadow: 0 0 12px rgba(94, 255, 0, 0.12) !important;
+          background: rgba(37, 99, 235, 0.04) !important;
+          border: 2px dashed rgba(37, 99, 235, 0.25) !important;
+          box-shadow: 0 0 12px rgba(37, 99, 235, 0.12) !important;
           z-index: 9999 !important;
           opacity: 0.75 !important;
           transition: background 0.15s, border-color 0.15s !important;
         }
 
         .flow-editor-container .react-flow__connection-connecting .react-flow__handle.react-flow__handle-target:hover {
-          background: rgba(94, 255, 0, 0.1) !important;
-          border-color: #5EFF00 !important;
-          box-shadow: 0 0 15px rgba(94, 255, 0, 0.3) !important;
+          background: rgba(37, 99, 235, 0.1) !important;
+          border-color: #2563eb !important;
+          box-shadow: 0 0 15px rgba(37, 99, 235, 0.3) !important;
         }
 
         /* Grid elements inside node editors */
@@ -1275,9 +1272,9 @@ Layout guidelines:
         }
 
         .flow-editor-container .dashed-grid-btn:hover {
-          border-color: #5EFF00 !important;
+          border-color: #2563eb !important;
           color: #fff !important;
-          background: rgba(94, 255, 0, 0.03) !important;
+          background: rgba(37, 99, 235, 0.03) !important;
         }
 
         .flow-header-controls-container {
@@ -1396,6 +1393,7 @@ Layout guidelines:
         .flow-editor-container .react-flow__connection-connecting .react-flow__handle.react-flow__handle-target { background: rgba(22,119,232,.06) !important; border-color: rgba(22,119,232,.3) !important; }
       `}} />
 
+      <div className="flow-document-header"><button className="secondary" onClick={() => navigate('/campaigns')}>← Campanhas</button><strong>{flowName}</strong><span className="muted">Editor visual · sem execução de disparos</span></div>
       {/* ── Compact tool header — visible on all screens ── */}
       <div className="flow-header-controls-container" style={{
         display: 'flex',
@@ -1457,7 +1455,7 @@ Layout guidelines:
             style={{
               background: 'transparent', border: 'none', outline: 'none',
               color: '#E5E5E5', fontSize: '11.5px', fontWeight: '600',
-              fontFamily: 'Outfit, sans-serif', width: '100%'
+              fontFamily: 'inherit', width: '100%'
             }}
           />
         </div>
@@ -1474,7 +1472,7 @@ Layout guidelines:
                 background: 'rgba(20, 20, 20, 0.95)',
                 color: '#cbd5e1',
                 border: '1px solid rgba(124, 58, 237, 0.3)',
-                fontFamily: 'Outfit, sans-serif',
+                fontFamily: 'inherit',
                 fontWeight: '700'
               }
             });
@@ -1485,7 +1483,7 @@ Layout guidelines:
             gap: '6px', 
             padding: '6px 14px', 
             borderRadius: '8px', 
-            background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+            background: '#4f46e5',
             color: '#ffffff',
             border: 'none',
             fontSize: '11.5px',
@@ -1501,8 +1499,8 @@ Layout guidelines:
         </button>
 
         {/* Publish */}
-        <button onClick={handleSave} className="publish-btn" style={{ padding: '0.45rem 1.3rem', borderRadius: '8px', fontSize: '12px' }}>
-          Publicar
+        <button onClick={handleSave} disabled={storageError} className="publish-btn primary" style={{ padding: '0.45rem 1.3rem', borderRadius: '8px', fontSize: '12px' }}>
+          Salvar flow
         </button>
       </div>
 
@@ -1690,8 +1688,8 @@ Layout guidelines:
                         textAlign: 'center',
                         fontSize: '12px',
                         fontWeight: '800',
-                        color: isActive ? '#5EFF00' : '#64748b',
-                        borderBottom: isActive ? '2.5px solid #5EFF00' : '2.5px solid transparent',
+                        color: isActive ? '#2563eb' : '#64748b',
+                        borderBottom: isActive ? '2.5px solid #2563eb' : '2.5px solid transparent',
                         padding: '14px 4px',
                         cursor: 'pointer',
                         whiteSpace: 'nowrap',
@@ -1853,7 +1851,7 @@ Layout guidelines:
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '12px' }}>
                             {selectedNode.data.fields.map((field, idx) => (
                               <div key={idx} style={{ display: 'flex', gap: '6px', alignItems: 'center', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '8px 12px' }}>
-                                <span style={{ fontSize: '10px', fontWeight: '900', color: '#5EFF00', textTransform: 'uppercase' }}>{field.type}</span>
+                                <span style={{ fontSize: '10px', fontWeight: '900', color: '#2563eb', textTransform: 'uppercase' }}>{field.type}</span>
                                 <input 
                                   type="text" 
                                   className="premium-dark-input"
@@ -1980,7 +1978,7 @@ Layout guidelines:
                           <div 
                             onClick={handleAddButton}
                             style={{ border: '2px dashed rgba(255, 255, 255, 0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center', fontSize: '12px', fontWeight: '700', color: '#9CA3AF', cursor: 'pointer', background: 'rgba(255,255,255,0.02)', transition: 'all 0.2s' }}
-                            onMouseEnter={(e) => e.currentTarget.style.borderColor = '#5EFF00'}
+                            onMouseEnter={(e) => e.currentTarget.style.borderColor = '#2563eb'}
                             onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
                           >
                             + Adicionar botão
@@ -2155,7 +2153,7 @@ Layout guidelines:
                       <div 
                         onClick={handleAddConditionCase}
                         style={{ border: '2px dashed rgba(255, 255, 255, 0.1)', borderRadius: '8px', padding: '12px', textAlign: 'center', fontSize: '12.5px', fontWeight: '700', color: '#cbd5e1', cursor: 'pointer', background: 'rgba(255,255,255,0.02)', transition: 'all 0.2s' }}
-                        onMouseEnter={(e) => e.currentTarget.style.borderColor = '#5EFF00'}
+                        onMouseEnter={(e) => e.currentTarget.style.borderColor = '#2563eb'}
                         onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
                       >
                         + Adicionar caso de condição
@@ -2215,7 +2213,7 @@ Layout guidelines:
                           id="businessHours"
                           checked={!!selectedNode.data.businessHoursOnly}
                           onChange={(e) => updateSelectedNode('businessHoursOnly', e.target.checked)}
-                          style={{ accentColor: '#5EFF00', width: '16px', height: '16px' }}
+                          style={{ accentColor: '#2563eb', width: '16px', height: '16px' }}
                         />
                         <label htmlFor="businessHours" style={{ fontSize: '12px', fontWeight: '800', color: '#E5E5E5', cursor: 'pointer' }}>
                           Apenas em horário comercial
@@ -2261,10 +2259,10 @@ Layout guidelines:
                             min="0" 
                             max="100" 
                             value={selectedNode.data.splitPercent ?? 50} 
-                            style={{ flex: 1, accentColor: '#5EFF00' }}
+                            style={{ flex: 1, accentColor: '#2563eb' }}
                             onChange={(e) => updateSelectedNode('splitPercent', parseInt(e.target.value))}
                           />
-                          <span style={{ fontSize: '14px', fontWeight: '900', color: '#5EFF00', width: '42px' }}>
+                          <span style={{ fontSize: '14px', fontWeight: '900', color: '#2563eb', width: '42px' }}>
                             {selectedNode.data.splitPercent ?? 50}%
                           </span>
                         </div>
@@ -2362,7 +2360,7 @@ Layout guidelines:
                 </>
               ) : activeTab === 'IA' ? (
                 <div style={{ fontSize: '13px', color: '#E5E5E5', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  <div style={{ background: 'rgba(94, 255, 0, 0.04)', border: '1px solid rgba(94, 255, 0, 0.2)', borderRadius: '12px', padding: '14px', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                  <div style={{ background: 'rgba(37, 99, 235, 0.04)', border: '1px solid rgba(37, 99, 235, 0.2)', borderRadius: '12px', padding: '14px', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                     <span style={{ fontSize: '20px' }}>✨</span>
                     <div>
                       <h4 style={{ fontSize: '14px', fontWeight: '850', color: '#1677e8', margin: '0 0 4px 0' }}>Assistente de IA MetaFlow</h4>
@@ -2390,7 +2388,7 @@ Layout guidelines:
                           key={tag}
                           onClick={() => setAiPrompt(`Escreva com o estilo: ${tag}`)}
                           style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', padding: '6px 12px', fontSize: '11px', fontWeight: '750', color: '#cbd5e1', cursor: 'pointer', transition: 'all 0.2s' }}
-                          onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#5EFF00'; e.currentTarget.style.color = '#5EFF00'; }}
+                          onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.color = '#2563eb'; }}
                           onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#cbd5e1'; }}
                         >
                           {tag}
@@ -2404,12 +2402,12 @@ Layout guidelines:
                     disabled={isAiGenerating}
                     style={{ 
                       width: '100%', 
-                      background: '#5EFF00 !important', 
+                      background: '#2563eb !important',
                       color: '#000000 !important', 
                       fontWeight: '800 !important',
                       opacity: isAiGenerating ? 0.7 : 1,
                       pointerEvents: isAiGenerating ? 'none' : 'auto',
-                      boxShadow: '0 0 15px rgba(94, 255, 0, 0.2) !important'
+                      boxShadow: '0 0 15px rgba(37, 99, 235, 0.2) !important'
                     }}
                   >
                     {isAiGenerating ? 'IA escrevendo...' : 'Gerar com IA ✨'}
@@ -2417,7 +2415,7 @@ Layout guidelines:
 
                   {isAiGenerating && (
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '10px', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.08)', borderRadius: '8px' }}>
-                      <div className="spinner" style={{ width: '14px', height: '14px', border: '2px solid rgba(94,255,0,0.2)', borderTopColor: '#5EFF00', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                      <div className="spinner" style={{ width: '14px', height: '14px', border: '2px solid rgba(94,255,0,0.2)', borderTopColor: '#2563eb', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
                       <span style={{ fontSize: '11px', color: '#9CA3AF', fontWeight: '600' }}>Pensando e redigindo copy perfeita...</span>
                       <style dangerouslySetInnerHTML={{ __html: `
                         @keyframes spin {
@@ -2459,7 +2457,7 @@ Layout guidelines:
           <div className="node-edit-sidebar">
             {/* Sidebar Tab Header */}
             <div style={{ display: 'flex', borderBottom: '1px solid rgba(255,255,255,0.06)', background: 'rgba(20,20,20,0.5)', height: '48px', alignItems: 'center', padding: '0 16px', justifyContent: 'space-between', flexShrink: 0 }}>
-              <span style={{ fontSize: '13px', fontWeight: '800', color: '#5EFF00' }}>
+              <span style={{ fontSize: '13px', fontWeight: '800', color: '#2563eb' }}>
                 Gerador de Fluxos por IA ✨
               </span>
               <button 
@@ -2551,7 +2549,7 @@ Layout guidelines:
                 disabled={isGlobalAiGenerating}
                 style={{ 
                   width: '100%', 
-                  background: 'linear-gradient(135deg, #7c3aed, #4f46e5) !important', 
+                  background: '#4f46e5 !important',
                   color: '#ffffff !important', 
                   fontWeight: '800 !important',
                   opacity: isGlobalAiGenerating ? 0.7 : 1,
@@ -2648,62 +2646,62 @@ const initialNodesByPlatform = {
 
 const initialEdgesByPlatform = {
   tiktok: [
-    { id: 'e-tk-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-3', source: '3', target: '4', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-4', source: '4', target: '5', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-5', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-6', source: '5', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-7', source: '6', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-10', source: '9', target: '10', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-11', source: '9', target: '11', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-12', source: '10', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-tk-13', source: '11', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } }
+    { id: 'e-tk-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-3', source: '3', target: '4', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-4', source: '4', target: '5', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-5', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-6', source: '5', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-7', source: '6', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-10', source: '9', target: '10', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-11', source: '9', target: '11', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-12', source: '10', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-tk-13', source: '11', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } }
   ],
   instagram: [
-    { id: 'e-in-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-3', source: '3', target: '4', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-4', source: '3', target: '5', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-5', source: '4', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-6', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-7', source: '6', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-10', source: '8', target: '10', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-11', source: '9', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-in-12', source: '10', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } }
+    { id: 'e-in-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-3', source: '3', target: '4', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-4', source: '3', target: '5', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-5', source: '4', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-6', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-7', source: '6', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-10', source: '8', target: '10', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-11', source: '9', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-in-12', source: '10', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } }
   ],
   whatsapp: [
-    { id: 'e-wa-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-3', source: '3', target: '4', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-4', source: '3', target: '5', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-5', source: '4', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-6', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-7', source: '6', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-10', source: '9', target: '10', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-11', source: '9', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-12', source: '10', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-wa-13', source: '11', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } }
+    { id: 'e-wa-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-3', source: '3', target: '4', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-4', source: '3', target: '5', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-5', source: '4', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-6', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-7', source: '6', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-10', source: '9', target: '10', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-11', source: '9', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-12', source: '10', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-wa-13', source: '11', target: '12', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } }
   ],
   linkedin: [
-    { id: 'e-li-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-3', source: '3', target: '4', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-4', source: '3', target: '5', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-5', source: '4', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-6', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-7', source: '6', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-10', source: '8', target: '10', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-11', source: '9', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } },
-    { id: 'e-li-12', source: '10', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#5EFF00', strokeWidth: 2 } }
+    { id: 'e-li-1', source: '1', target: '2', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-2', source: '2', target: '3', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-3', source: '3', target: '4', sourceHandle: 'cond-source-0', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-4', source: '3', target: '5', sourceHandle: 'cond-source-else', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-5', source: '4', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-6', source: '5', target: '6', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-7', source: '6', target: '7', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-8', source: '7', target: '8', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-9', source: '8', target: '9', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-10', source: '8', target: '10', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-11', source: '9', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } },
+    { id: 'e-li-12', source: '10', target: '11', sourceHandle: 'right-source', targetHandle: 'left-target', animated: true, style: { stroke: '#2563eb', strokeWidth: 2 } }
   ],
   sandbox: []
 };
