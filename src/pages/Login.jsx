@@ -400,7 +400,7 @@ const styles = {
     width: 'min(100%, 980px)',
     minHeight: '610px',
     display: 'grid',
-    gridTemplateColumns: '1.15fr .85fr',
+    gridTemplateColumns: '60% 40%',
     border: '1px solid rgba(11, 61, 145, 0.12)',
     borderRadius: '20px',
     overflow: 'hidden',

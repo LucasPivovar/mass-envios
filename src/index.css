@@ -1483,7 +1483,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   --border-glass: #23415c;
 }
 .login-screen, .login-screen *, .login-screen *::before, .login-screen *::after { box-sizing: border-box; }
-.login-screen .authShell { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+.login-screen .authShell { grid-template-columns: 60% 40% !important; }
 .login-brand { display: flex; align-items: center; gap: 12px; color: #fff; }
 .login-welcome { margin: 28px 0 8px; font-size: 1.4rem; letter-spacing: 0; }
 .login-screen .auth-container {
@@ -1606,7 +1606,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   width: 100% !important;
   min-height: 100dvh !important;
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: 60% 40% !important;
   overflow: hidden !important;
   background: #ffffff !important;
   border: 0 !important;
@@ -1675,7 +1675,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 660px;
+  max-width: 740px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1957,7 +1957,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 .signup-plan small { color: #627d98 !important; }
 
 @media (max-width: 1120px) {
-  .login-screen .authShell { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .login-screen .authShell { grid-template-columns: 60% 40% !important; }
   .login-screen .authShowcase.auth-showcase-light { padding: 48px !important; }
   .login-screen .auth-showcase-copy h1 {
     font-size: clamp(2.15rem, 4.8vw, 3.75rem) !important;
