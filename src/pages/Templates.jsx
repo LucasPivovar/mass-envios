@@ -54,56 +54,56 @@ const DEFAULT_TEMPLATES = [
 const TEMPLATE_PRESETS = [
   {
     id: 'custom',
-    label: '✨ Criar template em branco (Personalizado)',
+    label: 'Criar template em branco (Personalizado)',
     name: '',
     category: 'MARKETING',
     body: ''
   },
   {
     id: 'welcome',
-    label: '🎉 Boas-vindas e Ativação de Lead (Marketing)',
+    label: 'Boas-vindas e Ativação de Lead (Marketing)',
     name: 'boas_vindas_ativacao',
     category: 'MARKETING',
-    body: 'Olá {{1}}, seja muito bem-vindo ao MetaFlow! 🚀 Preparamos uma demonstração guiada e um bônus de {{2}} créditos para seu início. Acesse: {{3}}'
+    body: 'Olá {{1}}, seja muito bem-vindo ao MetaFlow! Preparamos uma demonstração guiada e um bônus de {{2}} créditos para seu início. Acesse: {{3}}'
   },
   {
     id: 'order_status',
-    label: '📦 Confirmação e Rastreio de Pedido (Utility)',
+    label: 'Confirmação e Rastreio de Pedido (Utility)',
     name: 'status_pedido_rastreio',
     category: 'UTILITY',
     body: 'Olá {{1}}! Seu pedido #{{2}} foi despachado com sucesso. Código de rastreio: {{3}}. Prazo previsto de entrega: {{4}} dias úteis.'
   },
   {
     id: 'cart_abandoned',
-    label: '🛒 Recuperação de Carrinho Abandonado (Marketing)',
+    label: 'Recuperação de Carrinho Abandonado (Marketing)',
     name: 'recuperar_carrinho_desconto',
     category: 'MARKETING',
     body: 'Oi {{1}}, vimos que você não concluiu seu pedido! Preparamos um desconto exclusivo de {{2}}% válido somente hoje com o código {{3}}: {{4}}'
   },
   {
     id: 'pix_reminder',
-    label: '💳 Lembrete de Chave Pix / Pagamento (Utility)',
+    label: 'Lembrete de Chave Pix / Pagamento (Utility)',
     name: 'lembrete_cobranca_pix',
     category: 'UTILITY',
     body: 'Olá {{1}}, seu pedido está reservado! Restam 15 minutos para a chave Pix de R$ {{2}} expirar. Copie e cole: {{3}}'
   },
   {
     id: 'feedback_nps',
-    label: '⭐ Pesquisa de Satisfação NPS (Marketing)',
+    label: 'Pesquisa de Satisfação NPS (Marketing)',
     name: 'pesquisa_satisfacao_nps',
     category: 'MARKETING',
     body: 'Olá {{1}}! O que achou da sua experiência com nosso atendimento hoje? Em uma escala de 0 a 10, qual nota você daria? Responda por aqui: {{2}}'
   },
   {
     id: 'promo_flash',
-    label: '⚡ Promoção Relâmpago e Cupom (Marketing)',
+    label: 'Promoção Relâmpago e Cupom (Marketing)',
     name: 'oferta_relampago_vip',
     category: 'MARKETING',
-    body: '🚨 Plantão de Ofertas VIP! Olá {{1}}, durante as próximas 24h toda a linha está com {{2}}% de desconto. Aproveite no link: {{3}}'
+    body: 'Plantão de Ofertas VIP! Olá {{1}}, durante as próximas 24h toda a linha está com {{2}}% de desconto. Aproveite no link: {{3}}'
   },
   {
     id: 'auth_code',
-    label: '🔐 Código de Verificação 2FA (Authentication)',
+    label: 'Código de Verificação 2FA (Authentication)',
     name: 'codigo_verificacao_seguranca',
     category: 'UTILITY',
     body: 'MetaFlow: Seu código de verificação é {{1}}. Válido por 10 minutos. Nunca compartilhe este código com ninguém.'
@@ -147,7 +147,6 @@ export default function Templates({ token }) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       }
-      // Seed default approved templates
       localStorage.setItem(STORAGE, JSON.stringify(DEFAULT_TEMPLATES));
       return DEFAULT_TEMPLATES;
     } catch {
@@ -176,7 +175,7 @@ export default function Templates({ token }) {
         }
       })
       .catch(() => {
-        // Keeps fallback accounts for smooth demo
+        // Keeps fallback accounts
       });
   }, [token]);
 
@@ -273,13 +272,11 @@ export default function Templates({ token }) {
     }
   }
 
-  // Count variables {{1}}, {{2}} in draft
   const detectedVariables = useMemo(() => {
     const matches = draft.body.match(/\{\{\d+\}\}/g) || [];
     return [...new Set(matches)];
   }, [draft.body]);
 
-  // Filter items
   const filteredTemplates = useMemo(() => {
     return items.filter((tmpl) => {
       const matchSearch =
@@ -295,7 +292,7 @@ export default function Templates({ token }) {
       {/* Header with Title and Primary Action */}
       <header className="templates-header">
         <div>
-          <h1 style={{ margin: 0, fontSize: '1.75rem', fontWeight: 800, color: '#102a43' }}>
+          <h1 style={{ margin: 0, fontSize: '1.65rem', fontWeight: 500, color: '#102a43' }}>
             Templates do WhatsApp
           </h1>
           <p style={{ margin: '6px 0 0', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
@@ -316,14 +313,16 @@ export default function Templates({ token }) {
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          + Novo Template
+          Novo Template
         </button>
       </header>
 
-      {/* Demo notification banner */}
+      {/* Demo notification banner with Bootstrap Bulb icon */}
       <div className="template-notice">
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ fontSize: '1.25rem' }}>💡</span>
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="#1677e8" style={{ flexShrink: 0 }}>
+            <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.468c.162-.377.413-.686.676-.94A5 5 0 0 0 8 1z"/>
+          </svg>
           <div>
             <strong>Modelos Oficiais da Cloud API:</strong> Os templates preparados são sincronizados diretamente com as contas de WhatsApp selecionadas para aprovação rápida na Meta.
           </div>
@@ -380,21 +379,21 @@ export default function Templates({ token }) {
         <div className="template-category-pills">
           <button
             type="button"
-            className={categoryFilter === 'ALL' ? 'primary pill-btn' : 'secondary pill-btn'}
+            className={categoryFilter === 'ALL' ? 'pill-btn pill-btn--active' : 'pill-btn pill-btn--inactive'}
             onClick={() => setCategoryFilter('ALL')}
           >
             Todos ({items.length})
           </button>
           <button
             type="button"
-            className={categoryFilter === 'MARKETING' ? 'primary pill-btn' : 'secondary pill-btn'}
+            className={categoryFilter === 'MARKETING' ? 'pill-btn pill-btn--active' : 'pill-btn pill-btn--inactive'}
             onClick={() => setCategoryFilter('MARKETING')}
           >
             Marketing ({items.filter((i) => i.category === 'MARKETING').length})
           </button>
           <button
             type="button"
-            className={categoryFilter === 'UTILITY' ? 'primary pill-btn' : 'secondary pill-btn'}
+            className={categoryFilter === 'UTILITY' ? 'pill-btn pill-btn--active' : 'pill-btn pill-btn--inactive'}
             onClick={() => setCategoryFilter('UTILITY')}
           >
             Utility ({items.filter((i) => i.category === 'UTILITY').length})
@@ -439,10 +438,14 @@ export default function Templates({ token }) {
                 </div>
               </div>
 
-              {/* Meta Info */}
+              {/* Meta Info with Bootstrap Phone SVG */}
               <div className="template-card-meta">
-                <span>
-                  📱 {item.accounts?.length || 1} conta(s) vinculada(s)
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                  </svg>
+                  {item.accounts?.length || 1} conta(s) vinculada(s)
                 </span>
                 {item.createdAt && (
                   <span style={{ color: '#829ab1' }}>Criado em: {item.createdAt}</span>
@@ -475,7 +478,11 @@ export default function Templates({ token }) {
         </div>
       ) : (
         <section className="template-card" style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
-          <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📭</div>
+          <div style={{ marginBottom: '1rem' }}>
+            <svg width="40" height="40" viewBox="0 0 16 16" fill="#627d98">
+              <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .11.312V13a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5a.5.5 0 0 1 .11-.312zm-1.8 5.437H5.21a2.5 2.5 0 0 0 4.58 0h3.02L15 13a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z"/>
+            </svg>
+          </div>
           <h2 style={{ fontSize: '1.25rem', color: '#102a43' }}>Nenhum template encontrado</h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '420px', margin: '0.5rem auto 1.5rem' }}>
             Não encontramos nenhum modelo com os filtros atuais. Experimente limpar os filtros ou crie um novo template.
@@ -497,7 +504,7 @@ export default function Templates({ token }) {
               setOpen(true);
             }}
           >
-            + Criar Primeiro Template
+            Criar Primeiro Template
           </button>
         </section>
       )}
@@ -536,10 +543,13 @@ export default function Templates({ token }) {
               </button>
             </div>
 
-            {/* Quick Template Presets Selector (Select de Templates) */}
+            {/* Quick Template Presets Selector with Bootstrap Layers SVG */}
             <div className="template-preset-picker">
-              <label htmlFor="template-preset-select" style={{ fontWeight: 700, fontSize: '0.88rem', color: '#102a43', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span>🎯</span> Modelos Pré-definidos (Select de Templates):
+              <label htmlFor="template-preset-select" style={{ fontWeight: 600, fontSize: '0.88rem', color: '#102a43', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="#1677e8">
+                  <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L4.654 8 0.265 10.341a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L11.346 8l4.389-2.341a.5.5 0 0 0 0-.882l-7.5-4zM8 2.458 14.641 6 8 9.542 1.359 6 8 2.458z"/>
+                </svg>
+                Modelos Pré-definidos (Select de Templates):
               </label>
               <select
                 id="template-preset-select"
@@ -559,7 +569,7 @@ export default function Templates({ token }) {
               <div className="template-editor-layout">
                 {/* Left Form Column */}
                 <div className="template-form-col">
-                  <label htmlFor="template-name" style={{ fontWeight: 600, fontSize: '0.85rem' }}>
+                  <label htmlFor="template-name" style={{ fontWeight: 500, fontSize: '0.85rem' }}>
                     Identificador (Slug)
                   </label>
                   <input
@@ -573,7 +583,7 @@ export default function Templates({ token }) {
                     onChange={(e) => setDraft({ ...draft, name: e.target.value })}
                   />
 
-                  <label htmlFor="template-category" style={{ fontWeight: 600, fontSize: '0.85rem' }}>
+                  <label htmlFor="template-category" style={{ fontWeight: 500, fontSize: '0.85rem' }}>
                     Categoria do Template
                   </label>
                   <select
@@ -586,7 +596,7 @@ export default function Templates({ token }) {
                   </select>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                    <label htmlFor="template-body" style={{ fontWeight: 600, fontSize: '0.85rem' }}>
+                    <label htmlFor="template-body" style={{ fontWeight: 500, fontSize: '0.85rem' }}>
                       Mensagem do Template
                     </label>
                     <span style={{ fontSize: '0.78rem', color: draft.body.length > 950 ? '#ef4444' : '#627d98' }}>
@@ -604,9 +614,12 @@ export default function Templates({ token }) {
                   />
 
                   <div className="variable-hints">
-                    <small>
-                      💡 Use variáveis numeradas como <code>{'{{1}}'}</code>, <code>{'{{2}}'}</code> para substituir por Nome, Código, Link, etc.
-                    </small>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#486581' }}>
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="#1677e8">
+                        <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6z"/>
+                      </svg>
+                      Use variáveis numeradas como <code>{'{{1}}'}</code>, <code>{'{{2}}'}</code> para substituir por dados dinâmicos.
+                    </div>
                     {detectedVariables.length > 0 && (
                       <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '6px', flexWrap: 'wrap' }}>
                         <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#486581' }}>Variáveis detectadas:</span>
@@ -620,7 +633,7 @@ export default function Templates({ token }) {
                   </div>
 
                   <fieldset style={{ marginTop: '1.25rem' }}>
-                    <legend style={{ fontWeight: 700, fontSize: '0.85rem', color: '#102a43' }}>
+                    <legend style={{ fontWeight: 600, fontSize: '0.85rem', color: '#102a43' }}>
                       Contas para vinculação e disparo
                     </legend>
                     <div style={{ maxHeight: '120px', overflowY: 'auto', paddingRight: '4px' }}>
@@ -652,7 +665,7 @@ export default function Templates({ token }) {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span className="whatsapp-icon-circle">WA</span>
                         <div>
-                          <div style={{ fontWeight: 700, fontSize: '0.88rem', color: '#ffffff' }}>
+                          <div style={{ fontWeight: 600, fontSize: '0.88rem', color: '#ffffff' }}>
                             MetaFlow Notificações
                           </div>
                           <div style={{ fontSize: '0.72rem', color: '#bbf7d0' }}>

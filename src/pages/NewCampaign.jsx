@@ -268,11 +268,35 @@ const NewCampaign = ({ token }) => {
 
   return (
     <div className="page-container pulse-glow">
-      <div style={{ marginBottom: '2.5rem' }}>
-        <h1>Nova Campanha</h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', margin: 0 }}>
-          Crie um novo fluxo de disparos de mensagens automatizadas em 4 etapas simples.
-        </p>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <button
+            type="button"
+            className="secondary"
+            onClick={() => navigate('/campaigns')}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '0.5rem 0.9rem',
+              fontSize: '0.88rem',
+              borderRadius: '8px',
+              margin: 0
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar
+          </button>
+          <div>
+            <h1 style={{ margin: 0 }}>Nova Campanha</h1>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', margin: '4px 0 0' }}>
+              Crie um novo fluxo de disparos de mensagens automatizadas em 4 etapas simples.
+            </p>
+          </div>
+        </div>
       </div>
       
       {/* Progress Stepper with 4 Steps */}
@@ -725,10 +749,11 @@ const NewCampaign = ({ token }) => {
                 onClick={() => setContactsPage(prev => Math.max(prev - 1, 1))} 
                 disabled={contactsPage === 1}
                 className="secondary pagination-btn"
-                style={{ padding: '0.45rem', fontSize: '1.2rem', minWidth: '42px', width: '42px', height: '38px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: 0 }}
                 aria-label="Página anterior"
               >
-                <span aria-hidden="true">‹</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
               </button>
               <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '600' }}>
                 Página {contactsPage} de {totalContactsPages}
@@ -737,10 +762,11 @@ const NewCampaign = ({ token }) => {
                 onClick={() => setContactsPage(prev => Math.min(prev + 1, totalContactsPages))} 
                 disabled={contactsPage === totalContactsPages}
                 className="secondary pagination-btn"
-                style={{ padding: '0.45rem', fontSize: '1.2rem', minWidth: '42px', width: '42px', height: '38px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: 0 }}
                 aria-label="Próxima página"
               >
-                <span aria-hidden="true">›</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
               </button>
             </div>
           )}

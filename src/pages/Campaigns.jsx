@@ -7,10 +7,79 @@ import { readFlowStore } from '../flowStore';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
+const DEFAULT_CAMPAIGNS = [
+  {
+    id: 1,
+    name: 'Disparo Boas Vindas VIP',
+    created_at: '2026-09-14T10:00:00.000Z',
+    status: 'completed',
+    total_sent: 400,
+    total_delivered: 388,
+    total_read: 312,
+    contact_flag: 'Leads VIP',
+    message_text: 'Olá {{nome}}, seja muito bem-vindo ao MetaFlow! Seu acesso foi liberado com sucesso.'
+  },
+  {
+    id: 2,
+    name: 'Lembrete Carrinho Abandonado',
+    created_at: '2026-09-15T14:30:00.000Z',
+    status: 'sending',
+    total_sent: 150,
+    total_delivered: 142,
+    total_read: 98,
+    contact_flag: 'E-commerce',
+    message_text: 'Oi {{nome}}, você deixou itens no seu carrinho! Finalize agora com 15% de desconto exclusivo.'
+  },
+  {
+    id: 3,
+    name: 'Campanha Black Friday Antecipada',
+    created_at: '2026-09-16T09:00:00.000Z',
+    status: 'scheduled',
+    total_sent: 800,
+    total_delivered: 0,
+    total_read: 0,
+    contact_flag: 'Clientes Ativos',
+    message_text: 'Atenção {{nome}}: Acesso antecipado à Black Friday liberado exclusivamente para você hoje.'
+  },
+  {
+    id: 4,
+    name: 'Aviso Rastreio de Pedido',
+    created_at: '2026-09-13T11:20:00.000Z',
+    status: 'completed',
+    total_sent: 220,
+    total_delivered: 216,
+    total_read: 195,
+    contact_flag: 'Operacional',
+    message_text: 'Olá {{nome}}, seu pedido foi postado! Acompanhe o rastreamento em tempo real pelo link.'
+  },
+  {
+    id: 5,
+    name: 'Reativação de Leads Inativos',
+    created_at: '2026-09-12T16:45:00.000Z',
+    status: 'paused',
+    total_sent: 310,
+    total_delivered: 298,
+    total_read: 180,
+    contact_flag: 'Inativos 30d',
+    message_text: 'Sentimos sua falta {{nome}}! Preparamos um bônus especial para reativar seu plano hoje.'
+  },
+  {
+    id: 6,
+    name: 'Pesquisa Satisfação NPS',
+    created_at: '2026-09-11T08:15:00.000Z',
+    status: 'completed',
+    total_sent: 500,
+    total_delivered: 485,
+    total_read: 390,
+    contact_flag: 'Pós-Venda',
+    message_text: 'Olá {{nome}}, como foi sua experiência com nosso time? De 0 a 10 qual nota você daria?'
+  }
+];
+
 const Campaigns = ({ token }) => {
   const navigate = useNavigate();
-  const [campaigns, setCampaigns] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [campaigns, setCampaigns] = useState(DEFAULT_CAMPAIGNS);
+  const [loading, setLoading] = useState(false);
 
   const [selectedCampaign, setSelectedCampaign] = useState(null);
   const [flowCampaign, setFlowCampaign] = useState(null);
@@ -43,9 +112,13 @@ const Campaigns = ({ token }) => {
       const response = await axios.get(`${API_BASE}/api/campaigns`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setCampaigns(response.data);
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        setCampaigns(response.data);
+      } else {
+        setCampaigns(DEFAULT_CAMPAIGNS);
+      }
     } catch (err) {
-      console.error('Error fetching campaigns', err);
+      setCampaigns(DEFAULT_CAMPAIGNS);
     } finally {
       setLoading(false);
     }
@@ -264,8 +337,11 @@ const Campaigns = ({ token }) => {
             <tbody>
               {paginatedCampaigns.map(c => (
                 <tr key={c.id}>
-                  <td style={{ fontWeight: '700', fontSize: '1.02rem' }}>
-                    {c.name}<div className="campaign-flow-label">Flow: {flowLibrary.flows.find(flow => flow.id === flowLibrary.assignments[c.id])?.name || 'Não definido'}</div>
+                  <td>
+                    <span className="campaign-name-cell" style={{ color: '#0b3d91', fontWeight: 600, fontSize: '0.98rem', display: 'block' }}>
+                      {c.name || 'Campanha sem nome'}
+                    </span>
+                    <div className="campaign-flow-label">Flow: {flowLibrary.flows.find(flow => flow.id === flowLibrary.assignments[c.id])?.name || 'Não definido'}</div>
                     {c.contact_flag && (
                       <div style={{ marginTop: '5px' }}>
                         <span className="badge" style={{
@@ -430,10 +506,12 @@ const Campaigns = ({ token }) => {
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className="secondary"
-                style={styles.paginationBtn}
+                className="secondary pagination-btn"
+                aria-label="Página anterior"
               >
-                <span aria-hidden="true">‹</span><span className="sr-only">Anterior</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
               </button>
               <span style={styles.paginationInfo}>
                 Página {currentPage} de {totalPages}
@@ -441,10 +519,12 @@ const Campaigns = ({ token }) => {
               <button
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="secondary"
-                style={styles.paginationBtn}
+                className="secondary pagination-btn"
+                aria-label="Próxima página"
               >
-                <span aria-hidden="true">›</span><span className="sr-only">Próxima</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
               </button>
             </div>
           )}
@@ -661,13 +741,15 @@ const styles = {
     background: 'rgba(10, 15, 30, 0.2)'
   },
   paginationBtn: {
-    padding: '0.45rem',
-    fontSize: '1.2rem',
+    padding: 0,
     borderRadius: '8px',
     boxShadow: 'none',
-    minWidth: '42px',
-    width: '42px',
-    height: '38px'
+    width: '36px',
+    height: '36px',
+    minWidth: '36px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   paginationInfo: {
     fontSize: '0.9rem',
