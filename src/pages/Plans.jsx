@@ -12,7 +12,6 @@ export default function Plans() {
       <img className="plans-logo" src="/metaflow-logo.png" alt="MetaFlow" />
       <span className="plans-kicker">ESCOLHA SEU PLANO</span>
       <h1>Um plano para cada momento da sua operação.</h1>
-      <p>Esta é uma demonstração visual. Nenhuma cobrança será realizada.</p>
     </div>
     <section className="plans-grid" aria-label="Planos disponíveis">
       {plans.map(plan => <article className={`plan-card${plan.featured ? ' featured' : ''}`} key={plan.name}>
