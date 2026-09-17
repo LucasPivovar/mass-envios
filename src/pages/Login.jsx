@@ -110,7 +110,7 @@ const Login = ({ onLogin }) => {
               <img className="auth-product-logo" src="/metaflow-logo.png" alt="MetaFlow" />
             </div>
             <h2 className="login-welcome">{view === 'login' ? 'Bem-vindo de volta' : view === 'login_2fa' ? 'Confirme seu acesso' : 'Recupere seu acesso'}</h2>
-            <p style={{ margin: 0, color: '#a7c5d8', fontSize: '0.9rem', fontWeight: '500' }}>{view === 'login' ? 'Entre para acompanhar suas campanhas e automações.' : 'Siga as instruções abaixo para continuar.'}</p>
+            <p style={{ margin: 0, color: '#627d98', fontSize: '0.9rem', fontWeight: '500' }}>{view === 'login' ? 'Entre para acompanhar suas campanhas e automações.' : 'Siga as instruções abaixo para continuar.'}</p>
           </div>
         </div>
 
@@ -378,17 +378,17 @@ const styles = {
     display: 'none'
   },
   authContainer: {
-    background: '#071d35',
-    border: '1px solid rgba(117,220,255,0.14)',
-    boxShadow: '0 22px 55px rgba(0,0,0,0.30)',
-    borderRadius: '14px',
+    background: '#ffffff',
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: '0',
     padding: '2.5rem',
-    maxWidth: '410px',
+    maxWidth: '440px',
     width: '100%',
     textAlign: 'center',
     position: 'relative',
     zIndex: 10,
-    margin: 0
+    margin: 'auto'
   },
   brandHeader: {
     marginBottom: '2rem',
@@ -401,11 +401,11 @@ const styles = {
     minHeight: '610px',
     display: 'grid',
     gridTemplateColumns: '1.15fr .85fr',
-    border: '1px solid rgba(117,220,255,0.16)',
-    borderRadius: '16px',
+    border: '1px solid rgba(11, 61, 145, 0.12)',
+    borderRadius: '20px',
     overflow: 'hidden',
-    background: '#041a30',
-    boxShadow: '0 28px 72px rgba(0,0,0,0.34)',
+    background: '#ffffff',
+    boxShadow: '0 24px 64px rgba(11, 61, 145, 0.12)',
     position: 'relative',
     zIndex: 1
   },
