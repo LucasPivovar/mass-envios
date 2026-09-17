@@ -69,7 +69,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
     { path: '/', label: 'Visão Geral', icon: <Icons.Dashboard /> },
     { path: '/contacts', label: 'Contatos', icon: <Icons.Contacts /> },
     { path: '/campaigns', label: 'Campanhas', icon: <Icons.Campaigns /> },
-    { path: '/flows', label: 'Canais', icon: <Icons.Flows /> },
+    { path: '/templates', label: 'Templates', icon: <Icons.Flows /> },
     { path: '/reports', label: 'Relatórios', icon: <Icons.Reports /> },
     { path: '/financial', label: 'Financeiro', icon: <Icons.Financial /> },
   ];

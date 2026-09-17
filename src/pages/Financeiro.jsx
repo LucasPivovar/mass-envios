@@ -13,13 +13,13 @@ const Financeiro = () => {
   const itemsPerPage = 3;
 
   const transactions = [
-    { id: 1, date: '10/08/2026', description: 'Recarga de Créditos (Twilio)', amount: -500.00, status: 'Concluído' },
+    { id: 1, date: '10/08/2026', description: 'Recarga de Créditos', amount: -500.00, status: 'Concluído' },
     { id: 2, date: '01/08/2026', description: 'Assinatura Mensal MetaFlow', amount: -299.90, status: 'Concluído' },
     { id: 3, date: '28/07/2026', description: 'Bônus Promocional', amount: 150.00, status: 'Creditado' },
-    { id: 4, date: '15/07/2026', description: 'Recarga de Créditos (Twilio)', amount: -500.00, status: 'Concluído' },
+    { id: 4, date: '15/07/2026', description: 'Recarga de Créditos', amount: -500.00, status: 'Concluído' },
     { id: 5, date: '10/07/2026', description: 'Estorno de Envio Com Erro', amount: 45.80, status: 'Creditado' },
     { id: 6, date: '01/07/2026', description: 'Assinatura Mensal MetaFlow', amount: -299.90, status: 'Concluído' },
-    { id: 7, date: '18/06/2026', description: 'Recarga de Créditos (Twilio)', amount: -250.00, status: 'Concluído' }
+    { id: 7, date: '18/06/2026', description: 'Recarga de Créditos', amount: -250.00, status: 'Concluído' }
   ];
 
   // Filtering transactions

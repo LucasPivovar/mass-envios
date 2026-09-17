@@ -299,9 +299,7 @@ const Campaigns = ({ token }) => {
           <table>
             <thead>
               <tr>
-                <th>Nome da Campanha</th>
-                <th>Provedor</th>
-                <th>Data</th>
+                <th>Nome da Campanha</th>                <th>Data</th>
                 <th>Envios, Entregues e Lidos</th>
                 <th>Desempenho</th>
                 <th>Status</th>
@@ -332,30 +330,6 @@ const Campaigns = ({ token }) => {
                         </span>
                       </div>
                     )}
-                  </td>
-                  <td>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                      <span
-                        style={{
-                          fontSize: '0.75rem',
-                          padding: '0.3rem 0.8rem',
-                          borderRadius: '99px',
-                          background: c.template_sid ? '#eaf3ff' : '#f1f5f9',
-                          color: c.template_sid ? '#1677e8' : 'var(--text-secondary)',
-                          border: c.template_sid ? '1px solid #cfe3ff' : '1px solid #e2e8f0',
-                          fontWeight: '700',
-                          display: 'inline-block',
-                          width: 'fit-content'
-                        }}
-                      >
-                        {c.template_sid ? 'Twilio Template' : 'Padrão Custom'}
-                      </span>
-                      {c.template_sid && c.twilio_account_name && (
-                        <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', paddingLeft: '4px' }}>
-                          Conta: {c.twilio_account_name}
-                        </span>
-                      )}
-                    </div>
                   </td>
                   <td style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', whiteSpace: 'nowrap' }}>
                     {new Date(c.created_at).toLocaleDateString()}
@@ -482,7 +456,7 @@ const Campaigns = ({ token }) => {
               ))}
               {paginatedCampaigns.length === 0 && (
                 <tr>
-                  <td colSpan="9" style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: '2rem' }}>
+                  <td colSpan="6" style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: '2rem' }}>
                     Nenhuma campanha encontrada.
                   </td>
                 </tr>
@@ -542,10 +516,10 @@ const Campaigns = ({ token }) => {
                 </div>
 
                 <div>
-                  <label style={styles.detailLabel}>Provedor Utilizado</label>
+                  <label style={styles.detailLabel}>Conta de envio</label>
                   <p style={styles.detailText}>
                     {selectedCampaign.template_sid
-                      ? `Twilio (${selectedCampaign.twilio_account_name || 'WhatsApp Oficial'})`
+                      ? `${selectedCampaign.twilio_account_name || 'WhatsApp'}`
                       : 'Padrão (WhatsApp Web)'}
                   </p>
                 </div>

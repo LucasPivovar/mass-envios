@@ -12,6 +12,7 @@ import Financeiro from './pages/Financeiro';
 import Sidebar from './components/Sidebar';
 import Flows from './pages/Flows';
 import FlowEditor from './pages/FlowEditor';
+import Templates from './pages/Templates';
 import { Toaster } from 'react-hot-toast';
 
 // Inner component so useLocation works inside <Router>
@@ -67,6 +68,7 @@ function AppRoutes({ token, handleLogin, handleLogout, isSidebarOpen, setIsSideb
                 <Route path="/campaigns" element={<Campaigns token={token} />} />
                 <Route path="/new-campaign" element={<NewCampaign token={token} />} />
                 <Route path="/reports" element={<Reports token={token} />} />
+                <Route path="/templates" element={<Templates token={token} />} />
                 <Route path="/settings" element={<Settings token={token} />} />
                 <Route path="/financial" element={<Financeiro token={token} />} />
                 <Route path="/flows" element={<Flows token={token} />} />

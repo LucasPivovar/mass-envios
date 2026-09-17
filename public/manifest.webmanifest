@@ -1,0 +1,13 @@
+{
+  "id": "/",
+  "name": "MetaFlow",
+  "short_name": "MetaFlow",
+  "description": "Sua central de campanhas de WhatsApp",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#03172f",
+  "theme_color": "#071d35",
+  "icons": [{ "src": "/metaflow-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

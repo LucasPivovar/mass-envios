@@ -13,7 +13,7 @@ const NewCampaign = ({ token }) => {
   // Selection State
   const [campaignName, setCampaignName] = useState('');
   const [assignedUser, setAssignedUser] = useState('');
-  const [provider, setProvider] = useState('zapi'); // 'zapi' or 'twilio'
+  const provider = 'twilio'; // 'zapi' or 'twilio'
   
   // Twilio Accounts & Templates State
   const [twilioAccounts, setTwilioAccounts] = useState([]);
@@ -54,17 +54,7 @@ const NewCampaign = ({ token }) => {
         });
         setTags(tagsResponse.data || []);
 
-        // Fetch settings to get default provider
-        const settingsResponse = await axios.get(`${API_BASE}/api/settings`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        
-        if (settingsResponse.data) {
-          const defaultProv = settingsResponse.data.messaging_provider || 'zapi';
-          setProvider(defaultProv);
-        }
-
-        // Fetch Twilio Accounts
+        // Fetch WhatsApp accounts
         const twilioAccountsResponse = await axios.get(`${API_BASE}/api/twilio-accounts`, {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -331,61 +321,13 @@ const NewCampaign = ({ token }) => {
                 />
               </div>
 
-              {/* Provider Selection */}
-              <div className="input-group">
-                <label>Provedor de Mensagem</label>
-                <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
-                  <label style={{ 
-                    ...styles.providerBtn, 
-                    ...(provider === 'zapi' ? styles.providerBtnActive : {})
-                  }}>
-                    <input 
-                      type="radio" 
-                      name="provider" 
-                      value="zapi" 
-                      checked={provider === 'zapi'}
-                      onChange={() => setProvider('zapi')}
-                      style={{ display: 'none' }}
-                    />
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{...styles.dotIndicator, background: provider === 'zapi' ? 'var(--accent-secondary)' : 'rgba(255,255,255,0.1)'}} />
-                      <div>
-                        <strong style={{ display: 'block', color: 'var(--text-primary)' }}>WhatsApp Padrão</strong>
-                        <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>WhatsApp Web / Mensagem Livre</span>
-                      </div>
-                    </div>
-                  </label>
-                  
-                  <label style={{ 
-                    ...styles.providerBtn, 
-                    ...(provider === 'twilio' ? styles.providerBtnActive : {})
-                  }}>
-                    <input 
-                      type="radio" 
-                      name="provider" 
-                      value="twilio" 
-                      checked={provider === 'twilio'}
-                      onChange={() => setProvider('twilio')}
-                      style={{ display: 'none' }}
-                    />
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{...styles.dotIndicator, background: provider === 'twilio' ? 'var(--accent-secondary)' : 'rgba(255,255,255,0.1)'}} />
-                      <div>
-                        <strong style={{ display: 'block', color: 'var(--text-primary)' }}>Twilio</strong>
-                        <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>WhatsApp Oficial / Templates de Metas</span>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-
-              {/* Dynamic Composer Inputs choice */}
+              {/* WhatsApp template composer */}
               {provider === 'twilio' ? (
                 <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   
                   {/* Twilio Account Select */}
                   <div className="input-group" style={{ margin: 0 }}>
-                    <label>Enviar através da conta Twilio:</label>
+                    <label>Enviar através da conta de WhatsApp:</label>
                     <select
                       value={selectedTwilioAccount?.id || ''}
                       onChange={(e) => {
@@ -396,7 +338,7 @@ const NewCampaign = ({ token }) => {
                       }}
                       required
                     >
-                      <option value="">-- Selecione a Conta Twilio --</option>
+                      <option value="">-- Selecione a Conta de WhatsApp --</option>
                       {twilioAccounts.map(acc => (
                         <option key={acc.id} value={acc.id}>
                           {acc.friendly_name} ({acc.twilio_phone_number})
@@ -405,13 +347,13 @@ const NewCampaign = ({ token }) => {
                     </select>
                     {twilioAccounts.length === 0 && (
                       <small style={{ color: '#f87171', display: 'block', marginTop: '6px' }}>
-                        Nenhum perfil de conta Twilio cadastrado! Vá em Configurações para cadastrar um.
+                        Nenhum perfil de conta de WhatsApp cadastrado! Vá em Configurações para cadastrar um.
                       </small>
                     )}
                   </div>
 
                   {loadingTemplates ? (
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Carregando templates homologados da Twilio...</p>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Carregando templates aprovados...</p>
                   ) : (
                     <div className="input-group" style={{ margin: 0 }}>
                       <label>Selecione o Modelo (Template)</label>
@@ -463,7 +405,7 @@ const NewCampaign = ({ token }) => {
                       />
                       {provider === 'twilio' && templateVars[varNum] && (/[\r\n]/.test(templateVars[varNum]) || /\s{5,}/.test(templateVars[varNum])) && (
                         <div style={{ color: '#fb923c', fontSize: '0.8rem', marginTop: '4px', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                          ⚠️ A Twilio/Meta proíbe quebras de linha ou mais de 4 espaços seguidos em variáveis. Eles serão limpos no envio. Use Padrão para texto livre formatado.
+                          Use valores sem quebras de linha nas variáveis da mensagem.
                         </div>
                       )}
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>

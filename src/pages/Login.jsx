@@ -108,12 +108,9 @@ const Login = ({ onLogin }) => {
       <div className="authShell" style={styles.authShell}>
       <section className="authShowcase" style={styles.authShowcase}>
         <div className="login-brand" style={styles.showcaseBrand}><img src="/metaflow-mark.svg" width="36" height="36" alt="" /><span>MetaFlow</span></div>
-        <div style={styles.showcaseMark}>
-          <svg width="118" height="118" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="48" stroke="rgba(71,200,255,.34)" strokeWidth="1.5"/><circle cx="60" cy="60" r="32" fill="rgba(71,200,255,.09)" stroke="rgba(71,200,255,.45)" strokeWidth="1.5"/><path d="M35 62h17l9-16 10 27 8-14h8" stroke="#75dcff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/><circle cx="35" cy="62" r="4" fill="#75dcff"/><circle cx="87" cy="59" r="4" fill="#75dcff"/></svg>
-        </div>
+        <img className="auth-illustration" src="/auth-flow.svg" alt="Mensagens conectadas a campanhas e resultados" />
         <h1 style={styles.showcaseTitle}>Disparos que seguem<br />o seu fluxo.</h1>
         <p style={styles.showcaseText}>Organize campanhas, automações e resultados em uma central feita para a sua operação.</p>
-        <div style={styles.showcaseDots}><span style={styles.showcaseDotActive} /><span style={styles.showcaseDot} /><span style={styles.showcaseDot} /></div>
       </section>
 
       <div className="auth-container" style={styles.authContainer}>
@@ -122,7 +119,7 @@ const Login = ({ onLogin }) => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
               <img src="/metaflow-mark.svg" width="44" height="44" alt="" />
-              <span style={{ color: '#ffffff', fontSize: '2rem', fontWeight: '850', letterSpacing: '-0.065em' }}>Meta<span style={{ color: '#47c8ff' }}>Flow</span></span>
+              <span style={{ color: '#ffffff', fontSize: '2rem', fontWeight: '850' }}>Meta<span style={{ color: '#47c8ff' }}>Flow</span></span>
             </div>
             <h2 className="login-welcome">{view === 'login' ? 'Bem-vindo de volta' : view === 'login_2fa' ? 'Confirme seu acesso' : 'Recupere seu acesso'}</h2>
             <p style={{ margin: 0, color: '#a7c5d8', fontSize: '0.9rem', fontWeight: '500' }}>{view === 'login' ? 'Entre para acompanhar suas campanhas e automações.' : 'Siga as instruções abaixo para continuar.'}</p>
@@ -342,20 +339,20 @@ const Login = ({ onLogin }) => {
               width: '64px',
               height: '64px',
               borderRadius: '50%',
-              background: 'rgba(94,255,0,0.1)',
-              color: '#5EFF00',
+              background: 'rgba(71,200,255,0.12)',
+              color: '#70ccff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               margin: '0 auto 1.5rem auto',
-              boxShadow: '0 0 22px rgba(94,255,0,0.18)',
-              border: '1px solid rgba(94,255,0,0.2)'
+              boxShadow: '0 0 22px rgba(71,200,255,0.18)',
+              border: '1px solid rgba(117,220,255,0.22)'
             }}>
               <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '0.75rem', color: 'white', letterSpacing: '-0.01em' }}>Instruções Enviadas!</h3>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '0.75rem', color: 'white' }}>Instruções Enviadas!</h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: '0 0 2rem 0' }}>
               Enviamos um link seguro de redefinição de senha para o endereço de e-mail informado. Por favor, verifique sua caixa de entrada e spam.
             </p>
@@ -434,9 +431,9 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
-  showcaseBrand: { fontWeight: '850', fontSize: '1.35rem', letterSpacing: '-0.055em', marginBottom: 'auto' },
+  showcaseBrand: { fontWeight: '850', fontSize: '1.35rem', marginBottom: 'auto' },
   showcaseMark: { width: '142px', height: '142px', borderRadius: '50%', display: 'grid', placeItems: 'center', background: '#073552', border: '1px solid rgba(117,220,255,.15)', marginBottom: '2rem' },
-  showcaseTitle: { color: '#ffffff', fontSize: '2.15rem', lineHeight: 1.08, margin: '0 0 1rem', letterSpacing: '-0.055em' },
+  showcaseTitle: { color: '#ffffff', fontSize: '2.15rem', lineHeight: 1.08, margin: '0 0 1rem', letterSpacing: 0 },
   showcaseText: { color: '#a7c5d8', fontSize: '.94rem', lineHeight: 1.65, margin: 0, maxWidth: '360px' },
   showcaseDots: { display: 'flex', gap: '6px', marginTop: '2rem' },
   showcaseDot: { width: '6px', height: '6px', borderRadius: '50%', background: 'rgba(167,197,216,.45)' },
@@ -461,7 +458,7 @@ const styles = {
     fontWeight: '800',
     margin: '0 0 0.35rem 0',
     color: '#102a43',
-    letterSpacing: '-0.03em'
+    letterSpacing: 0
   },
   subtitle: {
     fontSize: '0.83rem',
@@ -503,7 +500,7 @@ const styles = {
     boxShadow: 'none',
     cursor: 'pointer',
     marginTop: '0.5rem',
-    letterSpacing: '-0.01em'
+    letterSpacing: 0
   },
   inputIcon: {
     position: 'absolute',

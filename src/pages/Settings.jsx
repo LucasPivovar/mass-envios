@@ -130,7 +130,7 @@ const Settings = ({ token }) => {
     setError('');
 
     if (!twilioForm.friendly_name || !twilioForm.twilio_account_sid || !twilioForm.twilio_auth_token || !twilioForm.twilio_phone_number) {
-      setError('Todos os campos do perfil do Twilio são obrigatórios.');
+      setError('Todos os campos do perfil de WhatsApp são obrigatórios.');
       return;
     }
 
@@ -152,7 +152,7 @@ const Settings = ({ token }) => {
       handleCancelTwilioForm();
       fetchTwilioAccounts();
     } catch (err) {
-      setError(err.response?.data?.message || 'Erro ao processar perfil do Twilio.');
+      setError(err.response?.data?.message || 'Erro ao processar perfil de WhatsApp.');
     }
   };
 
@@ -168,7 +168,7 @@ const Settings = ({ token }) => {
       setMessage(`Perfil "${name}" excluído com sucesso.`);
       fetchTwilioAccounts();
     } catch (err) {
-      setError('Erro ao excluir perfil da Twilio.');
+      setError('Erro ao excluir perfil de WhatsApp.');
     }
   };
 
@@ -185,7 +185,7 @@ const Settings = ({ token }) => {
       <div style={{ marginBottom: '2.5rem' }}>
         <h1>Configurações</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', margin: 0 }}>
-          Defina o provedor de mensageria ativo, integre múltiplos perfis do Twilio e defina sua URL de webhook.
+          Defina o provedor de mensageria ativo, integre múltiplos contas de WhatsApp e defina sua URL de webhook.
         </p>
       </div>
 
@@ -279,7 +279,7 @@ const Settings = ({ token }) => {
             <div style={styles.modalBackdrop} onMouseDown={handleCancelTwilioForm}>
               <form onSubmit={handleSaveTwilioAccount} onMouseDown={(event) => event.stopPropagation()} style={styles.modalCard}>
               <h2 style={{ ...styles.sectionHeader, color: '#102a43', WebkitTextFillColor: '#102a43', background: 'none', padding: 0 }}>
-                {editingAccount ? `Editar Perfil: ${editingAccount.friendly_name}` : 'Cadastrar Novo Perfil Twilio'}
+                {editingAccount ? `Editar Perfil: ${editingAccount.friendly_name}` : 'Cadastrar Nova Conta'}
               </h2>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
@@ -316,13 +316,13 @@ const Settings = ({ token }) => {
                     name="twilio_auth_token"
                     value={twilioForm.twilio_auth_token} 
                     onChange={handleTwilioFormChange} 
-                    placeholder={editingAccount ? "Preencha para alterar o token" : "Seu Twilio Auth Token"}
+                    placeholder={editingAccount ? "Preencha para alterar o token" : "Seu token de autenticação"}
                     required
                   />
                 </div>
 
                 <div className="input-group" style={{ margin: 0 }}>
-                  <label>Número do WhatsApp Twilio</label>
+                  <label>Número do WhatsApp</label>
                   <input 
                     type="text" 
                     name="twilio_phone_number"
@@ -352,12 +352,12 @@ const Settings = ({ token }) => {
           <div style={styles.formContainer}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <h2 style={{ margin: 0, fontSize: '1.3rem', fontWeight: '800', background: 'var(--accent-flow)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Perfis do Twilio Cadastrados
+                Contas de WhatsApp
               </h2>
               {!showTwilioForm && (
                 <button type="button" onClick={handleOpenNewForm} style={{ padding: '0.7rem 1.4rem', borderRadius: '8px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                  Novo Perfil Twilio
+                  Nova Conta
                 </button>
               )}
             </div>
@@ -403,7 +403,7 @@ const Settings = ({ token }) => {
                   {twilioAccounts.length === 0 && (
                     <tr>
                       <td colSpan="4" style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-tertiary)' }}>
-                        Nenhum perfil de conta Twilio cadastrado. Clique em "+ Novo Perfil Twilio" para começar!
+                        Nenhum perfil de conta de WhatsApp cadastrado. Clique em "+ Nova Conta" para começar!
                       </td>
                     </tr>
                   )}
