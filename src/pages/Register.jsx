@@ -1,40 +1,54 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthShowcase from '../components/AuthShowcase';
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-export default function Register({ onLogin }) {
-  const [step, setStep] = useState(1);
+export default function Register() {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
-  const [plan, setPlan] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [created, setCreated] = useState(false);
+  const [countdown, setCountdown] = useState(3);
+
+  useEffect(() => {
+    if (!created) return undefined;
+    const redirect = window.setTimeout(() => navigate('/plans'), 3000);
+    const ticker = window.setInterval(() => setCountdown(value => Math.max(1, value - 1)), 1000);
+    return () => { window.clearTimeout(redirect); window.clearInterval(ticker); };
+  }, [created, navigate]);
+
   async function submit(event) {
     event.preventDefault();
-    setError('');
-    if (step === 1) { setStep(2); return; }
     setLoading(true);
-    try {
-      const response = await axios.post(`${API_BASE}/api/register`, { username: name.trim(), email: email.trim(), password, plan });
-      if (!response.data.token) throw new Error('Não foi possível concluir seu cadastro.');
-      onLogin(response.data.token);
-    } catch (err) { setError(err.response?.data?.message || err.message); }
-    finally { setLoading(false); }
+    await new Promise(resolve => window.setTimeout(resolve, 650));
+    setLoading(false);
+    setCreated(true);
   }
+
   return <div className="auth-outer login-screen register-screen auth-refined"><div className="authShell">
     <AuthShowcase />
-    <section className="auth-container"><div className="login-brand"><img src="/metaflow-mark.svg" width="36" height="36" alt="" /><strong>MetaFlow</strong></div><h2 className="login-welcome">{step === 1 ? 'Crie sua conta' : 'Escolha seu plano'}</h2><p className="auth-description">{step === 1 ? 'Preencha seus dados para começar.' : 'Selecione a opção para sua operação.'}</p>
-      <ol className="signup-steps"><li aria-current={step === 1 ? 'step' : undefined}>1. Seus dados</li><li aria-current={step === 2 ? 'step' : undefined}>2. Seu plano</li></ol>
-      <form onSubmit={submit}>{step === 1 ? <>
-        <div className="input-group"><label htmlFor="signup-name">Nome completo</label><input id="signup-name" type="text" autoComplete="name" required value={name} onChange={e => setName(e.target.value)} placeholder="Como podemos chamar você?" /></div>
-        <div className="input-group"><label htmlFor="signup-email">E-mail</label><input id="signup-email" type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="voce@empresa.com" /></div>
-        <div className="input-group"><label htmlFor="signup-password">Senha</label><div className="auth-password"><input id="signup-password" type={visible ? 'text' : 'password'} autoComplete="new-password" minLength={8} required value={password} onChange={e => setPassword(e.target.value)} placeholder="Pelo menos 8 caracteres" /><button className="eye-btn" type="button" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar' : 'Mostrar'}</button></div></div>
-      </> : <fieldset className="signup-plans"><legend>Plano disponível</legend><label className="signup-plan"><input type="radio" name="plan" value="pro" checked={plan === 'pro'} onChange={e => setPlan(e.target.value)} required /><span><strong>Plano Pro</strong><small>Contatos, campanhas e relatórios em uma central.</small><small>Valores e condições a definir. Nenhuma cobrança nesta demonstração.</small></span></label></fieldset>}
-        {error && <p role="alert" className="error-message">{error}</p>}<button className="auth-primary" type="submit" disabled={loading}>{loading ? 'Criando sua conta…' : step === 1 ? 'Registrar' : 'Concluir cadastro'}</button>{step === 2 && <button className="auth-back secondary" type="button" disabled={loading} onClick={() => { setStep(1); setError(''); }}>Voltar aos meus dados</button>}
-      </form><p className="auth-footer">Já tem uma conta? <Link to="/login">Faça login</Link></p>
-    </section></div></div>;
+    <section className="auth-container auth-decorated">
+      {created ? <div className="signup-success" role="status">
+        <span className="signup-success-icon">✓</span>
+        <img className="auth-product-logo" src="/metaflow-logo.png" alt="MetaFlow" />
+        <h2>Conta criada com sucesso!</h2>
+        <p>Seu acesso está pronto. Agora escolha o plano ideal para sua operação.</p>
+        <strong>Redirecionando em {countdown}s</strong>
+        <span className="signup-countdown"><i /></span>
+      </div> : <>
+        <img className="auth-product-logo" src="/metaflow-logo.png" alt="MetaFlow" />
+        <h2 className="login-welcome">Crie sua conta</h2>
+        <p className="auth-description">Preencha seus dados para começar.</p>
+        <form onSubmit={submit}>
+          <div className="input-group"><label htmlFor="signup-name">Nome completo</label><input id="signup-name" type="text" autoComplete="name" required value={name} onChange={e => setName(e.target.value)} placeholder="Como podemos chamar você?" /></div>
+          <div className="input-group"><label htmlFor="signup-email">E-mail</label><input id="signup-email" type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="voce@empresa.com" /></div>
+          <div className="input-group"><label htmlFor="signup-password">Senha</label><div className="auth-password"><input id="signup-password" type={visible ? 'text' : 'password'} autoComplete="new-password" minLength={8} required value={password} onChange={e => setPassword(e.target.value)} placeholder="Pelo menos 8 caracteres" /><button className="eye-btn" type="button" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar' : 'Mostrar'}</button></div></div>
+          <button className="auth-primary" type="submit" disabled={loading}>{loading ? 'Criando sua conta…' : 'Registrar'}</button>
+        </form>
+        <Link className="auth-login-back secondary" to="/login">Voltar ao login</Link>
+      </>}
+    </section>
+  </div></div>;
 }

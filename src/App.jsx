@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -8,6 +8,7 @@ import Campaigns from './pages/Campaigns';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
 import Register from './pages/Register';
+import Plans from './pages/Plans';
 import Financeiro from './pages/Financeiro';
 import Sidebar from './components/Sidebar';
 import Flows from './pages/Flows';
@@ -44,6 +45,7 @@ function AppRoutes({ token, handleLogin, handleLogout, isSidebarOpen, setIsSideb
         <Routes key={location.pathname}>
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/register" element={<Register onLogin={handleLogin} />} />
+          <Route path="/plans" element={<Plans />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       ) : (
@@ -53,7 +55,7 @@ function AppRoutes({ token, handleLogin, handleLogout, isSidebarOpen, setIsSideb
             <button className="mobile-menu-btn" onClick={() => setIsSidebarOpen(true)} style={{ background: 'none', border: 'none', padding: '8px', position: 'absolute', left: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#102a43', fontSize: '1.15rem', fontWeight: '800', letterSpacing: '-0.05em' }}><svg width="25" height="25" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 10.5 16 5l9 5.5v11L16 27l-9-5.5v-11Z" fill="#eaf3ff" stroke="#1677e8" strokeWidth="2"/><path d="M10.5 17h4.2l2.2-4 2.2 4h2.4" stroke="#0b3d91" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/></svg>Meta<span style={{ color: '#1677e8' }}>Flow</span></span>
+            <img src="/metaflow-logo.png" alt="MetaFlow" style={{ width: '150px', height: '42px', objectFit: 'contain' }} />
           </header>
 
           {/* Drawer Backdrop click listener overlay */}

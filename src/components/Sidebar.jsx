@@ -1,6 +1,4 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
-import metaFlowLogo from '../assets/metaflow-sidebar-logo.png';
 
 /*  Nav Icons  */
 const Icons = {
@@ -64,7 +62,7 @@ const Icons = {
 };
 
 /* ── Sidebar ────────────────────────────────────────────────────────────── */
-const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
+const Sidebar = ({ onLogout, isOpen }) => {
   const menuItems = [
     { path: '/', label: 'Visão Geral', icon: <Icons.Dashboard /> },
     { path: '/contacts', label: 'Contatos', icon: <Icons.Contacts /> },
@@ -80,7 +78,7 @@ const Sidebar = ({ onLogout, isOpen, setIsOpen }) => {
       <div style={styles.header}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '14px' }}>
-            <img src={metaFlowLogo} alt="MetaFlow" style={{ width: '168px', height: 'auto', display: 'block', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+            <img src="/metaflow-logo.png" alt="MetaFlow" style={{ width: '176px', height: '54px', display: 'block', objectFit: 'contain' }} />
           </div>
         </div>
       </div>

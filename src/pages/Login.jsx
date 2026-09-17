@@ -102,13 +102,12 @@ const Login = ({ onLogin }) => {
       <div className="authShell" style={styles.authShell}>
       <AuthShowcase />
 
-      <div className="auth-container" style={styles.authContainer}>
+      <div className="auth-container auth-decorated" style={styles.authContainer}>
         {/* Brand Header */}
         <div style={styles.brandHeader}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
-              <img src="/metaflow-mark.svg" width="44" height="44" alt="" />
-              <span className="auth-form-brand" style={{ color: '#ffffff', fontSize: '2rem', fontWeight: '850' }}>Meta<span style={{ color: '#47c8ff' }}>Flow</span></span>
+              <img className="auth-product-logo" src="/metaflow-logo.png" alt="MetaFlow" />
             </div>
             <h2 className="login-welcome">{view === 'login' ? 'Bem-vindo de volta' : view === 'login_2fa' ? 'Confirme seu acesso' : 'Recupere seu acesso'}</h2>
             <p style={{ margin: 0, color: '#a7c5d8', fontSize: '0.9rem', fontWeight: '500' }}>{view === 'login' ? 'Entre para acompanhar suas campanhas e automações.' : 'Siga as instruções abaixo para continuar.'}</p>
@@ -345,7 +344,7 @@ const Login = ({ onLogin }) => {
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: '0 0 2rem 0' }}>
               Enviamos um link seguro de redefinição de senha para o endereço de e-mail informado. Por favor, verifique sua caixa de entrada e spam.
             </p>
-            <button type="button" onClick={() => { setView('login'); setForgotEmail(''); }} style={{ ...styles.button, width: '100%' }}>
+            <button className="auth-login-back secondary" type="button" onClick={() => { setView('login'); setForgotEmail(''); }} style={{ ...styles.button, width: '100%' }}>
               Voltar para o Login
             </button>
           </div>
