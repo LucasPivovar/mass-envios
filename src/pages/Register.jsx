@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import AuthShowcase from '../components/AuthShowcase';
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 export default function Register({ onLogin }) {
@@ -25,7 +26,7 @@ export default function Register({ onLogin }) {
     finally { setLoading(false); }
   }
   return <div className="auth-outer login-screen register-screen auth-refined"><div className="authShell">
-    <section className="authShowcase"><div className="login-brand"><img src="/metaflow-mark.svg" width="36" height="36" alt="" /><strong>MetaFlow</strong></div><img className="auth-illustration" src="/auth-flow.svg" alt="Mensagens conectadas a campanhas e resultados" /><h1>Conecte sua mensagem.<br />Amplie seu alcance.</h1><p>Organize seus contatos e campanhas de WhatsApp em um só lugar.</p></section>
+    <AuthShowcase />
     <section className="auth-container"><div className="login-brand"><img src="/metaflow-mark.svg" width="36" height="36" alt="" /><strong>MetaFlow</strong></div><h2 className="login-welcome">{step === 1 ? 'Crie sua conta' : 'Escolha seu plano'}</h2><p className="auth-description">{step === 1 ? 'Preencha seus dados para começar.' : 'Selecione a opção para sua operação.'}</p>
       <ol className="signup-steps"><li aria-current={step === 1 ? 'step' : undefined}>1. Seus dados</li><li aria-current={step === 2 ? 'step' : undefined}>2. Seu plano</li></ol>
       <form onSubmit={submit}>{step === 1 ? <>

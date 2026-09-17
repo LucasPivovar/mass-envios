@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import AuthParticles from '../components/AuthParticles';
+import AuthShowcase from '../components/AuthShowcase';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -53,7 +53,7 @@ const Login = ({ onLogin }) => {
       } else {
         setError('Código inválido. Use 123456.');
       }
-    } catch (err) {
+    } catch {
       setError('Erro ao verificar código 2FA.');
     } finally {
       setLoading(false);
@@ -70,7 +70,7 @@ const Login = ({ onLogin }) => {
       await new Promise(resolve => setTimeout(resolve, 1200));
       setView('forgot_2fa');
       toast.success('Código de verificação enviado! Código de teste: 123456');
-    } catch (err) {
+    } catch {
       setError('Erro ao processar a recuperação de senha. Tente novamente.');
     } finally {
       setForgotLoading(false);
@@ -90,7 +90,7 @@ const Login = ({ onLogin }) => {
       } else {
         setError('Código inválido. Use 123456.');
       }
-    } catch (err) {
+    } catch {
       setError('Erro ao verificar código 2FA.');
     } finally {
       setForgotLoading(false);
@@ -99,19 +99,8 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className="auth-outer login-screen" style={styles.outerContainer}>
-      {/* Particle system */}
-      <AuthParticles />
-      {/* Decorative dark glowing blobs */}
-      <div style={styles.glowBlob1} />
-      <div style={styles.glowBlob2} />
-
       <div className="authShell" style={styles.authShell}>
-      <section className="authShowcase" style={styles.authShowcase}>
-        <div className="login-brand" style={styles.showcaseBrand}><img src="/metaflow-mark.svg" width="36" height="36" alt="" /><span>MetaFlow</span></div>
-        <img className="auth-illustration" src="/auth-flow.svg" alt="Mensagens conectadas a campanhas e resultados" />
-        <h1 style={styles.showcaseTitle}>Disparos que seguem<br />o seu fluxo.</h1>
-        <p style={styles.showcaseText}>Organize campanhas, automações e resultados em uma central feita para a sua operação.</p>
-      </section>
+      <AuthShowcase />
 
       <div className="auth-container" style={styles.authContainer}>
         {/* Brand Header */}
@@ -119,7 +108,7 @@ const Login = ({ onLogin }) => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
               <img src="/metaflow-mark.svg" width="44" height="44" alt="" />
-              <span style={{ color: '#ffffff', fontSize: '2rem', fontWeight: '850' }}>Meta<span style={{ color: '#47c8ff' }}>Flow</span></span>
+              <span className="auth-form-brand" style={{ color: '#ffffff', fontSize: '2rem', fontWeight: '850' }}>Meta<span style={{ color: '#47c8ff' }}>Flow</span></span>
             </div>
             <h2 className="login-welcome">{view === 'login' ? 'Bem-vindo de volta' : view === 'login_2fa' ? 'Confirme seu acesso' : 'Recupere seu acesso'}</h2>
             <p style={{ margin: 0, color: '#a7c5d8', fontSize: '0.9rem', fontWeight: '500' }}>{view === 'login' ? 'Entre para acompanhar suas campanhas e automações.' : 'Siga as instruções abaixo para continuar.'}</p>
@@ -397,7 +386,6 @@ const styles = {
     padding: '2.5rem',
     maxWidth: '410px',
     width: '100%',
-    margin: '0 auto',
     textAlign: 'center',
     position: 'relative',
     zIndex: 10,
