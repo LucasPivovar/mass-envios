@@ -1659,7 +1659,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   letter-spacing: .14em;
 }
 .login-screen .authShowcase {
-  background: linear-gradient(145deg, #0b3d91 0%, #1677e8 100%) !important;
+  background: linear-gradient(150deg, #020b18 0%, #061935 50%, #0a254d 100%) !important;
   color: #ffffff !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1667,7 +1667,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  padding: clamp(32px, 5vw, 64px) clamp(24px, 4vw, 56px) !important;
+  padding: clamp(32px, 4vw, 56px) !important;
   min-height: 100% !important;
   box-sizing: border-box !important;
 }
@@ -1675,7 +1675,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 520px;
+  max-width: 660px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1689,92 +1689,92 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   font-weight: 600 !important;
 }
 .login-screen .auth-showcase-copy h1 em {
-  color: #7dd3fc !important;
+  color: #60a5fa !important;
   font-style: normal;
 }
 .login-screen .auth-showcase-copy > p {
-  max-width: 480px;
+  max-width: 580px;
   margin: 14px 0 0 !important;
-  color: #e0f2fe !important;
+  color: #ffffff !important;
   font-size: clamp(0.92rem, 1.1vw, 1.02rem) !important;
   line-height: 1.5;
   font-weight: 400 !important;
+  opacity: 0.92;
 }
 .auth-glass-cards {
-  display: flex;
-  flex-direction: column;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 14px;
   width: 100%;
-  margin-top: 32px;
+  margin-top: 36px;
 }
 .auth-glass-card {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 18px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 16, 50, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.25);
   transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
 }
 .auth-glass-card:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.36);
-  box-shadow: 0 12px 36px rgba(0, 16, 50, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
-.auth-glass-icon {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.32);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  flex-shrink: 0;
-}
-.auth-glass-info {
-  flex: 1;
-  min-width: 0;
-}
-.auth-glass-header {
+.auth-glass-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 4px;
+  width: 100%;
+  margin-bottom: 16px;
 }
-.auth-glass-title {
-  margin: 0;
-  color: #ffffff;
-  font-size: 0.94rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+.auth-glass-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
 }
 .auth-glass-pill {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
   white-space: nowrap;
 }
+.auth-glass-title {
+  margin: 0 0 8px 0 !important;
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.3 !important;
+}
 .auth-glass-desc {
-  margin: 0;
-  color: #dbeafe;
-  font-size: 0.82rem;
-  line-height: 1.45;
-  font-weight: 400;
+  margin: 0 !important;
+  color: #ffffff !important;
+  opacity: 0.88;
+  font-size: 0.8rem !important;
+  line-height: 1.45 !important;
+  font-weight: 400 !important;
 }
 .auth-benefits {
   display: grid;
@@ -1967,6 +1967,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   .auth-benefits { grid-template-columns: 1fr; }
   .auth-benefit { display: grid; grid-template-columns: 42px 1fr; column-gap: 14px; padding: 16px; }
   .auth-benefit-icon { grid-row: 1 / 3; margin: 0; }
+  .auth-glass-cards { grid-template-columns: 1fr !important; gap: 10px; }
 }
 
 @media (max-width: 820px) {
