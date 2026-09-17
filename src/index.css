@@ -1496,21 +1496,21 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   --text-secondary: #486581;
   --text-tertiary: #829ab1;
   min-height: 100dvh !important;
-  padding: clamp(18px, 3vw, 44px) !important;
+  padding: 0 !important;
   background: #f4f8ff !important;
   color: var(--text-primary) !important;
 }
 
 .login-screen .authShell {
-  width: min(100%, 1440px) !important;
-  min-height: min(820px, calc(100dvh - 48px)) !important;
+  width: 100% !important;
+  min-height: 100dvh !important;
   display: grid !important;
-  grid-template-columns: minmax(0, 1.45fr) minmax(390px, .75fr) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   overflow: hidden !important;
   background: #edf4ff !important;
-  border: 1px solid #d5e4f5 !important;
-  border-radius: 26px !important;
-  box-shadow: 0 24px 70px rgba(11, 61, 145, .12) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 .login-screen .authShowcase.auth-showcase-light {
@@ -1518,8 +1518,8 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   padding: clamp(40px, 6vw, 86px) !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
-  gap: 64px;
+  justify-content: center !important;
+  gap: 48px;
   background: #ffffff !important;
   color: #102a43 !important;
 }
@@ -1645,7 +1645,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 .signup-plan small { color: #627d98 !important; }
 
 @media (max-width: 1120px) {
-  .login-screen .authShell { grid-template-columns: minmax(0, 1fr) minmax(370px, .8fr) !important; }
+  .login-screen .authShell { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
   .login-screen .authShowcase.auth-showcase-light { padding: 48px !important; }
   .auth-benefits { grid-template-columns: 1fr; }
   .auth-benefit { display: grid; grid-template-columns: 42px 1fr; column-gap: 14px; padding: 16px; }
