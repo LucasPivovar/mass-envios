@@ -1485,8 +1485,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 }
 .login-screen, .login-screen *, .login-screen *::before, .login-screen *::after { box-sizing: border-box; }
 .login-screen .authShell { grid-template-columns: 60% 40% !important; }
-.login-brand { display: flex; align-items: center; gap: 12px; color: #fff; }
-.login-welcome { margin: 28px 0 8px; font-size: 1.4rem; letter-spacing: 0; }
+.login-welcome { margin: 6px 0 6px !important; font-size: 1.4rem; letter-spacing: -0.01em; }
 .login-screen .auth-container {
   width: 100% !important;
   max-width: none !important;
@@ -1855,13 +1854,13 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   display: none !important;
 }
 .auth-product-logo {
-  width: min(100%, 245px) !important;
-  height: 64px;
+  width: min(100%, 200px) !important;
+  height: 44px !important;
   display: block;
-  margin: 0 auto 24px;
+  margin: 0 auto 6px !important;
   object-fit: contain;
   object-position: center;
-  padding: 8px 14px;
+  padding: 0 !important;
   box-sizing: border-box;
   background: transparent;
   border-radius: 12px;

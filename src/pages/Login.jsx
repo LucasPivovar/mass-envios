@@ -391,7 +391,7 @@ const styles = {
     margin: 'auto'
   },
   brandHeader: {
-    marginBottom: '2rem',
+    marginBottom: '1.25rem',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
