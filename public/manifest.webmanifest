@@ -9,5 +9,5 @@
   "display": "standalone",
   "background_color": "#03172f",
   "theme_color": "#071d35",
-  "icons": [{ "src": "/metaflow-logo.png", "sizes": "2170x725", "type": "image/png", "purpose": "any" }]
+  "icons": [{ "src": "/favicon-share.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
 }
