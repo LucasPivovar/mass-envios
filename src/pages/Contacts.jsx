@@ -408,8 +408,9 @@ const Contacts = ({ token }) => {
                   disabled={currentPage === 1}
                   className="secondary"
                   style={styles.paginationBtn}
+                  aria-label="Página anterior"
                 >
-                  Anterior
+                  <span aria-hidden="true">‹</span>
                 </button>
                 <span style={styles.paginationInfo}>
                   Página {currentPage} de {totalPages}
@@ -419,8 +420,9 @@ const Contacts = ({ token }) => {
                   disabled={currentPage === totalPages}
                   className="secondary"
                   style={styles.paginationBtn}
+                  aria-label="Próxima página"
                 >
-                  Próxima
+                  <span aria-hidden="true">›</span>
                 </button>
               </div>
             </div>
@@ -523,11 +525,16 @@ const styles = {
     background: 'rgba(10, 15, 30, 0.2)'
   },
   paginationBtn: {
-    padding: '0.5rem 1.25rem',
-    fontSize: '0.85rem',
+    padding: '0.45rem',
+    fontSize: '1.2rem',
     borderRadius: '8px',
     boxShadow: 'none',
-    minWidth: '100px'
+    minWidth: '42px',
+    width: '42px',
+    height: '38px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   paginationInfo: {
     fontSize: '0.9rem',

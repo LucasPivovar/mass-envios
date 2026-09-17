@@ -52,7 +52,7 @@ const Financeiro = () => {
         </p>
       </div>
 
-<div className="kpi-grid">
+<div className="kpi-grid kpi-grid--financial">
 <KpiCard label="Saldo atual (créditos)" value={balance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} icon="money" />
 <KpiCard label="Gasto no mês" value={spent.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} icon="chart" tone="purple" />
 <KpiCard label="Plano atual" value={plan} detail={`Renova em ${renewalDate}`} icon="plan" tone="amber" />
@@ -73,7 +73,7 @@ const Financeiro = () => {
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
-        <button style={{ width: 'fit-content' }}>
+        <button className="primary" style={{ width: 'fit-content' }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -173,8 +173,9 @@ const Financeiro = () => {
               disabled={currentPage === 1}
               className="secondary"
               style={styles.paginationBtn}
+              aria-label="Página anterior"
             >
-              Anterior
+              <span aria-hidden="true">‹</span>
             </button>
             <span style={styles.paginationInfo}>
               Página {currentPage} de {totalPages}
@@ -184,8 +185,9 @@ const Financeiro = () => {
               disabled={currentPage === totalPages}
               className="secondary"
               style={styles.paginationBtn}
+              aria-label="Próxima página"
             >
-              Próxima
+              <span aria-hidden="true">›</span>
             </button>
           </div>
         )}
@@ -281,11 +283,16 @@ const styles = {
     background: '#f7faff'
   },
   paginationBtn: {
-    padding: '0.45rem 1.15rem',
-    fontSize: '0.82rem',
+    padding: '0.45rem',
+    fontSize: '1.2rem',
     borderRadius: '8px',
     boxShadow: 'none',
-    minWidth: '90px'
+    minWidth: '42px',
+    width: '42px',
+    height: '38px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   paginationInfo: {
     fontSize: '0.85rem',

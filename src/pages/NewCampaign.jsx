@@ -724,10 +724,11 @@ const NewCampaign = ({ token }) => {
               <button 
                 onClick={() => setContactsPage(prev => Math.max(prev - 1, 1))} 
                 disabled={contactsPage === 1}
-                className="secondary"
-                style={{ padding: '0.4rem 1rem', fontSize: '0.8rem', minWidth: '80px', margin: 0 }}
+                className="secondary pagination-btn"
+                style={{ padding: '0.45rem', fontSize: '1.2rem', minWidth: '42px', width: '42px', height: '38px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: 0 }}
+                aria-label="Página anterior"
               >
-                Anterior
+                <span aria-hidden="true">‹</span>
               </button>
               <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '600' }}>
                 Página {contactsPage} de {totalContactsPages}
@@ -735,10 +736,11 @@ const NewCampaign = ({ token }) => {
               <button 
                 onClick={() => setContactsPage(prev => Math.min(prev + 1, totalContactsPages))} 
                 disabled={contactsPage === totalContactsPages}
-                className="secondary"
-                style={{ padding: '0.4rem 1rem', fontSize: '0.8rem', minWidth: '80px', margin: 0 }}
+                className="secondary pagination-btn"
+                style={{ padding: '0.45rem', fontSize: '1.2rem', minWidth: '42px', width: '42px', height: '38px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: 0 }}
+                aria-label="Próxima página"
               >
-                Próxima
+                <span aria-hidden="true">›</span>
               </button>
             </div>
           )}

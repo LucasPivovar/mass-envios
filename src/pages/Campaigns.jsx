@@ -290,10 +290,14 @@ const Campaigns = ({ token }) => {
                     {new Date(c.created_at).toLocaleDateString()}
                   </td>
                   <td>
-                    <div className="deliveryMetrics" style={styles.deliveryMetrics}>
-                      <span><small>Envios</small><strong>{c.total_sent}</strong></span>
-                      <span><small>Entregues</small><strong>{c.total_delivered}</strong><em>{Math.round((c.total_delivered / c.total_sent) * 100) || 0}%</em></span>
-                      <span><small>Lidos</small><strong>{c.total_read}</strong><em>{Math.round((c.total_read / c.total_sent) * 100) || 0}%</em></span>
+                    <div
+                      className="deliveryMetrics deliveryMetrics--compact"
+                      aria-label={`${c.total_sent} envios, ${c.total_delivered} entregues e ${c.total_read} lidos`}
+                      title={`${c.total_sent} envios, ${c.total_delivered} entregues e ${c.total_read} lidos`}
+                    >
+                      <span className="deliveryMetric deliveryMetric--sent">{c.total_sent}</span>
+                      <span className="deliveryMetric deliveryMetric--delivered">{c.total_delivered}</span>
+                      <span className="deliveryMetric deliveryMetric--read">{c.total_read}</span>
                     </div>
                   </td>
                   <td>
@@ -429,7 +433,7 @@ const Campaigns = ({ token }) => {
                 className="secondary"
                 style={styles.paginationBtn}
               >
-                Anterior
+                <span aria-hidden="true">‹</span><span className="sr-only">Anterior</span>
               </button>
               <span style={styles.paginationInfo}>
                 Página {currentPage} de {totalPages}
@@ -440,7 +444,7 @@ const Campaigns = ({ token }) => {
                 className="secondary"
                 style={styles.paginationBtn}
               >
-                Próxima
+                <span aria-hidden="true">›</span><span className="sr-only">Próxima</span>
               </button>
             </div>
           )}
@@ -657,11 +661,13 @@ const styles = {
     background: 'rgba(10, 15, 30, 0.2)'
   },
   paginationBtn: {
-    padding: '0.5rem 1.25rem',
-    fontSize: '0.85rem',
+    padding: '0.45rem',
+    fontSize: '1.2rem',
     borderRadius: '8px',
     boxShadow: 'none',
-    minWidth: '100px'
+    minWidth: '42px',
+    width: '42px',
+    height: '38px'
   },
   paginationInfo: {
     fontSize: '0.9rem',
@@ -731,10 +737,7 @@ const styles = {
     minWidth: '200px'
   },
   deliveryMetrics: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, minmax(54px, 1fr))',
-    gap: '0.75rem',
-    minWidth: '220px'
+    display: 'inline-flex'
   },
   searchInput: {
     border: 'none',
