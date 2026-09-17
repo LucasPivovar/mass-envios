@@ -365,15 +365,25 @@ const Campaigns = ({ token }) => {
                   <td style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', whiteSpace: 'nowrap' }}>
                     {new Date(c.created_at).toLocaleDateString()}
                   </td>
-                  <td>
+                  <td style={{ whiteSpace: 'nowrap' }}>
                     <div
-                      className="deliveryMetrics deliveryMetrics--compact"
+                      className="deliveryMetrics--compact"
                       aria-label={`${c.total_sent} envios, ${c.total_delivered} entregues e ${c.total_read} lidos`}
                       title={`${c.total_sent} envios, ${c.total_delivered} entregues e ${c.total_read} lidos`}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        whiteSpace: 'nowrap',
+                        gap: '2px',
+                        fontSize: '0.95rem',
+                        fontWeight: '700'
+                      }}
                     >
-                      <span className="deliveryMetric deliveryMetric--sent">{c.total_sent}</span>
-                      <span className="deliveryMetric deliveryMetric--delivered">{c.total_delivered}</span>
-                      <span className="deliveryMetric deliveryMetric--read">{c.total_read}</span>
+                      <span className="deliveryMetric--sent" style={{ color: '#829ab1' }}>{c.total_sent}</span>
+                      <span className="deliveryMetric--sep" style={{ color: '#cbd5e1', fontWeight: 400, margin: '0 3px' }}>/</span>
+                      <span className="deliveryMetric--delivered" style={{ color: '#102a43' }}>{c.total_delivered}</span>
+                      <span className="deliveryMetric--sep" style={{ color: '#cbd5e1', fontWeight: 400, margin: '0 3px' }}>/</span>
+                      <span className="deliveryMetric--read" style={{ color: '#10b981' }}>{c.total_read}</span>
                     </div>
                   </td>
                   <td>

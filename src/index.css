@@ -495,33 +495,34 @@ button.danger:hover {
 
 /* Compact delivery metrics (400 cinza, 10 padrão, 2 verde) */
 .deliveryMetrics--compact {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  font-family: inherit;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  gap: 2px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  font-family: inherit !important;
 }
-.deliveryMetric {
-  display: inline-flex;
-  align-items: center;
+.deliveryMetrics--compact span {
+  display: inline !important;
+  white-space: nowrap !important;
 }
 .deliveryMetric--sent {
-  color: #829ab1;
+  color: #829ab1 !important;
 }
 .deliveryMetric--delivered {
-  color: #102a43;
+  color: #102a43 !important;
 }
 .deliveryMetric--read {
-  color: #10b981;
+  color: #10b981 !important;
 }
-.deliveryMetric--sent::after,
-.deliveryMetric--delivered::after {
-  content: '/';
-  margin-left: 6px;
-  color: #cbd5e1;
-  font-weight: 400;
+.deliveryMetric--sep {
+  color: #cbd5e1 !important;
+  font-weight: 400 !important;
+  margin: 0 3px !important;
 }
+
 
 /* Financial KPI typography refinement (font fine, não bold) */
 .kpi-grid--financial .kpi-value {
@@ -1468,7 +1469,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
 @media (max-width: 620px) {
   .campaigns-kpi-grid, .finance-kpi-grid { grid-template-columns: 1fr !important; }
 }
-.deliveryMetrics > span { display: grid; grid-template-columns: 1fr; gap: 3px; min-width: 58px; }
+.deliveryMetrics:not(.deliveryMetrics--compact) > span { display: grid; grid-template-columns: 1fr; gap: 3px; min-width: 58px; }
 .deliveryMetrics small { color: var(--text-secondary); font-size: .67rem; font-weight: 700; text-transform: uppercase; }
 .deliveryMetrics strong { color: var(--text-primary); font-size: .9rem; }
 .deliveryMetrics em { color: var(--text-secondary); font-size: .72rem; font-style: normal; }
