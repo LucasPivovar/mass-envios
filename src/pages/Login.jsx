@@ -240,7 +240,7 @@ const Login = ({ onLogin }) => {
               {loading ? 'Verificando...' : 'Confirmar Acesso'}
             </button>
             <div style={{ marginTop: '1.75rem', textAlign: 'center' }}>
-              <a href="#login" onClick={(e) => { e.preventDefault(); setView('login'); setError(''); setCode2fa(''); }} style={styles.forgotLink}>
+              <a className="auth-login-back" href="#login" onClick={(e) => { e.preventDefault(); setView('login'); setError(''); setCode2fa(''); }}>
                 Voltar
               </a>
             </div>
@@ -282,7 +282,7 @@ const Login = ({ onLogin }) => {
             </button>
 
             <div style={{ marginTop: '1.75rem', textAlign: 'center' }}>
-              <a href="#login" onClick={(e) => { e.preventDefault(); setView('login'); setError(''); }} style={styles.forgotLink}>
+              <a className="auth-login-back" href="#login" onClick={(e) => { e.preventDefault(); setView('login'); setError(''); }}>
                 Voltar para o Login
               </a>
             </div>
@@ -314,7 +314,7 @@ const Login = ({ onLogin }) => {
               {forgotLoading ? 'Verificando...' : 'Verificar Código'}
             </button>
             <div style={{ marginTop: '1.75rem', textAlign: 'center' }}>
-              <a href="#forgot" onClick={(e) => { e.preventDefault(); setView('forgot'); setError(''); setCode2fa(''); }} style={styles.forgotLink}>
+              <a className="auth-login-back" href="#forgot" onClick={(e) => { e.preventDefault(); setView('forgot'); setError(''); setCode2fa(''); }}>
                 Voltar
               </a>
             </div>
