@@ -1608,7 +1608,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   overflow: hidden !important;
-  background: #edf4ff !important;
+  background: #ffffff !important;
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -1663,26 +1663,118 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
   color: #ffffff !important;
   position: relative !important;
   overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: clamp(32px, 5vw, 64px) clamp(24px, 4vw, 56px) !important;
+  min-height: 100% !important;
+  box-sizing: border-box !important;
+}
+.auth-showcase-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .login-screen .auth-showcase-copy h1 {
   margin: 0 !important;
   color: #ffffff !important;
-  font-size: clamp(2.8rem, 5vw, 5.7rem) !important;
-  line-height: .98 !important;
-  letter-spacing: -.055em;
-  font-weight: 500 !important;
+  font-size: clamp(2.1rem, 3.4vw, 3.2rem) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -.035em;
+  font-weight: 600 !important;
 }
 .login-screen .auth-showcase-copy h1 em {
   color: #7dd3fc !important;
   font-style: normal;
 }
 .login-screen .auth-showcase-copy > p {
-  max-width: 630px;
-  margin: 28px 0 0 !important;
+  max-width: 480px;
+  margin: 14px 0 0 !important;
   color: #e0f2fe !important;
-  font-size: clamp(1rem, 1.35vw, 1.2rem) !important;
-  line-height: 1.65;
+  font-size: clamp(0.92rem, 1.1vw, 1.02rem) !important;
+  line-height: 1.5;
   font-weight: 400 !important;
+}
+.auth-glass-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  margin-top: 32px;
+}
+.auth-glass-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 16, 50, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.auth-glass-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.36);
+  box-shadow: 0 12px 36px rgba(0, 16, 50, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+}
+.auth-glass-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+.auth-glass-info {
+  flex: 1;
+  min-width: 0;
+}
+.auth-glass-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.auth-glass-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.auth-glass-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  white-space: nowrap;
+}
+.auth-glass-desc {
+  margin: 0;
+  color: #dbeafe;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  font-weight: 400;
 }
 .auth-benefits {
   display: grid;
@@ -1891,7 +1983,7 @@ button.btn-logout:hover, .sidebar-logout-btn:hover { background: #dc2626 !import
     border-radius: 0 !important;
     box-shadow: none !important;
   }
-  .login-screen .authShowcase.auth-showcase-light { display: none !important; }
+  .login-screen .authShowcase { display: none !important; }
   .login-screen .auth-container,
   .auth-refined .auth-container {
     width: 100% !important;
